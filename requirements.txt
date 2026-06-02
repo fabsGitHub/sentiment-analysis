@@ -16,3 +16,6 @@ accelerate>=0.20.0       # Optimizes training loops for PyTorch/Transformers
 
 ipykernel>=6.20.0        # Enables running notebook cells within VS Code
 tqdm>=4.65.0             # Visual progress bars for model training loops
+
+jupyter>=1.0.0           # Das Haupt-Framework für Jupyter auf dem Server
+notebook>=7.0.0          # Stellt sicher, dass alle Server-Protokolle aktuell sind
