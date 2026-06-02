@@ -1,0 +1,18 @@
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+wordcloud>=1.9.0
+nltk>=3.8.0
+spacy>=3.5.0
+
+scikit-learn>=1.2.0
+scipy>=1.10.0
+
+torch>=2.0.0             # Core PyTorch library for Neural Networks and Transformers
+transformers>=4.30.0     # Hugging Face for BERT, RoBERTa, FinBERT fine-tuning
+datasets>=2.12.0         # Data loading utilities for Hugging Face
+accelerate>=0.20.0       # Optimizes training loops for PyTorch/Transformers
+
+ipykernel>=6.20.0        # Enables running notebook cells within VS Code
+tqdm>=4.65.0             # Visual progress bars for model training loops
