@@ -235,26 +235,24 @@ def evaluate_model(y_true, y_pred, model_display_name, classes):
 # ==========================================
 
 class SparseTextDataset(Dataset):
-    """Custom Dataset to prevent OOM RAM errors by lazily converting sparse rows to dense."""
+    """Optimized Dataset that converts sparse data to dense tensors upfront to eliminate CPU bottlenecks."""
     def __init__(self, X, y=None):
-        self.X = X
-        self.y = y
-        self.is_sparse = sp.issparse(X)
+        if sp.issparse(X):
+            # Convert the entire split to dense upfront ONCE
+            self.X = torch.from_numpy(X.toarray()).float()
+        else:
+            self.X = torch.tensor(X, dtype=torch.float32)
+
+        self.y = torch.tensor(y, dtype=torch.long) if y is not None else None
 
     def __len__(self):
         return self.X.shape[0]
 
     def __getitem__(self, idx):
-        # Fetch row and convert to dense only when needed by the DataLoader batch
-        x_row = self.X[idx]
-        if self.is_sparse:
-            x_row = x_row.toarray().flatten()
-
-        x_tensor = torch.tensor(x_row, dtype=torch.float32)
-
+        # Slicing an already dense CPU tensor is lightning fast
         if self.y is not None:
-            return x_tensor, torch.tensor(self.y[idx], dtype=torch.long)
-        return x_tensor
+            return self.X[idx], self.y[idx]
+        return self.X[idx]
 
 class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, hidden_layer_sizes=(64,), activation='relu', solver='adam',
@@ -434,17 +432,17 @@ if __name__ == "__main__":
 
     # Simplified Grid Search for demonstration limits (Adjust as needed)
     param_grid = {
-    'hidden_layer_sizes': [(32,), (64,), (32, 32), (64, 32), (64,64), (128,)],
-    'activation': ['relu', 'tanh'],
-    'solver': ['adam', 'sgd'],
-    'alpha': [0.0001, 0.001, 0.01],
-    'batch_size': [16, 32],
-    'learning_rate_init': [0.001, 0.01, 0.1],
-    'max_iter': [20, 50, 100],
-    'early_stopping': [True],
-    'validation_fraction': [0.1],
-    'random_state': [42]
-}
+        'hidden_layer_sizes': [(32,), (64,), (64, 32), (128,)],
+        'activation': ['relu', 'tanh'],
+        'solver': ['adam'],
+        'alpha': [0.0001, 0.001],
+        'batch_size': [128, 256],  # <-- Bumped up from 16/32
+        'learning_rate_init': [0.001, 0.01],
+        'max_iter': [50, 100],     # <-- 20 iterations is too low for Adam to converge well
+        'early_stopping': [True],
+        'validation_fraction': [0.1],
+        'random_state': [42]
+    }
 
     pytorch_mlp = PyTorchMLPClassifier()
     grid_search = GridSearchCV(estimator=pytorch_mlp, param_grid=param_grid, cv=2, scoring='f1_macro', n_jobs=1, verbose=2)
