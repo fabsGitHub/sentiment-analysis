@@ -1,21 +1,27 @@
+# Core Data Science Libraries
 pandas>=2.0.0
 numpy>=1.24.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 wordcloud>=1.9.0
+
+# NLP and Text Processing
 nltk>=3.8.0
 spacy>=3.5.0
 
+# Machine Learning
 scikit-learn>=1.2.0
+imbalanced-learn>=0.10.0  # For imblearn.combine (SMOTE, SMOTETomek, etc.)
 scipy>=1.10.0
 
+# Deep Learning
 torch>=2.0.0             # Core PyTorch library for Neural Networks and Transformers
 transformers>=4.30.0     # Hugging Face for BERT, RoBERTa, FinBERT fine-tuning
 datasets>=2.12.0         # Data loading utilities for Hugging Face
 accelerate>=0.20.0       # Optimizes training loops for PyTorch/Transformers
 
+# Jupyter and Notebook Support
 ipykernel>=6.20.0        # Enables running notebook cells within VS Code
 tqdm>=4.65.0             # Visual progress bars for model training loops
-
 jupyter>=1.0.0           # Das Haupt-Framework für Jupyter auf dem Server
 notebook>=7.0.0          # Stellt sicher, dass alle Server-Protokolle aktuell sind
