@@ -399,7 +399,7 @@ if __name__ == "__main__":
     df["prep_full"] = df["sentence"].apply(preprocess_full)
     df["prep_masked"] = df["sentence"].apply(preprocess_masked)
 
-    ngram_ranges = [(1, 1), (1, 2), (1, 3), (2, 2), (2, 3), (3, 3)] # Reduced list for sane execution time
+    ngram_ranges = [(1, 2)] # Reduced list for sane execution time
     strategies = ["prep_standard", "prep_full", "prep_masked"]
     custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
@@ -495,17 +495,17 @@ if __name__ == "__main__":
 
     # Simplified Grid Search for demonstration limits (Adjust as needed)
     param_grid = {
-        'hidden_layer_sizes': [(32,), (64,)],
-        'activation': ['relu'],
-        'solver': ['adam'],
-        'alpha': [0.0001, 0.001],
-        'batch_size': [32],
-        'learning_rate_init': [0.001, 0.01],
-        'max_iter': [50],
-        'early_stopping': [True],
-        'validation_fraction': [0.1],
-        'random_state': [42]
-    }
+    'hidden_layer_sizes': [(32,), (64,), (32, 32), (64, 32), (64,64), (128,)],
+    'activation': ['relu', 'tanh'],
+    'solver': ['adam', 'sgd'],
+    'alpha': [0.0001, 0.001, 0.01],
+    'batch_size': [16, 32],
+    'learning_rate_init': [0.001, 0.01, 0.1],
+    'max_iter': [20, 50, 100],
+    'early_stopping': [True],
+    'validation_fraction': [0.1],
+    'random_state': [42]
+}
 
     pytorch_mlp = PyTorchMLPClassifier()
     grid_search = GridSearchCV(estimator=pytorch_mlp, param_grid=param_grid, cv=2, scoring='f1_macro', n_jobs=1, verbose=2)
