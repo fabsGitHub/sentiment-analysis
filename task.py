@@ -114,7 +114,7 @@ LATE_CLEANUP = [
     (re.compile(r"\bsq\s*m\b", re.I), "sqm"),
     (re.compile(r"(\d+)\s*(sqm|m|km|kg|g)", re.I), r"\1\2"),
     (re.compile(r"\b([a-zA-Z]+)\s*(\d{1,2})\s*-\s*([a-zA-Z]+)\s*(\d{1,2})\b"), r"\1\2-\3\4"),
-    (re.compile(r"(?<!\d)(\d{4})-(\d{2})(?!\d|-)"), r"\1-20\2"),
+    (re.compile(r"(?<!\d)(\d{4})-(\d{2})(?!\d|:)"), r"\1-20\2"),
     (re.compile(r"\b(\d{1,2})-(\d{4})\b"), lambda m: f"{m.group(2)}-{m.group(1).zfill(2)}"),
     (re.compile(r"(?<!\d)[^\w\s'=%-]|[^\w\s'=%-](?!\d)"), ""),
     (re.compile(r"\s+"), " "), (re.compile(r"\s*'(\w+)"), ""),
@@ -131,7 +131,7 @@ def normalize_dates_smart(text):
     def repl_mo_mo_yr(m):
         m1, m2 = m.group(1).lower(), m.group(2).lower()
         if m1 in MONTH_MAP and m2 in MONTH_MAP:
-            return f"{m.group(3)}-{MONTH_MAP[m1]}:{MONTH_MAP[m2]}"
+            return f"{m.group(3)}:{MONTH_MAP[m1]}:{MONTH_MAP[m2]}"
         return m.group(0)
     text = MONTH_MONTH_YEAR.sub(repl_mo_mo_yr, text)
 
@@ -159,14 +159,14 @@ def normalize_dates_smart(text):
     def repl_m_y(m):
         mo = m.group(1).lower()
         if mo in MONTH_MAP:
-            return f"{m.group(2)}-{MONTH_MAP[mo]}"
+            return f"{m.group(2)}:{MONTH_MAP[mo]}"
         return m.group(0)
     text = MONTH_YEAR.sub(repl_m_y, text)
 
     def repl_y_m(m):
         mo = m.group(2).lower()
         if mo in MONTH_MAP:
-            return f"{m.group(1)}-{MONTH_MAP[mo]}"
+            return f"{m.group(1)}:{MONTH_MAP[mo]}"
         return m.group(0)
     text = YEAR_MONTH.sub(repl_y_m, text)
     return text
@@ -213,9 +213,9 @@ def preprocess_masked(text):
     text = re.sub(r'\+[\d\-()]{6,20}', ' [PHONE] ', text)
     text = re.sub(r'\b(eur|usd|gbp|jpy|chf|sek)\d+\.?\d*(mn|bn|k|pct)?\b', ' [MONEY] ', text)
     text = re.sub(r'\b\d+\.?\d*pct\b', ' [PERCENT] ', text)
-    text = re.sub(r'\b\d{4}-\d{2}-\d{2}\b', ' [DATE] ', text)
-    text = re.sub(r'\b\d{4}-\d{2}\b', ' [DATE] ', text)
-    text = re.sub(r'\b\d{2}-\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{4}:\d{2}:\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{4}:\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{2}:\d{2}\b', ' [DATE] ', text)
     text = re.sub(r'\b(19\d{2}|20\d{2})\b', ' [DATE] ', text)
     text = re.sub(r'\b\d{1,2}:\d{2}(am|pm)\b', ' [TIME] ', text)
     text = re.sub(r'\b\d+\.?\d*(sqm|km|kg|m|g)\b', ' [MEASUREMENT] ', text)
