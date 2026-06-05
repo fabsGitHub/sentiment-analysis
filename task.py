@@ -395,8 +395,6 @@ if __name__ == "__main__":
     df[TARGET_COL] = label_encoder.fit_transform(df[TARGET_COL])
     classes_multiclass = label_encoder.classes_
 
-    df["prep_standard"] = df["sentence"].apply(preprocess_standard)
-    df["prep_full"] = df["sentence"].apply(preprocess_full)
     df["prep_masked"] = df["sentence"].apply(preprocess_masked)
 
     ngram_ranges = [(1, 2)] # Reduced list for sane execution time
@@ -417,65 +415,6 @@ if __name__ == "__main__":
     active_device = "GPU Acceleration (CUDA)" if torch.cuda.is_available() else "CPU Execution Loop"
     print(f"Starting Evaluation Loop on: {active_device}. This may take a few minutes...")
 
-    for strategy in strategies:
-        print(f"\n---> Processing Strategy: {strategy.upper()}")
-        df_clean = df.dropna(subset=[strategy, TARGET_COL]).reset_index(drop=True)
-        X_train, X_test, y_train, y_test = train_test_split(
-            df_clean[strategy], df_clean[TARGET_COL],
-            test_size=0.20, random_state=42, stratify=df_clean[TARGET_COL]
-        )
-
-        smote_tomek = SMOTETomek(random_state=42)
-
-        for ngram in ngram_ranges:
-            print(f"     N-Gram: {ngram}")
-
-            # --- BoW ---
-            count_vect = CountVectorizer(ngram_range=ngram, token_pattern=custom_token_pattern)
-            X_train_bow_raw = count_vect.fit_transform(X_train)
-            X_test_bow = count_vect.transform(X_test)
-            X_train_bow, y_train_resampled_bow = smote_tomek.fit_resample(X_train_bow_raw, y_train)
-
-            feature_sizes.append({"Strategy": strategy, "Vectorizer": "BoW", "N-Gram": str(ngram), "Feature_Size": len(count_vect.get_feature_names_out())})
-
-            # --- TF-IDF ---
-            tfidf_vect = TfidfVectorizer(ngram_range=ngram, token_pattern=custom_token_pattern)
-            X_train_tfidf_raw = tfidf_vect.fit_transform(X_train)
-            X_test_tfidf = tfidf_vect.transform(X_test)
-            X_train_tfidf, y_train_resampled_tfidf = smote_tomek.fit_resample(X_train_tfidf_raw, y_train)
-
-            feature_sizes.append({"Strategy": strategy, "Vectorizer": "TF-IDF", "N-Gram": str(ngram), "Feature_Size": len(tfidf_vect.get_feature_names_out())})
-
-            for model_name, model_instance in models.items():
-                # Evaluate BoW
-                model_instance.fit(X_train_bow, y_train_resampled_bow)
-                y_pred_bow = model_instance.predict(X_test_bow)
-                results.append({
-                    "Model": model_name, "Strategy": strategy, "Vectorizer": "BoW",
-                    "N-Gram": str(ngram), "Accuracy": accuracy_score(y_test, y_pred_bow),
-                    "Macro-F1": f1_score(y_test, y_pred_bow, average='macro')
-                })
-
-                # Evaluate TF-IDF
-                model_instance.fit(X_train_tfidf, y_train_resampled_tfidf)
-                y_pred_tfidf = model_instance.predict(X_test_tfidf)
-                results.append({
-                    "Model": model_name, "Strategy": strategy, "Vectorizer": "TF-IDF",
-                    "N-Gram": str(ngram), "Accuracy": accuracy_score(y_test, y_pred_tfidf),
-                    "Macro-F1": f1_score(y_test, y_pred_tfidf, average='macro')
-                })
-
-    results_df = pd.DataFrame(results)
-    print("\nEvaluation Complete!")
-
-    big_matrix = pd.pivot_table(results_df, values='Macro-F1', index=['Model', 'Vectorizer', 'N-Gram'], columns=['Strategy']).loc[:, ['prep_standard', 'prep_full', 'prep_masked']]
-    print("\n========================= THE MASTER PERFORMANCE MATRIX (Macro-F1) =========================")
-    print(big_matrix.round(4))
-
-    sns.set_theme(style="whitegrid")
-    g = sns.catplot(data=results_df, x='Strategy', y='Macro-F1', hue='N-Gram', col='Vectorizer', row='Model', kind='bar', palette="viridis", height=4, aspect=1.5)
-    g.fig.suptitle("Global Comparison", y=1.02, fontsize=16)
-    plt.show()
 
     # ==========================================
     # --- 5. Grid Search Validation ---
