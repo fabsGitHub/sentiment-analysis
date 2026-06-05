@@ -5,32 +5,39 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.base import BaseEstimator, ClassifierMixin
-from imblearn.combine import SMOTETomek
 import scipy.sparse as sp
 
+# Resampling Imports
+from imblearn.over_sampling import SMOTE
+from imblearn.under_sampling import RandomUnderSampler
+from imblearn.combine import SMOTETomek
+
 import nltk
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
+from nltk.corpus import stopwords, wordnet
+from nltk.stem import WordNetLemmatizer
+from nltk import pos_tag
+
+# --- NLTK DOWNLOAD BLOCK ---
+nltk.download('stopwords', quiet=True)
+nltk.download('punkt', quiet=True)
+nltk.download('punkt_tab', quiet=True)                       # For modernized tokenizers
+nltk.download('wordnet', quiet=True)
+nltk.download('averaged_perceptron_tagger', quiet=True)
+nltk.download('averaged_perceptron_tagger_eng', quiet=True)   # For NLTK POS-Tagging
 
 # PyTorch Imports
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
-
-# Ensure NLTK resources are available
-nltk.download('stopwords', quiet=True)
-nltk.download('punkt', quiet=True)
+from torch.utils.data import DataLoader, Dataset, TensorDataset
 
 # ==========================================
-# --- 1. Configurations & Maps ---
+# 1. PREPROCESSING CONFIGURATIONS & MAPS
 # ==========================================
-
 MONTH_MAP = {
     'jan': '01', 'january': '01', 'feb': '02', 'february': '02',
     'mar': '03', 'march': '03', 'apr': '04', 'april': '04',
@@ -49,33 +56,30 @@ WRITTEN_NUMS = {
 }
 
 FINANCIAL_NOISE_STOPWORDS = {
-    '-', "''", "'", '2009', '2008', '2007', '2006', '2010', '2005', '1', '2',
-    'year', 'period', 'quarter', 'today', 'first', 'end',
-    'finnish', 'finland', 'helsinki', 'hel', 'nokia',
-    'oyj', 'oy', 'corpor', 'omx', 'group', 'compani',
-    'said', 'also', 'includ', 'accord', 'use', 'well',
-    'per', 'part', 'would', 'base', 'provid'
+    '-', "''", "'",
+    'year', 'period', 'quarter', 'today', 'first', 'end', 'finnish', 'finland',
+    'helsinki', 'hel', 'nokia', 'corporate', 'corporation', 'oyj', 'oy', 'omx', 'group', 'company',
+    'said', 'also', 'include', 'including', 'accord', 'according', 'use', 'per', 'part', 'would',
+    'base', 'provide'
 }
 
 PRESERVED_WORDS = {
-    'good', 'bad', 'high', 'low', 'risk', 'profit', 'loss',
-    'up', 'down', 'increase', 'decrease', 'increas', 'decreas',
-    'strong', 'weak', 'better', 'worse', 'positive', 'negative',
-    'stable', 'volatile', 'only', 'below', 'few', 'more',
-    'no', 'not', 'nor', 'over', 'should', 'but'
+    'below', 'but', 'down', 'few', 'more', 'no', 'nor',
+    'not', 'only', 'over', 'should', 'up'
 }
 
 english_defaults = set(stopwords.words('english'))
 CUSTOM_STOPWORDS = (english_defaults | FINANCIAL_NOISE_STOPWORDS) - PRESERVED_WORDS
-stemmer = PorterStemmer()
+
+lemmatizer = WordNetLemmatizer()
 
 PHONE_NUMBER = re.compile(r"(?<!\w)\+[\d\s\-\(\)]{6,20}(?!\w)")
 STOCK_TICKER = re.compile(r"\([A-Z]+(\s*:\s*[A-Z0-9]+)?\)")
 PHONE_PLACEHOLDER = "__PHONE__"
 
 DATE_RANGE_WITH_YEAR = re.compile(r"\b([a-zA-Z]+)\s+(\d{1,2})\s*-\s*([a-zA-Z]+)\s+(\d{1,2})\s*,?\s*(\d{4})\b", re.I)
-MONTH_MONTH_YEAR = re.compile(r"\b([a-zA-Z]+)-([a-zA-Z]+)\s+(\d{4})\b", re.I)
-MONTH_MONTH = re.compile(r"\b([a-zA-Z]+)-([a-zA-Z]+)\b", re.I)
+MONTH_MONTH_YEAR = re.compile(r"\b([a-zA-Z]+)[-\s]+([a-zA-Z]+)\s+(\d{4})\b", re.I)
+MONTH_MONTH = re.compile(r"\b([a-zA-Z]+)[-\s]+([a-zA-Z]+)\b", re.I)
 DAY_MONTH_YEAR = re.compile(r"\b(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\b", re.I)
 MONTH_DAY_YEAR = re.compile(r"\b([a-zA-Z]+)\s+(\d{1,2})[,\s]+(\d{4})\b", re.I)
 MONTH_YEAR = re.compile(r"\b([a-zA-Z]+)\s+(\d{4})\b", re.I)
@@ -92,8 +96,7 @@ EARLY_CLEANUP = [
 FINANCIAL_CLEANUP = [
     (re.compile(r"x20ac"), "eur"), (re.compile(r"\$"), "usd"), (re.compile(r"\%"), "pct"),
     (re.compile(r"(\d+\.?\d*)\s*(percent|per cent)"), r"\1pct"),
-    (re.compile(r"\b(euros?|SEK|sek)\b", re.I), "eur"),
-    (re.compile(r"\bmln\b", re.I), "mn"),
+    (re.compile(r"\b(euros?|SEK|sek)\b", re.I), "eur"), (re.compile(r"\bmln\b", re.I), "mn"),
     (re.compile(r"\b(\d+\.?\d*)\s*billion\b", re.I), r"\1bn"),
     (re.compile(r"\b(\d+\.?\d*)\s*million\b", re.I), r"\1mn"),
     (re.compile(r"(eur|usd|gbp|jpy|chf|sek)\s*([-+]?\d+\.?\d*)\s*(m|mn|bn|k|pct|%)", re.I), r"\1\2\3"),
@@ -111,58 +114,62 @@ LATE_CLEANUP = [
     (re.compile(r"\bsq\s*m\b", re.I), "sqm"),
     (re.compile(r"(\d+)\s*(sqm|m|km|kg|g)", re.I), r"\1\2"),
     (re.compile(r"\b([a-zA-Z]+)\s*(\d{1,2})\s*-\s*([a-zA-Z]+)\s*(\d{1,2})\b"), r"\1\2-\3\4"),
-    (re.compile(r"(?<!\d)(\d{4})-(\d{2})(?!\d)"), r"\1-20\2"),
+    (re.compile(r"(?<!\d)(\d{4})-(\d{2})(?!\d|-)"), r"\1-20\2"),
     (re.compile(r"\b(\d{1,2})-(\d{4})\b"), lambda m: f"{m.group(2)}-{m.group(1).zfill(2)}"),
     (re.compile(r"(?<!\d)[^\w\s'=%-]|[^\w\s'=%-](?!\d)"), ""),
     (re.compile(r"\s+"), " "), (re.compile(r"\s*'(\w+)"), ""),
 ]
 
-# ==========================================
-# --- 2. Preprocessing Logic ---
-# ==========================================
-
 def normalize_dates_smart(text):
     def repl_range_year(m):
         m1, m2 = m.group(1).lower(), m.group(3).lower()
-        if m1 in MONTH_MAP and m2 in MONTH_MAP: return f"{m.group(5)}-{MONTH_MAP[m1]}-{m.group(2).zfill(2)} to {m.group(5)}-{MONTH_MAP[m2]}-{m.group(4).zfill(2)}"
+        if m1 in MONTH_MAP and m2 in MONTH_MAP:
+            return f"{m.group(5)}-{MONTH_MAP[m1]}-{m.group(2).zfill(2)} to {m.group(5)}-{MONTH_MAP[m2]}-{m.group(4).zfill(2)}"
         return m.group(0)
     text = DATE_RANGE_WITH_YEAR.sub(repl_range_year, text)
 
     def repl_mo_mo_yr(m):
         m1, m2 = m.group(1).lower(), m.group(2).lower()
-        if m1 in MONTH_MAP and m2 in MONTH_MAP: return f"{m.group(3)}-{MONTH_MAP[m1]}-{MONTH_MAP[m2]}"
+        if m1 in MONTH_MAP and m2 in MONTH_MAP:
+            return f"{m.group(3)}-{MONTH_MAP[m1]}:{MONTH_MAP[m2]}"
         return m.group(0)
     text = MONTH_MONTH_YEAR.sub(repl_mo_mo_yr, text)
 
     def repl_mo_mo(m):
         m1, m2 = m.group(1).lower(), m.group(2).lower()
-        if m1 in MONTH_MAP and m2 in MONTH_MAP: return f"{MONTH_MAP[m1]}-{MONTH_MAP[m2]}"
+        if m1 in MONTH_MAP and m2 in MONTH_MAP:
+            return f"{MONTH_MAP[m1]}:{MONTH_MAP[m2]}"
         return m.group(0)
     text = MONTH_MONTH.sub(repl_mo_mo, text)
 
     def repl_d_m_y(m):
         mo = m.group(2).lower()
-        if mo in MONTH_MAP: return f"{m.group(3)}-{MONTH_MAP[mo]}-{m.group(1).zfill(2)}"
+        if mo in MONTH_MAP:
+            return f"{m.group(3)}-{MONTH_MAP[mo]}-{m.group(1).zfill(2)}"
         return m.group(0)
     text = DAY_MONTH_YEAR.sub(repl_d_m_y, text)
 
     def repl_m_d_y(m):
         mo = m.group(1).lower()
-        if mo in MONTH_MAP: return f"{m.group(3)}-{MONTH_MAP[mo]}-{m.group(2).zfill(2)}"
+        if mo in MONTH_MAP:
+            return f"{m.group(3)}-{MONTH_MAP[mo]}-{m.group(2).zfill(2)}"
         return m.group(0)
     text = MONTH_DAY_YEAR.sub(repl_m_d_y, text)
 
     def repl_m_y(m):
         mo = m.group(1).lower()
-        if mo in MONTH_MAP: return f"{m.group(2)}-{MONTH_MAP[mo]}"
+        if mo in MONTH_MAP:
+            return f"{m.group(2)}-{MONTH_MAP[mo]}"
         return m.group(0)
     text = MONTH_YEAR.sub(repl_m_y, text)
 
     def repl_y_m(m):
         mo = m.group(2).lower()
-        if mo in MONTH_MAP: return f"{m.group(1)}-{MONTH_MAP[mo]}"
+        if mo in MONTH_MAP:
+            return f"{m.group(1)}-{MONTH_MAP[mo]}"
         return m.group(0)
-    return YEAR_MONTH.sub(repl_y_m, text)
+    text = YEAR_MONTH.sub(repl_y_m, text)
+    return text
 
 def _normalize_text_pipeline(text):
     if not isinstance(text, str): return ""
@@ -170,94 +177,127 @@ def _normalize_text_pipeline(text):
     phones = re.findall(PHONE_NUMBER, text)
     text = PHONE_NUMBER.sub(PHONE_PLACEHOLDER, text)
     text = STOCK_TICKER.sub(lambda m: m.group(0).replace(" ", ""), text)
-
     for reg, repl in EARLY_CLEANUP: text = reg.sub(repl, text)
     for word_regex, num in WRITTEN_NUMS.items(): text = word_regex.sub(num, text)
-
     text = normalize_dates_smart(text)
     text = re.sub(r"(?<=\d),(?=\d)", "", text)
-
     for reg, repl in (FINANCIAL_CLEANUP + LATE_CLEANUP): text = reg.sub(repl, text)
     for p in phones: text = text.replace(PHONE_PLACEHOLDER, p.replace(" ", ""), 1)
     return text
 
+def get_wordnet_pos(treebank_tag):
+    if treebank_tag.startswith('J'): return wordnet.ADJ
+    elif treebank_tag.startswith('V'): return wordnet.VERB
+    elif treebank_tag.startswith('N'): return wordnet.NOUN
+    elif treebank_tag.startswith('R'): return wordnet.ADV
+    else: return wordnet.NOUN
+
+# ==========================================
+# 2. LEMMATIZATION PREPROCESSING STRATEGIES
+# ==========================================
 def preprocess_full(text):
     text = _normalize_text_pipeline(text)
-    tokens = [word for word in text.split() if word not in CUSTOM_STOPWORDS]
-    return " ".join([stemmer.stem(word) for word in tokens]).strip()
+    tokens = text.split()
+    tagged_tokens = pos_tag(tokens)
+
+    lemmatized_tokens = []
+    for word, tag in tagged_tokens:
+        word_pos = get_wordnet_pos(tag)
+        lemma = lemmatizer.lemmatize(word, pos=word_pos)
+        if lemma not in CUSTOM_STOPWORDS:
+            lemmatized_tokens.append(lemma)
+    return " ".join(lemmatized_tokens).strip()
 
 def preprocess_masked(text):
     text = _normalize_text_pipeline(text)
-    text = re.sub(r'\+[\d\-()]{6,20}', ' [PHONE_MARKER] ', text)
-    text = re.sub(r'\b(eur|usd|gbp|jpy|chf|sek)\d+\.?\d*(mn|bn|k|pct)?\b', ' [MONEY_METRIC] ', text)
-    text = re.sub(r'\b\d+\.?\d*pct\b', ' [PERCENT_METRIC] ', text)
-    text = re.sub(r'\b\d{4}-\d{2}-\d{2}\b', ' [DATE_MARKER] ', text)
-    text = re.sub(r'\b\d{4}-\d{2}\b', ' [DATE_MARKER] ', text)
-    text = re.sub(r'\b\d{2}-\d{2}\b', ' [DATE_MARKER] ', text)
-    text = re.sub(r'\b(19\d{2}|20\d{2})\b', ' [DATE_MARKER] ', text)
-    text = re.sub(r'\b\d{1,2}:\d{2}(am|pm)\b', ' [TIME_MARKER] ', text)
-    text = re.sub(r'\b\d+\.?\d*(sqm|km|kg|m|g)\b', ' [MEASUREMENT_MARKER] ', text)
-    text = re.sub(r'\b\d+\.?\d*\b', ' [NUMBER_MARKER] ', text)
+    text = re.sub(r'\+[\d\-()]{6,20}', ' [PHONE] ', text)
+    text = re.sub(r'\b(eur|usd|gbp|jpy|chf|sek)\d+\.?\d*(mn|bn|k|pct)?\b', ' [MONEY] ', text)
+    text = re.sub(r'\b\d+\.?\d*pct\b', ' [PERCENT] ', text)
+    text = re.sub(r'\b\d{4}-\d{2}-\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{4}-\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{2}-\d{2}\b', ' [DATE] ', text)
+    text = re.sub(r'\b(19\d{2}|20\d{2})\b', ' [DATE] ', text)
+    text = re.sub(r'\b\d{1,2}:\d{2}(am|pm)\b', ' [TIME] ', text)
+    text = re.sub(r'\b\d+\.?\d*(sqm|km|kg|m|g)\b', ' [MEASUREMENT] ', text)
+    text = re.sub(r'\b\d+\.?\d*\b', ' [NUMBER] ', text)
 
     tokens = text.split()
+    tagged_tokens = pos_tag(tokens)
+
+    mask_placeholders = {
+        '[PHONE]', '[MONEY]', '[PERCENT]',
+        '[DATE]', '[TIME]', '[MEASUREMENT]', '[NUMBER]'
+    }
     processed_tokens = []
-    mask_placeholders = {'[PHONE_MARKER]', '[MONEY_METRIC]', '[PERCENT_METRIC]', '[DATE_MARKER]', '[TIME_MARKER]', '[MEASUREMENT_MARKER]', '[NUMBER_MARKER]'}
-
-    for word in tokens:
-        if word in mask_placeholders: processed_tokens.append(word)
-        elif word not in CUSTOM_STOPWORDS: processed_tokens.append(stemmer.stem(word))
-
+    for word, tag in tagged_tokens:
+        if word in mask_placeholders:
+            processed_tokens.append(word)
+        else:
+            word_pos = get_wordnet_pos(tag)
+            lemma = lemmatizer.lemmatize(word, pos=word_pos)
+            if lemma not in CUSTOM_STOPWORDS:
+                processed_tokens.append(lemma)
     return re.sub(r'\s+', ' ', " ".join(processed_tokens)).strip()
 
 def preprocess_standard(text):
     if not isinstance(text, str): return ""
-    text = re.sub(r'[^\w\s]', ' ', text.lower())
-    return " ".join([stemmer.stem(word) for word in text.split() if word not in CUSTOM_STOPWORDS]).strip()
+    text = text.lower()
+    text = re.sub(r'[^\w\s]', ' ', text)
+    tokens = text.split()
+    tagged_tokens = pos_tag(tokens)
 
-def evaluate_model(y_true, y_pred, model_display_name, classes):
-    print(f"\n================ {model_display_name} Evaluation ================")
-    print(classification_report(y_true, y_pred, target_names=classes))
+    processed_tokens = []
+    for word, tag in tagged_tokens:
+        word_pos = get_wordnet_pos(tag)
+        lemma = lemmatizer.lemmatize(word, pos=word_pos)
+        if lemma not in CUSTOM_STOPWORDS:
+            processed_tokens.append(lemma)
+    return " ".join(processed_tokens).strip()
+
+# ==========================================
+# 3. EVALUATION & MODEL METRICS
+# ==========================================
+def evaluate_model(y_true, y_pred, model_display_name, classes, show_plot=False):
     macro_f1 = f1_score(y_true, y_pred, average='macro')
     acc = accuracy_score(y_true, y_pred)
-    print(f"Accuracy: {acc:.4f} | Macro F1-Score: {macro_f1:.4f}")
 
-    cm = confusion_matrix(y_true, y_pred)
-    plt.figure(figsize=(5, 3.5))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
-    plt.title(f'CM: {model_display_name}', fontsize=10)
-    plt.ylabel('Actual')
-    plt.xlabel('Predicted')
-    plt.tight_layout()
-    plt.show()
+    if show_plot:
+        print(f"\n================ {model_display_name} Evaluation ================")
+        print(classification_report(y_true, y_pred, target_names=classes))
+        print(f"Accuracy: {acc:.4f} | Macro F1-Score: {macro_f1:.4f}")
+        cm = confusion_matrix(y_true, y_pred)
+        plt.figure(figsize=(5, 3.5))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=classes, yticklabels=classes)
+        plt.title(f'CM: {model_display_name}', fontsize=10)
+        plt.ylabel('Actual')
+        plt.xlabel('Predicted')
+        plt.tight_layout()
+        plt.show()
+    return acc, macro_f1
 
 # ==========================================
-# --- 3. GPU-Optimized PyTorch Backend ---
+# 4. GPU-OPTIMIZED PYTORCH MLP BACKEND
 # ==========================================
-
 class SparseTextDataset(Dataset):
-    """Optimized Dataset that converts sparse data to dense tensors upfront to eliminate CPU bottlenecks."""
     def __init__(self, X, y=None):
         if sp.issparse(X):
-            # Convert the entire split to dense upfront ONCE
             self.X = torch.from_numpy(X.toarray()).float()
         else:
             self.X = torch.tensor(X, dtype=torch.float32)
-
         self.y = torch.tensor(y, dtype=torch.long) if y is not None else None
 
     def __len__(self):
         return self.X.shape[0]
 
     def __getitem__(self, idx):
-        # Slicing an already dense CPU tensor is lightning fast
         if self.y is not None:
             return self.X[idx], self.y[idx]
         return self.X[idx]
 
 class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, hidden_layer_sizes=(64,), activation='relu', solver='adam',
-                 alpha=0.0001, batch_size=32, learning_rate_init=0.001,
-                 max_iter=50, early_stopping=True, validation_fraction=0.1, random_state=42):
+                 alpha=0.0001, batch_size=128, learning_rate_init=0.001,
+                 max_iter=30, early_stopping=True, validation_fraction=0.1, random_state=42):
         self.hidden_layer_sizes = hidden_layer_sizes
         self.activation = activation
         self.solver = solver
@@ -281,10 +321,8 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
         num_classes = len(self.classes_)
         input_dim = X.shape[1]
 
-        # Build Standard Model Layout
         layers = []
         prev_dim = input_dim
-        # Check if single int was passed instead of tuple via grid search
         hidden_sizes = self.hidden_layer_sizes if isinstance(self.hidden_layer_sizes, tuple) else (self.hidden_layer_sizes,)
 
         for hidden_dim in hidden_sizes:
@@ -304,7 +342,6 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
         else:
             optimizer = optim.SGD(self.model.parameters(), lr=self.learning_rate_init, weight_decay=self.alpha)
 
-        # Wrap in memory-safe Custom Dataset
         dataset = SparseTextDataset(X, np.array(y))
 
         if self.early_stopping and self.validation_fraction > 0:
@@ -320,7 +357,7 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
 
         best_loss = float('inf')
         epochs_no_improve = 0
-        patience = 5
+        patience = 3
 
         for epoch in range(self.max_iter):
             self.model.train()
@@ -350,7 +387,6 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
                     if epochs_no_improve >= patience:
                         break
 
-        # Free up computational graph VRAM explicitly after fitting
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
             gc.collect()
@@ -370,19 +406,16 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
                 _, predicted = torch.max(outputs, 1)
                 predictions.extend(predicted.cpu().numpy())
 
-        # Clear VRAM Post-Prediction to protect memory during large GridSearches
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
         return np.array(predictions)
 
 # ==========================================
-# --- 4. Main Execution Pipeline ---
+# 5. MAIN EXECUTION PIPELINE
 # ==========================================
-
 if __name__ == "__main__":
     TARGET_COL = "sentiment"
-    # Ensure correct file path here!
     try:
         df = pd.read_csv("Sentences_50Agree.txt", sep="@", header=None, names=["sentence", "sentiment"])
     except FileNotFoundError:
@@ -393,67 +426,103 @@ if __name__ == "__main__":
     df[TARGET_COL] = label_encoder.fit_transform(df[TARGET_COL])
     classes_multiclass = label_encoder.classes_
 
+    print("Running data lemmatization preprocessing strategies...")
+    df["prep_standard"] = df["sentence"].apply(preprocess_standard)
+    df["prep_full"] = df["sentence"].apply(preprocess_full)
     df["prep_masked"] = df["sentence"].apply(preprocess_masked)
 
-    ngram_ranges = [(1, 2)] # Reduced list for sane execution time
+    # Define layout strategies and balanced samplers
     strategies = ["prep_standard", "prep_full", "prep_masked"]
+    samplers = {
+        "None (Imbalanced)": None,
+        "SMOTE (Oversampling)": SMOTE(random_state=42),
+        "SMOTETomek (Combined)": SMOTETomek(random_state=42)
+    }
+
+    # Custom token pattern allows retention of masked text expressions like [DATE_MARKER]
     custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
+    master_results = []
 
-    results = []
-    feature_sizes = []
+    # Loop structurally through all Strategies and Sampling Layouts
+    for strategy in strategies:
+        print(f"\n=======================================================")
+        print(f"PROCESSING DATASTRATEGY COLUMN: {strategy}")
+        print(f"=======================================================")
 
-    models = {
-        "Naive Bayes": MultinomialNB(),
-        "FFNN (Baseline)": PyTorchMLPClassifier(
-            hidden_layer_sizes=(64,), activation='relu', solver='adam',
-            max_iter=50, early_stopping=True, random_state=42
+        # Train/Test Split
+        df_clean = df.dropna(subset=[strategy, TARGET_COL]).reset_index(drop=True)
+        X_train_raw, X_test_raw, y_train, y_test = train_test_split(
+            df_clean[strategy], df_clean[TARGET_COL], test_size=0.20, random_state=42, stratify=df_clean[TARGET_COL]
         )
-    }
 
-    active_device = "GPU Acceleration (CUDA)" if torch.cuda.is_available() else "CPU Execution Loop"
-    print(f"Starting Evaluation Loop on: {active_device}. This may take a few minutes...")
+        # TF-IDF Vectorization
+        vectorizer = TfidfVectorizer(ngram_range=(1, 2), token_pattern=custom_token_pattern)
+        X_train_vec = vectorizer.fit_transform(X_train_raw)
+        X_test_vec = vectorizer.transform(X_test_raw)
 
+        for sampler_name, sampler in samplers.items():
+            print(f"\n--> Evaluating Sampler Layout: {sampler_name}")
+
+            # Apply Sampling Routine
+            if sampler is not None:
+                X_train_res, y_train_res = sampler.fit_resample(X_train_vec, y_train)
+            else:
+                X_train_res, y_train_res = X_train_vec, y_train
+
+            # Hyperparameter Grid evaluating structural topologies, activations, and optimizers
+            param_grid = {
+            'hidden_layer_sizes': [(32,), (64,), (64, 32), (64,64), (128,)],
+            'activation': ['relu', 'tanh'],
+            'solver': ['adam'],
+            'alpha': [0.0001, 0.001],
+            'batch_size': [64, 128, 256],  # <-- Bumped up from 16/32
+            'learning_rate_init': [0.001, 0.01],
+            'max_iter': [50, 100],     # <-- 20 iterations is too low for Adam to converge well
+            'early_stopping': [True],
+            'validation_fraction': [0.1],
+            'random_state': [42]
+            }
+
+            pytorch_mlp = PyTorchMLPClassifier(random_state=42)
+            grid_search = GridSearchCV(
+                estimator=pytorch_mlp,
+                param_grid=param_grid,
+                cv=2,
+                scoring='f1_macro',
+                n_jobs=1,
+                verbose=0
+            )
+
+            grid_search.fit(X_train_res, y_train_res)
+
+            # Predict & Evaluate validation performance
+            best_model = grid_search.best_estimator_
+            y_pred = best_model.predict(X_test_vec)
+            acc, macro_f1 = evaluate_model(y_test, y_pred, f"{strategy} + {sampler_name}", classes_multiclass, show_plot=False)
+
+            print(f"    Best Params: {grid_search.best_params_}")
+            print(f"    Test Acc: {acc:.4f} | Test Macro F1: {macro_f1:.4f}")
+
+            master_results.append({
+                "Strategy": strategy,
+                "Sampling": sampler_name,
+                "Best Activation": grid_search.best_params_['activation'],
+                "Best Solver": grid_search.best_params_['solver'],
+                "Best Hidden Layers": grid_search.best_params_['hidden_layer_sizes'],
+                "Test Accuracy": acc,
+                "Test Macro F1": macro_f1
+            })
 
     # ==========================================
-    # --- 5. Grid Search Validation ---
+    # 6. PERFORMANCE REPORT GENERATION & EXPORT
     # ==========================================
-    print("\n========== PHASE 2: GRID SEARCH ON THE WINNING COMBINATION ==========")
-    BEST_STRATEGY = "prep_masked"
-    BEST_NGRAM = (1, 2)
+    df_results = pd.DataFrame(master_results)
+    print("\n\n=======================================================")
+    print("FINISHED TESTING RUNS: GLOBAL EXPERIMENT BENCHMARK")
+    print("=======================================================")
+    print(df_results.sort_values(by="Test Macro F1", ascending=False).to_string(index=False))
 
-    df_winner = df.dropna(subset=[BEST_STRATEGY, TARGET_COL]).reset_index(drop=True)
-    X_train_win, X_test_win, y_train_win, y_test_win = train_test_split(
-        df_winner[BEST_STRATEGY], df_winner[TARGET_COL], test_size=0.20, random_state=42, stratify=df_winner[TARGET_COL]
-    )
-
-    final_vect = TfidfVectorizer(ngram_range=BEST_NGRAM, token_pattern=custom_token_pattern)
-    X_train_final = final_vect.fit_transform(X_train_win)
-    X_test_final = final_vect.transform(X_test_win)
-
-    # Simplified Grid Search for demonstration limits (Adjust as needed)
-    param_grid = {
-        'hidden_layer_sizes': [(32,), (64,), (64, 32), (128,)],
-        'activation': ['relu', 'tanh'],
-        'solver': ['adam'],
-        'alpha': [0.0001, 0.001],
-        'batch_size': [128, 256],  # <-- Bumped up from 16/32
-        'learning_rate_init': [0.001, 0.01],
-        'max_iter': [50, 100],     # <-- 20 iterations is too low for Adam to converge well
-        'early_stopping': [True],
-        'validation_fraction': [0.1],
-        'random_state': [42]
-    }
-
-    pytorch_mlp = PyTorchMLPClassifier()
-    grid_search = GridSearchCV(estimator=pytorch_mlp, param_grid=param_grid, cv=2, scoring='f1_macro', n_jobs=1, verbose=2)
-
-    print(f"Executing Grid Search on {X_train_final.shape[0]} samples and {X_train_final.shape[1]} features...")
-    grid_search.fit(X_train_final, y_train_win)
-
-    print(f"\nBest parameters found: {grid_search.best_params_}")
-    print(f"Best cross-validation F1-score: {grid_search.best_score_:.4f}")
-
-    best_model = grid_search.best_estimator_
-    y_pred_mlp = best_model.predict(X_test_final)
-
-    evaluate_model(y_test_win, y_pred_mlp, f"Tuned PyTorch FFNN ({BEST_STRATEGY}, TF-IDF, {BEST_NGRAM})", classes_multiclass)
+    # Save results to a CSV File
+    output_file = "sentiment_analysis_results.csv"
+    df_results.to_csv(output_file, index=False)
+    print(f"\n[SUCCESS] Master benchmarking results saved to: {output_file}")
