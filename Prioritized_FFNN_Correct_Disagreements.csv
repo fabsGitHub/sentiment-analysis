@@ -1,0 +1,14 @@
+Sentence;True Label;FFNN;Naive Bayes;Short_Sentence
+The competition was received with great enthusiasm by the employees , he goes on .;positive;positive;neutral;"The competition was received with great
+enthusiasm by the employees , he goes on ."
+A total of 140 jobs will be reduced at the Raahe Steel Works .;negative;negative;neutral;"A total of 140 jobs will be reduced at the
+Raahe Steel Works ."
+Finnish technology group Aspocomp Group Oyj ( OMX Helsinki : ACG1V ) issued its third quarter report on Thursday ( 13 November ) , posting an operating profit of EUR0 .4 m , as compared to a loss of EUR0 .5 m in the third quarter of 2007 .;positive;positive;negative;"Finnish technology group Aspocomp Group Oyj (
+OMX Helsinki : ACG1V ) issued its third
+quarter report on Thursday ( 13 November ) ,
+posting an operating profit of EUR0 .4 m , as
+compared to a loss of EUR0 .5 m in the third
+quarter of 2007 ."
+Self-service and automation are in a bigger role now and Fujitsu 's global resources will be exploited effectively .;positive;positive;neutral;"Self-service and automation are in a bigger
+role now and Fujitsu 's global resources will
+be exploited effectively ."

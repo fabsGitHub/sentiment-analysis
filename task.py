@@ -461,8 +461,8 @@ if __name__ == "__main__":
     # Define layout strategies and balanced samplers
     strategies = ["prep_standard", "prep_full", "prep_masked", "prep_standard_numbers"]
     samplers = {
-        "None (Imbalanced)": None,
-        "SMOTE (Oversampling)": SMOTE(random_state=42),
+        #"None (Imbalanced)": None,
+        #"SMOTE (Oversampling)": SMOTE(random_state=42),
         "SMOTETomek (Combined)": SMOTETomek(random_state=42)
     }
 
