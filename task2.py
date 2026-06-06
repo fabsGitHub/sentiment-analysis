@@ -483,7 +483,7 @@ if __name__ == "__main__":
             search_engine = RandomizedSearchCV(
                 estimator=pytorch_mlp,
                 param_distributions=param_dist,
-                n_iter=12,
+                n_iter=128,
                 cv=2,
                 scoring='f1_macro',
                 n_jobs=1,
