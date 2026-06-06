@@ -35,9 +35,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset, TensorDataset
 
-# ==========================================
-# 1. PREPROCESSING CONFIGURATIONS & MAPS
-# ==========================================
 MONTH_MAP = {
     'jan': '01', 'january': '01', 'feb': '02', 'february': '02',
     'mar': '03', 'march': '03', 'apr': '04', 'april': '04',
@@ -93,18 +90,32 @@ EARLY_CLEANUP = [
     (re.compile(r"(\d)\s(\.)"), r"\1\2"),
 ]
 
+CURRENCIES = r"eur|usd|gbp|jpy|chf|sek|eek"
+
 FINANCIAL_CLEANUP = [
-    (re.compile(r"x20ac"), "eur"), (re.compile(r"\$"), "usd"), (re.compile(r"\%"), "pct"),
-    (re.compile(r"(\d+\.?\d*)\s*(percent|per cent)"), r"\1pct"),
-    (re.compile(r"\b(euros?|SEK|sek)\b", re.I), "eur"), (re.compile(r"\bmln\b", re.I), "mn"),
+    (re.compile(r"\bus\s*\$", re.I), "usd"),
+    (re.compile(r"\beuros?(?=\d)", re.I), "eur "),
+    (re.compile(r"\beuros?\b", re.I), "eur"),
+    (re.compile(r"\ber\b", re.I), "eur"),
+    (re.compile(r"x20ac"), "eur"),
+    (re.compile(r"\$"), "usd"),
+    (re.compile(r"\%"), "pct"),
+    (re.compile(r"\b(\d+\.?\d*)\s*us\s*million\b", re.I), r"\1mn"),
+    (re.compile(r"\b(\d+\.?\d*)\s*us\s*m\b", re.I), r"\1mn"),
+    (re.compile(r"(\d+\.?\d*)\s*(percent|per cent)", re.I), r"\1pct"),
+    (re.compile(r"\bsek\b", re.I), "eur"),
+    (re.compile(r"\bmln\b", re.I), "mn"),
     (re.compile(r"\b(\d+\.?\d*)\s*billion\b", re.I), r"\1bn"),
     (re.compile(r"\b(\d+\.?\d*)\s*million\b", re.I), r"\1mn"),
-    (re.compile(r"(eur|usd|gbp|jpy|chf|sek)\s*([-+]?\d+\.?\d*)\s*(m|mn|bn|k|pct|%)", re.I), r"\1\2\3"),
+    (re.compile(rf"\b({CURRENCIES})\s*(\d+\.?\d*)\s*\bm\b", re.I), r"\1\2mn"),
+    (re.compile(rf"\b(\d+\.?\d*)\s*\bm\s*({CURRENCIES})\b", re.I), r"\2\1mn"),
+    (re.compile(rf"\b({CURRENCIES})\s*(\d+\.?\d*)\s*m\b", re.I), r"\1\2mn"),
+    (re.compile(rf"({CURRENCIES})\s*([-+]?\d+\.?\d*)\s*(m|mn|bn|k|pct|%)", re.I), r"\1\2\3"),
     (re.compile(r"([-+]?\d+\.?\d*)\s*(m|mn|bn|k|pct|%)", re.I), r"\1\2"),
-    (re.compile(r"(eur|usd|gbp|jpy|chf|sek)\s*([-+]?\d+\.?\d*)", re.I), r"\1\2"),
-    (re.compile(r"([-+]?\d+\.?\d*)\s*(eur|usd|gbp|jpy|chf|sek|gmt)(?!\d)", re.I), r"\2\1"),
-    (re.compile(r"(\d+\.?\d*)\s*(m|mn|bn|k|pct)\s*(eur|usd|gbp|jpy|chf|sek)", re.I), r"\3\1\2"),
-    (re.compile(r"(eur|usd|gbp|jpy|chf|sek)(\d+)\s*,\s*(\d+)\s*(m|mn|bn|k)", re.I), r"\1\2,\3\4"),
+    (re.compile(rf"({CURRENCIES})\s*([-+]?\d+\.?\d*)", re.I), r"\1\2"),
+    (re.compile(rf"([-+]?\d+\.?\d*)\s*({CURRENCIES})(?!\d)", re.I), r"\2\1"),
+    (re.compile(rf"\b(\d+\.?\d*)\s*(m|mn|bn|k|pct)\s*({CURRENCIES})\b", re.I), r"\3\1\2"),
+    (re.compile(rf"({CURRENCIES})(\d+)\s*,\s*(\d+)\s*(m|mn|bn|k)", re.I), r"\1\2,\3\4"),
     (re.compile(r"(\d+)(pct|mn|bn|k|%)\s*-\s*(\d+)\2", re.I), r"\1-\3\2"),
     (re.compile(r"(\d+),(\d+)"), r"\1.\2"),
 ]
@@ -211,7 +222,7 @@ def preprocess_full(text):
 def preprocess_masked(text):
     text = _normalize_text_pipeline(text)
     text = re.sub(r'\+[\d\-()]{6,20}', ' [PHONE] ', text)
-    text = re.sub(r'\b(eur|usd|gbp|jpy|chf|sek)\d+\.?\d*(mn|bn|k|pct)?\b', ' [MONEY] ', text)
+    text = re.sub(r'\b(eur|usd|gbp|jpy|chf|sek|eek)\d+\.?\d*(mn|bn|k|pct)?\b', ' [MONEY] ', text)
     text = re.sub(r'\b\d+\.?\d*pct\b', ' [PERCENT] ', text)
     text = re.sub(r'\b\d{4}:\d{2}:\d{2}\b', ' [DATE] ', text)
     text = re.sub(r'\b\d{4}:\d{2}\b', ' [DATE] ', text)
@@ -239,10 +250,25 @@ def preprocess_masked(text):
                 processed_tokens.append(lemma)
     return re.sub(r'\s+', ' ', " ".join(processed_tokens)).strip()
 
-def preprocess_standard(text):
+def preprocess_standard_optimized(text):
     if not isinstance(text, str): return ""
     text = text.lower()
     text = re.sub(r'[^\w\s]', ' ', text)
+    tokens = text.split()
+    tagged_tokens = pos_tag(tokens)
+
+    processed_tokens = []
+    for word, tag in tagged_tokens:
+        word_pos = get_wordnet_pos(tag)
+        lemma = lemmatizer.lemmatize(word, pos=word_pos)
+        if lemma not in CUSTOM_STOPWORDS:
+            processed_tokens.append(lemma)
+    return " ".join(processed_tokens).strip()
+
+def preprocess_standard(text):
+    if not isinstance(text, str): return ""
+    text = text.lower()
+    text = re.sub(r'[^[a-zA-Z]\s]', ' ', text)
     tokens = text.split()
     tagged_tokens = pos_tag(tokens)
 
@@ -430,9 +456,10 @@ if __name__ == "__main__":
     df["prep_standard"] = df["sentence"].apply(preprocess_standard)
     df["prep_full"] = df["sentence"].apply(preprocess_full)
     df["prep_masked"] = df["sentence"].apply(preprocess_masked)
+    df["prep_standard_numbers"] = df["sentence"].apply(preprocess_standard_optimized)
 
     # Define layout strategies and balanced samplers
-    strategies = ["prep_standard", "prep_full", "prep_masked"]
+    strategies = ["prep_standard", "prep_full", "prep_masked", "prep_standard_numbers"]
     samplers = {
         "None (Imbalanced)": None,
         "SMOTE (Oversampling)": SMOTE(random_state=42),
@@ -456,7 +483,7 @@ if __name__ == "__main__":
         )
 
         # TF-IDF Vectorization
-        vectorizer = TfidfVectorizer(ngram_range=(1, 2), token_pattern=custom_token_pattern)
+        vectorizer = TfidfVectorizer(ngram_range=(1, 3), token_pattern=custom_token_pattern)
         X_train_vec = vectorizer.fit_transform(X_train_raw)
         X_test_vec = vectorizer.transform(X_test_raw)
 
@@ -471,7 +498,7 @@ if __name__ == "__main__":
 
             # Hyperparameter Grid evaluating structural topologies, activations, and optimizers
             param_grid = {
-            'hidden_layer_sizes': [(32,), (64,), (64, 32), (64,64), (128,)],
+            'hidden_layer_sizes': [(32,), (64,), (32, 32), (64, 32), (64,64), (128,)],
             'activation': ['relu', 'tanh'],
             'solver': ['adam'],
             'alpha': [0.0001, 0.001],
