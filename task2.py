@@ -443,6 +443,9 @@ if __name__ == "__main__":
         "Tomek (Undersampling)": TomekLinks()
     }
 
+    # ADDED: Array parameter defining N-Gram ranges to sweep during processing execution
+    ngram_ranges = [(1, 2), (1, 3)]
+
     custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
     master_results = []
 
@@ -454,65 +457,68 @@ if __name__ == "__main__":
             df_clean[strategy], df_clean[TARGET_COL], test_size=0.20, random_state=42, stratify=df_clean[TARGET_COL]
         )
 
-        vectorizer = TfidfVectorizer(ngram_range=(1, 3), token_pattern=custom_token_pattern, max_features=5000)
-        X_train_vec = vectorizer.fit_transform(X_train_raw)
-        X_test_vec = vectorizer.transform(X_test_raw)
+        # ADDED: Dynamic N-Gram iteration loop wrapping Vectorizer initialization
+        for ngram_range in ngram_ranges:
+            print(f"  -> Evaluation Range: {ngram_range}")
+            vectorizer = TfidfVectorizer(ngram_range=ngram_range, token_pattern=custom_token_pattern, max_features=5000)
+            X_train_vec = vectorizer.fit_transform(X_train_raw)
+            X_test_vec = vectorizer.transform(X_test_raw)
 
-        for sampler_name, sampler in samplers.items():
-            print(f"  -> Sampler: {sampler_name}")
+            for sampler_name, sampler in samplers.items():
+                print(f"     -> Sampler: {sampler_name}")
 
-            if sampler is not None:
-                X_train_res, y_train_res = sampler.fit_resample(X_train_vec, y_train)
-            else:
-                X_train_res, y_train_res = X_train_vec, y_train
+                if sampler is not None:
+                    X_train_res, y_train_res = sampler.fit_resample(X_train_vec, y_train)
+                else:
+                    X_train_res, y_train_res = X_train_vec, y_train
 
-            param_dist = {
-                'hidden_layer_sizes': [(32,), (64,), (64, 32)],
-                'activation': ['relu', 'tanh'],
-                'alpha': [0.0001, 0.001, 0.01],
-                'batch_size': [64, 128, 256],
-                'learning_rate_init': [0.001, 0.005, 0.01],
-                'max_iter': [100]
-            }
+                param_dist = {
+                    'hidden_layer_sizes': [(32,), (64,), (64, 32)],
+                    'activation': ['relu', 'tanh'],
+                    'alpha': [0.0001, 0.001, 0.01],
+                    'batch_size': [64, 128, 256],
+                    'learning_rate_init': [0.001, 0.005, 0.01],
+                    'max_iter': [100]
+                }
 
-            pytorch_mlp = PyTorchMLPClassifier(random_state=42)
+                pytorch_mlp = PyTorchMLPClassifier(random_state=42)
 
-            # Safeguard: Calculate actual total length of search combinations to avoid warnings
-            total_combinations = np.prod([len(v) for v in param_dist.values()])
-            adjusted_n_iter = min(128, total_combinations)
+                total_combinations = np.prod([len(v) for v in param_dist.values()])
+                adjusted_n_iter = min(128, total_combinations)
 
-            search_engine = RandomizedSearchCV(
-                estimator=pytorch_mlp,
-                param_distributions=param_dist,
-                n_iter=adjusted_n_iter,
-                cv=5,
-                scoring='f1_macro',
-                n_jobs=1,
-                random_state=42,
-                verbose=0
-            )
+                search_engine = RandomizedSearchCV(
+                    estimator=pytorch_mlp,
+                    param_distributions=param_dist,
+                    n_iter=adjusted_n_iter,
+                    cv=2,
+                    scoring='f1_macro',
+                    n_jobs=1,
+                    random_state=42,
+                    verbose=0
+                )
 
-            search_engine.fit(X_train_res, y_train_res)
+                search_engine.fit(X_train_res, y_train_res)
 
-            best_model = search_engine.best_estimator_
-            y_pred = best_model.predict(X_test_vec)
-            acc, macro_f1 = evaluate_model(y_test, y_pred, f"{strategy} + {sampler_name}")
+                best_model = search_engine.best_estimator_
+                y_pred = best_model.predict(X_test_vec)
+                acc, macro_f1 = evaluate_model(y_test, y_pred, f"{strategy} + {sampler_name}")
 
-            # FIXED: Corrected mapping assignments to track the extracted parameter search spaces
-            master_results.append({
-                "Strategy": strategy,
-                "Sampling": sampler_name,
-                "Alpha": search_engine.best_params_['alpha'],
-                "Batch Size": search_engine.best_params_['batch_size'],
-                "Learning Rate Init": search_engine.best_params_['learning_rate_init'],
-                "Best Activation": search_engine.best_params_['activation'],
-                "Best Hidden Layers": search_engine.best_params_['hidden_layer_sizes'],
-                "Test Accuracy": acc,
-                "Test Macro F1": macro_f1
-            })
+                # UPDATED: Added tracking key for tracking designated 'N-Gram Range' variations
+                master_results.append({
+                    "Strategy": strategy,
+                    "N-Gram Range": str(ngram_range),
+                    "Sampling": sampler_name,
+                    "Alpha": search_engine.best_params_['alpha'],
+                    "Batch Size": search_engine.best_params_['batch_size'],
+                    "Learning Rate Init": search_engine.best_params_['learning_rate_init'],
+                    "Best Activation": search_engine.best_params_['activation'],
+                    "Best Hidden Layers": search_engine.best_params_['hidden_layer_sizes'],
+                    "Test Accuracy": acc,
+                    "Test Macro F1": macro_f1
+                })
 
-            del X_train_res, y_train_res
-            gc.collect()
+                del X_train_res, y_train_res
+                gc.collect()
 
     df_results = pd.DataFrame(master_results)
     print("\n" + "="*50 + "\nGLOBAL BENCHMARK RESULTS\n" + "="*50)
