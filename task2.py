@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.model_selection import train_test_split, RandomizedSearchCV  # <-- Changed to RandomizedSearchCV
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
 from sklearn.preprocessing import LabelEncoder
@@ -14,6 +14,7 @@ import scipy.sparse as sp
 # Resampling Imports
 from imblearn.over_sampling import SMOTE
 from imblearn.combine import SMOTETomek
+from imblearn.under_sampling import TomekLinks
 
 import nltk
 from nltk.corpus import stopwords, wordnet
@@ -291,7 +292,6 @@ def evaluate_model(y_true, y_pred, model_display_name):
 # 4. HIGH-PERFORMANCE PYTORCH MLP BACKEND
 # ==========================================
 class DenseTextDataset(Dataset):
-    """Expects pre-converted dense numpy/torch arrays to completely avoid inline CPU overhead."""
     def __init__(self, X, y=None):
         if isinstance(X, np.ndarray):
             self.X = torch.from_numpy(X).float()
@@ -330,7 +330,6 @@ class PyTorchMLPClassifier(BaseEstimator, ClassifierMixin):
             torch.manual_seed(self.random_state)
             np.random.seed(self.random_state)
 
-        # Handle sparse to dense conversion ONCE per fit lifecycle here safely
         if sp.issparse(X):
             X = X.toarray()
 
@@ -440,7 +439,8 @@ if __name__ == "__main__":
     samplers = {
         "None (Imbalanced)": None,
         "SMOTE (Oversampling)": SMOTE(random_state=42),
-        "SMOTETomek (Combined)": SMOTETomek(random_state=42)
+        "SMOTETomek (Combined)": SMOTETomek(random_state=42),
+        "Tomek (Undersampling)": TomekLinks()
     }
 
     custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
@@ -454,7 +454,6 @@ if __name__ == "__main__":
             df_clean[strategy], df_clean[TARGET_COL], test_size=0.20, random_state=42, stratify=df_clean[TARGET_COL]
         )
 
-        # FIX 1: Max features capping limits feature dimensions and prevents CPU memory thrashing
         vectorizer = TfidfVectorizer(ngram_range=(1, 3), token_pattern=custom_token_pattern, max_features=5000)
         X_train_vec = vectorizer.fit_transform(X_train_raw)
         X_test_vec = vectorizer.transform(X_test_raw)
@@ -467,24 +466,26 @@ if __name__ == "__main__":
             else:
                 X_train_res, y_train_res = X_train_vec, y_train
 
-            # FIX 2: Broadened hyperparameter distributions to run inside an efficient random search layout
             param_dist = {
-                'hidden_layer_sizes': [(32,), (64,),(64, 32) ],
+                'hidden_layer_sizes': [(32,), (64,), (64, 32)],
                 'activation': ['relu', 'tanh'],
                 'alpha': [0.0001, 0.001, 0.01],
-                'batch_size': [64,128, 256],
+                'batch_size': [64, 128, 256],
                 'learning_rate_init': [0.001, 0.005, 0.01],
-                'max_iter': [100] # Kept small since early stopping handles local convergence
+                'max_iter': [100]
             }
 
             pytorch_mlp = PyTorchMLPClassifier(random_state=42)
 
-            # FIX 3: RandomizedSearchCV checks 8 random high-performing combinations instead of 288
+            # Safeguard: Calculate actual total length of search combinations to avoid warnings
+            total_combinations = np.prod([len(v) for v in param_dist.values()])
+            adjusted_n_iter = min(128, total_combinations)
+
             search_engine = RandomizedSearchCV(
                 estimator=pytorch_mlp,
                 param_distributions=param_dist,
-                n_iter=128,
-                cv=2,
+                n_iter=adjusted_n_iter,
+                cv=5,
                 scoring='f1_macro',
                 n_jobs=1,
                 random_state=42,
@@ -497,9 +498,13 @@ if __name__ == "__main__":
             y_pred = best_model.predict(X_test_vec)
             acc, macro_f1 = evaluate_model(y_test, y_pred, f"{strategy} + {sampler_name}")
 
+            # FIXED: Corrected mapping assignments to track the extracted parameter search spaces
             master_results.append({
                 "Strategy": strategy,
                 "Sampling": sampler_name,
+                "Alpha": search_engine.best_params_['alpha'],
+                "Batch Size": search_engine.best_params_['batch_size'],
+                "Learning Rate Init": search_engine.best_params_['learning_rate_init'],
                 "Best Activation": search_engine.best_params_['activation'],
                 "Best Hidden Layers": search_engine.best_params_['hidden_layer_sizes'],
                 "Test Accuracy": acc,
