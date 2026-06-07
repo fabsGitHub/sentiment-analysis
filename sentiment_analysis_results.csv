@@ -1,13 +1,65 @@
-Strategy,Sampling,Best Activation,Best Hidden Layers,Test Accuracy,Test Macro F1
-prep_standard,None (Imbalanced),tanh,"(64,)",0.7412371134020619,0.6852747992785336
-prep_standard,SMOTE (Oversampling),relu,"(64, 32)",0.7082474226804124,0.6682292189896839
-prep_standard,SMOTETomek (Combined),relu,"(64, 32)",0.7041237113402062,0.6724648066825428
-prep_full,None (Imbalanced),relu,"(64,)",0.7618556701030927,0.7207745618952295
-prep_full,SMOTE (Oversampling),relu,"(64, 32)",0.7237113402061855,0.688537277593468
-prep_full,SMOTETomek (Combined),relu,"(64, 32)",0.711340206185567,0.6753315362236134
-prep_masked,None (Imbalanced),tanh,"(32,)",0.7422680412371134,0.6973489138093173
-prep_masked,SMOTE (Oversampling),tanh,"(64, 32)",0.7144329896907217,0.6862007297205084
-prep_masked,SMOTETomek (Combined),relu,"(64, 32)",0.7134020618556701,0.6778461580451723
-prep_standard_numbers,None (Imbalanced),tanh,"(64,)",0.7298969072164948,0.6688153466805175
-prep_standard_numbers,SMOTE (Oversampling),relu,"(64, 32)",0.7041237113402062,0.6718456615541061
-prep_standard_numbers,SMOTETomek (Combined),relu,"(64, 32)",0.7298969072164948,0.6778641244605174
+Strategy,N-Gram Range,Sampling,Alpha,Batch Size,Learning Rate Init,Best Activation,Best Hidden Layers,Test Accuracy,Test Macro F1
+prep_standard,"(1, 4)",None (Imbalanced),0.001,64,0.01,relu,"(32,)",0.7360824742268042,0.6772756935288399
+prep_standard,"(1, 4)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7288659793814433,0.693991642314336
+prep_standard,"(1, 4)",SMOTETomek (Combined),0.0001,64,0.01,relu,"(32,)",0.7329896907216494,0.6921101151556543
+prep_standard,"(1, 4)",Tomek (Undersampling),0.001,64,0.01,relu,"(64,)",0.7030927835051546,0.667179499887677
+prep_standard,"(1, 2)",None (Imbalanced),0.001,128,0.01,relu,"(64,)",0.7505154639175258,0.7058801724748838
+prep_standard,"(1, 2)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.722680412371134,0.6933466133587887
+prep_standard,"(1, 2)",SMOTETomek (Combined),0.001,128,0.005,tanh,"(64, 32)",0.7216494845360825,0.6752726203746731
+prep_standard,"(1, 2)",Tomek (Undersampling),0.001,64,0.005,tanh,"(64, 32)",0.7123711340206186,0.6548281975554596
+prep_standard,"(1, 1)",None (Imbalanced),0.001,64,0.01,relu,"(32,)",0.7309278350515463,0.6755454278710094
+prep_standard,"(1, 1)",SMOTE (Oversampling),0.001,128,0.005,tanh,"(64, 32)",0.7144329896907217,0.6741541793181467
+prep_standard,"(1, 1)",SMOTETomek (Combined),0.0001,64,0.01,relu,"(32,)",0.7247422680412371,0.6762225803240934
+prep_standard,"(1, 1)",Tomek (Undersampling),0.001,64,0.01,relu,"(32,)",0.734020618556701,0.679907858407153
+prep_standard,"(1, 3)",None (Imbalanced),0.001,64,0.005,tanh,"(32,)",0.7494845360824742,0.6948447914197927
+prep_standard,"(1, 3)",SMOTE (Oversampling),0.0001,128,0.01,tanh,"(64, 32)",0.7123711340206186,0.6658909237214419
+prep_standard,"(1, 3)",SMOTETomek (Combined),0.0001,256,0.01,relu,"(64, 32)",0.7268041237113402,0.6819423656423148
+prep_standard,"(1, 3)",Tomek (Undersampling),0.001,64,0.01,relu,"(32,)",0.722680412371134,0.6768785837221474
+prep_full,"(1, 4)",None (Imbalanced),0.001,64,0.01,relu,"(64,)",0.7412371134020619,0.696836510946083
+prep_full,"(1, 4)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.7103092783505155,0.6763325855409527
+prep_full,"(1, 4)",SMOTETomek (Combined),0.0001,128,0.01,tanh,"(64, 32)",0.7288659793814433,0.68582549395397
+prep_full,"(1, 4)",Tomek (Undersampling),0.001,64,0.01,relu,"(64,)",0.7195876288659794,0.6759235317663217
+prep_full,"(1, 2)",None (Imbalanced),0.001,64,0.005,tanh,"(64, 32)",0.7319587628865979,0.6984324483007335
+prep_full,"(1, 2)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7164948453608248,0.6819780360528352
+prep_full,"(1, 2)",SMOTETomek (Combined),0.0001,128,0.01,tanh,"(64, 32)",0.7175257731958763,0.6853657642258489
+prep_full,"(1, 2)",Tomek (Undersampling),0.001,64,0.01,relu,"(32,)",0.7484536082474227,0.6962481315481165
+prep_full,"(1, 1)",None (Imbalanced),0.001,64,0.01,relu,"(32,)",0.7206185567010309,0.671156319258392
+prep_full,"(1, 1)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.7,0.6588461903205501
+prep_full,"(1, 1)",SMOTETomek (Combined),0.001,128,0.005,tanh,"(64, 32)",0.6958762886597938,0.6477763975878894
+prep_full,"(1, 1)",Tomek (Undersampling),0.001,64,0.01,relu,"(64,)",0.7298969072164948,0.691704156383199
+prep_full,"(1, 3)",None (Imbalanced),0.001,64,0.01,relu,"(64,)",0.7402061855670103,0.69491393245093
+prep_full,"(1, 3)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.734020618556701,0.6908135118095903
+prep_full,"(1, 3)",SMOTETomek (Combined),0.001,64,0.005,tanh,"(64, 32)",0.7216494845360825,0.6779822092126268
+prep_full,"(1, 3)",Tomek (Undersampling),0.001,64,0.01,relu,"(32,)",0.7350515463917526,0.6875708011100237
+prep_masked,"(1, 4)",None (Imbalanced),0.001,64,0.005,tanh,"(32,)",0.7381443298969073,0.691508723760394
+prep_masked,"(1, 4)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.7206185567010309,0.6750747126045417
+prep_masked,"(1, 4)",SMOTETomek (Combined),0.0001,64,0.005,relu,"(64,)",0.7298969072164948,0.6945200381457446
+prep_masked,"(1, 4)",Tomek (Undersampling),0.0001,64,0.01,relu,"(32,)",0.7288659793814433,0.6850769850785027
+prep_masked,"(1, 2)",None (Imbalanced),0.001,64,0.01,relu,"(32,)",0.7298969072164948,0.6810226422311779
+prep_masked,"(1, 2)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.7309278350515463,0.6875549869398565
+prep_masked,"(1, 2)",SMOTETomek (Combined),0.001,128,0.005,tanh,"(64, 32)",0.7329896907216494,0.7007706280414472
+prep_masked,"(1, 2)",Tomek (Undersampling),0.001,64,0.005,relu,"(64,)",0.7422680412371134,0.7057594142107205
+prep_masked,"(1, 1)",None (Imbalanced),0.001,64,0.005,relu,"(64,)",0.7525773195876289,0.7102808013585747
+prep_masked,"(1, 1)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7144329896907217,0.6896234259919222
+prep_masked,"(1, 1)",SMOTETomek (Combined),0.0001,256,0.01,relu,"(64, 32)",0.7,0.6673680146044388
+prep_masked,"(1, 1)",Tomek (Undersampling),0.001,256,0.01,tanh,"(64,)",0.7288659793814433,0.692104785514824
+prep_masked,"(1, 3)",None (Imbalanced),0.001,64,0.005,tanh,"(32,)",0.7371134020618557,0.6930361470591997
+prep_masked,"(1, 3)",SMOTE (Oversampling),0.0001,256,0.01,relu,"(64, 32)",0.7154639175257732,0.6846669586821541
+prep_masked,"(1, 3)",SMOTETomek (Combined),0.001,128,0.005,tanh,"(64, 32)",0.7474226804123711,0.7158336006841283
+prep_masked,"(1, 3)",Tomek (Undersampling),0.001,64,0.01,relu,"(64,)",0.722680412371134,0.6732133787215648
+prep_standard_numbers,"(1, 4)",None (Imbalanced),0.001,128,0.01,relu,"(64,)",0.7278350515463917,0.6708772083772084
+prep_standard_numbers,"(1, 4)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7041237113402062,0.6712931713134368
+prep_standard_numbers,"(1, 4)",SMOTETomek (Combined),0.0001,64,0.005,relu,"(64,)",0.7175257731958763,0.6823234801419941
+prep_standard_numbers,"(1, 4)",Tomek (Undersampling),0.001,64,0.005,tanh,"(64, 32)",0.709278350515464,0.655955780487662
+prep_standard_numbers,"(1, 2)",None (Imbalanced),0.001,64,0.01,relu,"(32,)",0.7412371134020619,0.6862219807969291
+prep_standard_numbers,"(1, 2)",SMOTE (Oversampling),0.001,128,0.005,tanh,"(64, 32)",0.7164948453608248,0.6769798351792563
+prep_standard_numbers,"(1, 2)",SMOTETomek (Combined),0.0001,64,0.01,relu,"(32,)",0.7237113402061855,0.6768528319084011
+prep_standard_numbers,"(1, 2)",Tomek (Undersampling),0.001,64,0.01,relu,"(64,)",0.6989690721649484,0.6620279146141215
+prep_standard_numbers,"(1, 1)",None (Imbalanced),0.001,64,0.005,tanh,"(32,)",0.7278350515463917,0.6860743067151786
+prep_standard_numbers,"(1, 1)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7164948453608248,0.685943158415327
+prep_standard_numbers,"(1, 1)",SMOTETomek (Combined),0.0001,128,0.005,tanh,"(64, 32)",0.7072164948453609,0.6584987792291673
+prep_standard_numbers,"(1, 1)",Tomek (Undersampling),0.001,64,0.01,relu,"(32,)",0.7185567010309278,0.6749151982915768
+prep_standard_numbers,"(1, 3)",None (Imbalanced),0.001,128,0.01,relu,"(64,)",0.7309278350515463,0.6755640754450908
+prep_standard_numbers,"(1, 3)",SMOTE (Oversampling),0.001,64,0.005,tanh,"(64, 32)",0.7010309278350515,0.6678043774311201
+prep_standard_numbers,"(1, 3)",SMOTETomek (Combined),0.0001,128,0.005,relu,"(64, 32)",0.7010309278350515,0.6631861780235574
+prep_standard_numbers,"(1, 3)",Tomek (Undersampling),0.001,128,0.005,tanh,"(64, 32)",0.7175257731958763,0.6556227314804981

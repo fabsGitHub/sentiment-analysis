@@ -1,513 +1,513 @@
 ;Model;Strategy;Sampling Strategy;Vectorizer;N-Gram;Feature Size;Accuracy;Macro-F1;Vec_N-Gram
-0;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 1);6652;0.7072916666666667;0.6451570247116806;"BoW
+0;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 1);6723;0.7064989517819706;0.6259071246570006;"BoW
 (1, 1)"
-1;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 1);6652;0.7041666666666667;0.5090941250266989;"TF-IDF
+1;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 1);6723;0.6802935010482181;0.46488678830179614;"TF-IDF
 (1, 1)"
-2;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 1);6652;0.765625;0.706234052816928;"BoW
+2;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 1);6723;0.7358490566037735;0.6826159689322324;"BoW
 (1, 1)"
-3;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 1);6652;0.753125;0.6960426753740317;"TF-IDF
+3;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 1);6723;0.7410901467505241;0.6943292236843286;"TF-IDF
 (1, 1)"
-4;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 1);6652;0.6625;0.5883894258763247;"BoW
+4;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 1);6723;0.6614255765199162;0.5929433641748233;"BoW
 (1, 1)"
-5;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 1);6652;0.65625;0.6079142336021964;"TF-IDF
+5;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 1);6723;0.649895178197065;0.6049020396813498;"TF-IDF
 (1, 1)"
-6;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 1);6652;0.7041666666666667;0.6557729363224537;"BoW
+6;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 1);6723;0.7054507337526206;0.6515813486631993;"BoW
 (1, 1)"
-7;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 1);6652;0.740625;0.6957423984887292;"TF-IDF
+7;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 1);6723;0.7295597484276729;0.6744805867231523;"TF-IDF
 (1, 1)"
-8;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 1);6652;0.6635416666666667;0.591863747110965;"BoW
+8;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 1);6723;0.6614255765199162;0.5956005536777926;"BoW
 (1, 1)"
-9;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 1);6652;0.6583333333333333;0.6112214511868007;"TF-IDF
+9;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 1);6723;0.649895178197065;0.6046975453788291;"TF-IDF
 (1, 1)"
-10;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 1);6652;0.7104166666666667;0.6579531747946318;"BoW
+10;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 1);6723;0.7054507337526206;0.6560807061790669;"BoW
 (1, 1)"
-11;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 1);6652;0.7135416666666666;0.6795397374577297;"TF-IDF
+11;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 1);6723;0.7295597484276729;0.6849815953643071;"TF-IDF
 (1, 1)"
-12;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 1);6652;0.7041666666666667;0.6405888373113052;"BoW
+12;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 1);6723;0.7085953878406709;0.6301878315950414;"BoW
 (1, 1)"
-13;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 1);6652;0.7010416666666667;0.5130722036139747;"TF-IDF
+13;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 1);6723;0.6771488469601677;0.4678975620051202;"TF-IDF
 (1, 1)"
-14;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 1);6652;0.7572916666666667;0.6931531418956739;"BoW
+14;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 1);6723;0.7337526205450734;0.6754533412358347;"BoW
 (1, 1)"
-15;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 1);6652;0.765625;0.6959918193834994;"TF-IDF
+15;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 1);6723;0.7421383647798742;0.7011097958840091;"TF-IDF
 (1, 1)"
-16;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 2);35660;0.728125;0.6447460715764247;"BoW
+16;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 2);36004;0.709643605870021;0.6046662004823282;"BoW
 (1, 2)"
-17;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 2);35660;0.7;0.5020558582747637;"TF-IDF
+17;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 2);36004;0.6771488469601677;0.45847606974827376;"TF-IDF
 (1, 2)"
-18;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 2);35660;0.7458333333333333;0.6771821194155861;"BoW
+18;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 2);36004;0.740041928721174;0.6842051468670535;"BoW
 (1, 2)"
-19;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 2);35660;0.7510416666666667;0.7108951042748894;"TF-IDF
+19;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 2);36004;0.7295597484276729;0.6991974173757557;"TF-IDF
 (1, 2)"
-20;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 2);35660;0.6979166666666666;0.6174770949344521;"BoW
+20;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 2);36004;0.6792452830188679;0.5964646872504419;"BoW
 (1, 2)"
-21;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 2);35660;0.675;0.6299554801780793;"TF-IDF
+21;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 2);36004;0.6719077568134172;0.6339920470116702;"TF-IDF
 (1, 2)"
-22;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 2);35660;0.690625;0.6510980071274103;"BoW
+22;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 2);36004;0.7169811320754716;0.6598580213640804;"BoW
 (1, 2)"
-23;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 2);35660;0.7583333333333333;0.7126497618472459;"TF-IDF
+23;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 2);36004;0.750524109014675;0.6925587531387319;"TF-IDF
 (1, 2)"
-24;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 2);35660;0.6989583333333333;0.6189917052092154;"BoW
+24;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 2);36004;0.6802935010482181;0.5971770699328595;"BoW
 (1, 2)"
-25;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 2);35660;0.6760416666666667;0.6310744895394232;"TF-IDF
+25;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 2);36004;0.6708595387840671;0.6329964977363822;"TF-IDF
 (1, 2)"
-26;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 2);35660;0.721875;0.6838657507110296;"BoW
+26;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 2);36004;0.7169811320754716;0.667977365102853;"BoW
 (1, 2)"
-27;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 2);35660;0.7572916666666667;0.7044545940867012;"TF-IDF
+27;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 2);36004;0.7610062893081762;0.7145740920108418;"TF-IDF
 (1, 2)"
-28;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 2);35660;0.7291666666666666;0.6454612798365376;"BoW
+28;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 2);36004;0.7085953878406709;0.602952083618042;"BoW
 (1, 2)"
-29;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 2);35660;0.7;0.5079048198906665;"TF-IDF
+29;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 2);36004;0.6792452830188679;0.4674119849999247;"TF-IDF
 (1, 2)"
-30;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 2);35660;0.7645833333333333;0.7091117500046978;"BoW
+30;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 2);36004;0.7620545073375262;0.7081717695170994;"BoW
 (1, 2)"
-31;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 2);35660;0.76875;0.7154258589143822;"TF-IDF
+31;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 2);36004;0.7023060796645703;0.67466265541489;"TF-IDF
 (1, 2)"
-32;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 3);66798;0.7375;0.6500668007304163;"BoW
+32;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 3);67386;0.7138364779874213;0.6072187400395562;"BoW
 (1, 3)"
-33;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 3);66798;0.6958333333333333;0.5057075882594819;"TF-IDF
+33;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 3);67386;0.6802935010482181;0.4704264299656235;"TF-IDF
 (1, 3)"
-34;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 3);66798;0.7677083333333333;0.7118101450319324;"BoW
+34;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 3);67386;0.759958071278826;0.6984284273556415;"BoW
 (1, 3)"
-35;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 3);66798;0.7541666666666667;0.7144079037483042;"TF-IDF
+35;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 3);67386;0.759958071278826;0.7147617767319266;"TF-IDF
 (1, 3)"
-36;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 3);66798;0.7104166666666667;0.6303732916084376;"BoW
+36;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 3);67386;0.6928721174004193;0.6049276353403973;"BoW
 (1, 3)"
-37;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 3);66798;0.6729166666666667;0.6262126625044905;"TF-IDF
+37;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 3);67386;0.6677148846960168;0.6289278128863417;"TF-IDF
 (1, 3)"
-38;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 3);66798;0.7177083333333333;0.6607526813922361;"BoW
+38;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 3);67386;0.6939203354297694;0.6475406691717835;"BoW
 (1, 3)"
-39;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 3);66798;0.7322916666666667;0.6682479302516416;"TF-IDF
+39;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 3);67386;0.7578616352201258;0.7137978998091165;"TF-IDF
 (1, 3)"
-40;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 3);66798;0.7114583333333333;0.6311123666491693;"BoW
+40;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 3);67386;0.6939203354297694;0.606132394574863;"BoW
 (1, 3)"
-41;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 3);66798;0.6729166666666667;0.6262126625044905;"TF-IDF
+41;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 3);67386;0.6666666666666666;0.62749924862281;"TF-IDF
 (1, 3)"
-42;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 3);66798;0.709375;0.647477379394147;"BoW
+42;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 3);67386;0.6928721174004193;0.650075978483661;"BoW
 (1, 3)"
-43;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 3);66798;0.7427083333333333;0.7028548568249656;"TF-IDF
+43;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 3);67386;0.7526205450733753;0.6928798460112011;"TF-IDF
 (1, 3)"
-44;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 3);66798;0.7364583333333333;0.647344970391936;"BoW
+44;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 3);67386;0.709643605870021;0.6009533468639482;"BoW
 (1, 3)"
-45;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 3);66798;0.6958333333333333;0.5088385305786571;"TF-IDF
+45;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 3);67386;0.6761006289308176;0.46327288919902965;"TF-IDF
 (1, 3)"
-46;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 3);66798;0.759375;0.6855236770436209;"BoW
+46;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 3);67386;0.7295597484276729;0.6607415876479014;"BoW
 (1, 3)"
-47;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 3);66798;0.7541666666666667;0.6934281087262892;"TF-IDF
+47;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 3);67386;0.740041928721174;0.7028317878218155;"TF-IDF
 (1, 3)"
-48;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 4);95962;0.7354166666666667;0.6437160673009731;"BoW
+48;Naive Bayes;prep_standard;None (Imbalanced);BoW;(1, 4);96738;0.7127882599580713;0.59652433465231;"BoW
 (1, 4)"
-49;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 4);95962;0.6916666666666667;0.5023486402933305;"TF-IDF
+49;Naive Bayes;prep_standard;None (Imbalanced);TF-IDF;(1, 4);96738;0.6802935010482181;0.4633660661056082;"TF-IDF
 (1, 4)"
-50;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 4);95962;0.75;0.6794845842733167;"BoW
+50;FFNN (Updated);prep_standard;None (Imbalanced);BoW;(1, 4);96738;0.7463312368972747;0.6821316259197016;"BoW
 (1, 4)"
-51;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 4);95962;0.734375;0.6952857144161492;"TF-IDF
+51;FFNN (Updated);prep_standard;None (Imbalanced);TF-IDF;(1, 4);96738;0.7379454926624738;0.6946962381501209;"TF-IDF
 (1, 4)"
-52;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 4);95962;0.7177083333333333;0.6400686230407593;"BoW
+52;Naive Bayes;prep_standard;SMOTE (Oversampling);BoW;(1, 4);96738;0.6949685534591195;0.6066730267370365;"BoW
 (1, 4)"
-53;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 4);95962;0.678125;0.632015618283459;"TF-IDF
+53;Naive Bayes;prep_standard;SMOTE (Oversampling);TF-IDF;(1, 4);96738;0.6719077568134172;0.6328282739384301;"TF-IDF
 (1, 4)"
-54;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 4);95962;0.7166666666666667;0.665270306848864;"BoW
+54;FFNN (Updated);prep_standard;SMOTE (Oversampling);BoW;(1, 4);96738;0.6656184486373166;0.6082725184953124;"BoW
 (1, 4)"
-55;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 4);95962;0.753125;0.7135137122451752;"TF-IDF
+55;FFNN (Updated);prep_standard;SMOTE (Oversampling);TF-IDF;(1, 4);96738;0.7389937106918238;0.6965725761600307;"TF-IDF
 (1, 4)"
-56;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 4);95962;0.71875;0.6393475964857102;"BoW
+56;Naive Bayes;prep_standard;SMOTETomek (Combined);BoW;(1, 4);96738;0.6949685534591195;0.6066730267370365;"BoW
 (1, 4)"
-57;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 4);95962;0.678125;0.632015618283459;"TF-IDF
+57;Naive Bayes;prep_standard;SMOTETomek (Combined);TF-IDF;(1, 4);96738;0.6708595387840671;0.6312058411387271;"TF-IDF
 (1, 4)"
-58;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 4);95962;0.721875;0.6697264199884866;"BoW
+58;FFNN (Updated);prep_standard;SMOTETomek (Combined);BoW;(1, 4);96738;0.6614255765199162;0.611548583586158;"BoW
 (1, 4)"
-59;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 4);95962;0.725;0.6708361922484185;"TF-IDF
+59;FFNN (Updated);prep_standard;SMOTETomek (Combined);TF-IDF;(1, 4);96738;0.7547169811320755;0.6929131920186687;"TF-IDF
 (1, 4)"
-60;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 4);95962;0.7364583333333333;0.6449332210725872;"BoW
+60;Naive Bayes;prep_standard;Tomek (Undersampling);BoW;(1, 4);96738;0.7117400419287212;0.5963606331558755;"BoW
 (1, 4)"
-61;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 4);95962;0.6895833333333333;0.499247361113879;"TF-IDF
+61;Naive Bayes;prep_standard;Tomek (Undersampling);TF-IDF;(1, 4);96738;0.6792452830188679;0.46891144845397253;"TF-IDF
 (1, 4)"
-62;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 4);95962;0.765625;0.7147425944792185;"BoW
+62;FFNN (Updated);prep_standard;Tomek (Undersampling);BoW;(1, 4);96738;0.7410901467505241;0.6872331436481977;"BoW
 (1, 4)"
-63;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 4);95962;0.7802083333333333;0.7271782097997893;"TF-IDF
+63;FFNN (Updated);prep_standard;Tomek (Undersampling);TF-IDF;(1, 4);96738;0.7243186582809225;0.6916507103360371;"TF-IDF
 (1, 4)"
-64;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 1);9288;0.721875;0.6370232881599548;"BoW
+64;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 1);9411;0.7190775681341719;0.6325386104096503;"BoW
 (1, 1)"
-65;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 1);9288;0.6979166666666666;0.4898100615620287;"TF-IDF
+65;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 1);9411;0.689727463312369;0.4721295250344167;"TF-IDF
 (1, 1)"
-66;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 1);9288;0.759375;0.6956316410861865;"BoW
+66;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 1);9411;0.750524109014675;0.7042389658363132;"BoW
 (1, 1)"
-67;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 1);9288;0.7625;0.7026737521717464;"TF-IDF
+67;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 1);9411;0.7253668763102725;0.6707781158009419;"TF-IDF
 (1, 1)"
-68;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 1);9288;0.6645833333333333;0.588914937233227;"BoW
+68;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 1);9411;0.6823899371069182;0.6225705879213446;"BoW
 (1, 1)"
-69;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 1);9288;0.6739583333333333;0.6206585771976205;"TF-IDF
+69;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 1);9411;0.6593291404612159;0.6197618155803634;"TF-IDF
 (1, 1)"
-70;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 1);9288;0.7010416666666667;0.6577334011428914;"BoW
+70;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 1);9411;0.710691823899371;0.6696934578390858;"BoW
 (1, 1)"
-71;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 1);9288;0.746875;0.7008396244855781;"TF-IDF
+71;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 1);9411;0.7148846960167715;0.6882371743482855;"TF-IDF
 (1, 1)"
-72;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 1);9288;0.6635416666666667;0.5868569881702063;"BoW
+72;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 1);9411;0.6834381551362684;0.6233030967139095;"BoW
 (1, 1)"
-73;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 1);9288;0.675;0.6218279297783801;"TF-IDF
+73;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 1);9411;0.6582809224318659;0.6183149614060058;"TF-IDF
 (1, 1)"
-74;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 1);9288;0.6677083333333333;0.6187802695575574;"BoW
+74;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 1);9411;0.6876310272536688;0.6390493336531323;"BoW
 (1, 1)"
-75;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 1);9288;0.7333333333333333;0.6925495331292432;"TF-IDF
+75;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 1);9411;0.7285115303983228;0.6583894898273847;"TF-IDF
 (1, 1)"
-76;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 1);9288;0.7229166666666667;0.6394508188682946;"BoW
+76;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 1);9411;0.7222222222222222;0.6405426054030029;"BoW
 (1, 1)"
-77;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 1);9288;0.6947916666666667;0.4849606151002564;"TF-IDF
+77;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 1);9411;0.6907756813417191;0.48452741797701;"TF-IDF
 (1, 1)"
-78;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 1);9288;0.7635416666666667;0.7107297368358152;"BoW
+78;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 1);9411;0.7484276729559748;0.7039212242472495;"BoW
 (1, 1)"
-79;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 1);9288;0.7625;0.705494033313188;"TF-IDF
+79;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 1);9411;0.7306079664570231;0.68465149806789;"TF-IDF
 (1, 1)"
-80;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 2);42033;0.734375;0.6332207820047074;"BoW
+80;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 2);42101;0.7243186582809225;0.61282954255496;"BoW
 (1, 2)"
-81;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 2);42033;0.6864583333333333;0.46762940070590037;"TF-IDF
+81;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 2);42101;0.6677148846960168;0.43573199325660744;"TF-IDF
 (1, 2)"
-82;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 2);42033;0.7614583333333333;0.7000834889907738;"BoW
+82;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 2);42101;0.759958071278826;0.6955386302414838;"BoW
 (1, 2)"
-83;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 2);42033;0.7510416666666667;0.6957807174380234;"TF-IDF
+83;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 2);42101;0.7536687631027253;0.7051468239865294;"TF-IDF
 (1, 2)"
-84;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 2);42033;0.715625;0.6365019338002287;"BoW
+84;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 2);42101;0.70020964360587;0.6195856922084183;"BoW
 (1, 2)"
-85;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 2);42033;0.6770833333333334;0.6295090204793709;"TF-IDF
+85;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 2);42101;0.6771488469601677;0.635072869284623;"TF-IDF
 (1, 2)"
-86;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 2);42033;0.7135416666666666;0.6597476283259823;"BoW
+86;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 2);42101;0.7169811320754716;0.6587455631586797;"BoW
 (1, 2)"
-87;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 2);42033;0.728125;0.6658002732767322;"TF-IDF
+87;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 2);42101;0.7348008385744235;0.6797048288912834;"TF-IDF
 (1, 2)"
-88;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 2);42033;0.7166666666666667;0.6372380518641116;"BoW
+88;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 2);42101;0.7023060796645703;0.6228499130010685;"BoW
 (1, 2)"
-89;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 2);42033;0.6770833333333334;0.6295090204793709;"TF-IDF
+89;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 2);42101;0.6771488469601677;0.6348601828811978;"TF-IDF
 (1, 2)"
-90;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 2);42033;0.7125;0.6589711328475277;"BoW
+90;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 2);42101;0.7033542976939203;0.6607736904715217;"BoW
 (1, 2)"
-91;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 2);42033;0.734375;0.6739127772098655;"TF-IDF
+91;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 2);42101;0.750524109014675;0.6951196040235614;"TF-IDF
 (1, 2)"
-92;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 2);42033;0.7375;0.6382163693654731;"BoW
+92;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 2);42101;0.7253668763102725;0.6158239204094081;"BoW
 (1, 2)"
-93;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 2);42033;0.684375;0.46460700398696075;"TF-IDF
+93;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 2);42101;0.6677148846960168;0.43573199325660744;"TF-IDF
 (1, 2)"
-94;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 2);42033;0.7458333333333333;0.6802204485959384;"BoW
+94;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 2);42101;0.7442348008385744;0.673329217471832;"BoW
 (1, 2)"
-95;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 2);42033;0.7625;0.7069004036009113;"TF-IDF
+95;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 2);42101;0.7368972746331237;0.7006032541846418;"TF-IDF
 (1, 2)"
-96;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 3);76718;0.7291666666666666;0.6246351340799955;"BoW
+96;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 3);76081;0.7232704402515723;0.6119666811014531;"BoW
 (1, 3)"
-97;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 3);76718;0.6770833333333334;0.4567746545069835;"TF-IDF
+97;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 3);76081;0.6656184486373166;0.42921681327861244;"TF-IDF
 (1, 3)"
-98;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 3);76718;0.775;0.7141160181841936;"BoW
+98;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 3);76081;0.7442348008385744;0.6775829973458974;"BoW
 (1, 3)"
-99;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 3);76718;0.7479166666666667;0.7048336649718526;"TF-IDF
+99;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 3);76081;0.7264150943396226;0.6810248128295259;"TF-IDF
 (1, 3)"
-100;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 3);76718;0.7260416666666667;0.6470886754288268;"BoW
+100;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 3);76081;0.6939203354297694;0.598016467967708;"BoW
 (1, 3)"
-101;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 3);76718;0.6854166666666667;0.6371407072101105;"TF-IDF
+101;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 3);76081;0.6865828092243187;0.647174213904008;"TF-IDF
 (1, 3)"
-102;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 3);76718;0.7083333333333334;0.6380498565076685;"BoW
+102;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 3);76081;0.6886792452830188;0.6112915806452931;"BoW
 (1, 3)"
-103;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 3);76718;0.74375;0.6846745414183267;"TF-IDF
+103;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 3);76081;0.7526205450733753;0.6864760555921293;"TF-IDF
 (1, 3)"
-104;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 3);76718;0.7270833333333333;0.6478275139371797;"BoW
+104;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 3);76081;0.6949685534591195;0.598736442873199;"BoW
 (1, 3)"
-105;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 3);76718;0.6854166666666667;0.6371407072101105;"TF-IDF
+105;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 3);76081;0.6865828092243187;0.647174213904008;"TF-IDF
 (1, 3)"
-106;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 3);76718;0.71875;0.6701090275244694;"BoW
+106;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 3);76081;0.7033542976939203;0.6486968463755851;"BoW
 (1, 3)"
-107;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 3);76718;0.7427083333333333;0.6914980971962824;"TF-IDF
+107;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 3);76081;0.7368972746331237;0.6822322231451516;"TF-IDF
 (1, 3)"
-108;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 3);76718;0.7302083333333333;0.6258839782023132;"BoW
+108;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 3);76081;0.7232704402515723;0.6119666811014531;"BoW
 (1, 3)"
-109;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 3);76718;0.6770833333333334;0.4567746545069835;"TF-IDF
+109;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 3);76081;0.6656184486373166;0.42921681327861244;"TF-IDF
 (1, 3)"
-110;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 3);76718;0.75625;0.7001478578256529;"BoW
+110;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 3);76081;0.7557651991614256;0.6936834526090516;"BoW
 (1, 3)"
-111;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 3);76718;0.7395833333333334;0.6780767662647795;"TF-IDF
+111;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 3);76081;0.7358490566037735;0.6843663916677406;"TF-IDF
 (1, 3)"
-112;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 4);108930;0.7333333333333333;0.6270967566316878;"BoW
+112;Naive Bayes;prep_full;None (Imbalanced);BoW;(1, 4);107345;0.7190775681341719;0.6042457039185404;"BoW
 (1, 4)"
-113;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 4);108930;0.6708333333333333;0.4421719721547635;"TF-IDF
+113;Naive Bayes;prep_full;None (Imbalanced);TF-IDF;(1, 4);107345;0.660377358490566;0.4094926577823868;"TF-IDF
 (1, 4)"
-114;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 4);108930;0.7770833333333333;0.7235796328507854;"BoW
+114;FFNN (Updated);prep_full;None (Imbalanced);BoW;(1, 4);107345;0.7515723270440252;0.6906251674028713;"BoW
 (1, 4)"
-115;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 4);108930;0.75625;0.6869755773255138;"TF-IDF
+115;FFNN (Updated);prep_full;None (Imbalanced);TF-IDF;(1, 4);107345;0.7431865828092243;0.6930325315657099;"TF-IDF
 (1, 4)"
-116;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 4);108930;0.73125;0.648032268017637;"BoW
+116;Naive Bayes;prep_full;SMOTE (Oversampling);BoW;(1, 4);107345;0.7033542976939203;0.6057998763178633;"BoW
 (1, 4)"
-117;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 4);108930;0.684375;0.635876068826597;"TF-IDF
+117;Naive Bayes;prep_full;SMOTE (Oversampling);TF-IDF;(1, 4);107345;0.6813417190775681;0.6408007091526415;"TF-IDF
 (1, 4)"
-118;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 4);108930;0.68125;0.6182475947726301;"BoW
+118;FFNN (Updated);prep_full;SMOTE (Oversampling);BoW;(1, 4);107345;0.7169811320754716;0.6539192461455601;"BoW
 (1, 4)"
-119;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 4);108930;0.7177083333333333;0.6710698053499305;"TF-IDF
+119;FFNN (Updated);prep_full;SMOTE (Oversampling);TF-IDF;(1, 4);107345;0.7389937106918238;0.6803846751569061;"TF-IDF
 (1, 4)"
-120;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 4);108930;0.73125;0.648032268017637;"BoW
+120;Naive Bayes;prep_full;SMOTETomek (Combined);BoW;(1, 4);107345;0.7033542976939203;0.6057998763178633;"BoW
 (1, 4)"
-121;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 4);108930;0.684375;0.635876068826597;"TF-IDF
+121;Naive Bayes;prep_full;SMOTETomek (Combined);TF-IDF;(1, 4);107345;0.6813417190775681;0.6408007091526415;"TF-IDF
 (1, 4)"
-122;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 4);108930;0.7125;0.6531010539682736;"BoW
+122;FFNN (Updated);prep_full;SMOTETomek (Combined);BoW;(1, 4);107345;0.70020964360587;0.6410422196945574;"BoW
 (1, 4)"
-123;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 4);108930;0.7479166666666667;0.6971500906101271;"TF-IDF
+123;FFNN (Updated);prep_full;SMOTETomek (Combined);TF-IDF;(1, 4);107345;0.7389937106918238;0.6849409849409849;"TF-IDF
 (1, 4)"
-124;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 4);108930;0.7333333333333333;0.6270967566316878;"BoW
+124;Naive Bayes;prep_full;Tomek (Undersampling);BoW;(1, 4);107345;0.7190775681341719;0.6042457039185404;"BoW
 (1, 4)"
-125;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 4);108930;0.6708333333333333;0.4421719721547635;"TF-IDF
+125;Naive Bayes;prep_full;Tomek (Undersampling);TF-IDF;(1, 4);107345;0.6624737945492662;0.41287045098770286;"TF-IDF
 (1, 4)"
-126;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 4);108930;0.7635416666666667;0.691790675206282;"BoW
+126;FFNN (Updated);prep_full;Tomek (Undersampling);BoW;(1, 4);107345;0.749475890985325;0.6809628615480193;"BoW
 (1, 4)"
-127;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 4);108930;0.7479166666666667;0.6733788405116453;"TF-IDF
+127;FFNN (Updated);prep_full;Tomek (Undersampling);TF-IDF;(1, 4);107345;0.7180293501048218;0.6847825898009913;"TF-IDF
 (1, 4)"
-128;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 1);7364;0.725;0.6631547708684642;"BoW
+128;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 1);7293;0.7117400419287212;0.6359233022435055;"BoW
 (1, 1)"
-129;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 1);7364;0.7041666666666667;0.49895220468970775;"TF-IDF
+129;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 1);7293;0.6876310272536688;0.4701328529162547;"TF-IDF
 (1, 1)"
-130;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 1);7364;0.759375;0.7024908435041803;"BoW
+130;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 1);7293;0.7410901467505241;0.6852737086308988;"BoW
 (1, 1)"
-131;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 1);7364;0.7541666666666667;0.6936036939245572;"TF-IDF
+131;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 1);7293;0.7442348008385744;0.6781860758968471;"TF-IDF
 (1, 1)"
-132;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 1);7364;0.6677083333333333;0.592851649366345;"BoW
+132;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 1);7293;0.6624737945492662;0.6033845791731555;"BoW
 (1, 1)"
-133;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 1);7364;0.65;0.5955945166060347;"TF-IDF
+133;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 1);7293;0.6362683438155137;0.5921688424848073;"TF-IDF
 (1, 1)"
-134;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 1);7364;0.7177083333333333;0.6655045302734365;"BoW
+134;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 1);7293;0.6865828092243187;0.6435892800727795;"BoW
 (1, 1)"
-135;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 1);7364;0.753125;0.6948786706037238;"TF-IDF
+135;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 1);7293;0.6918238993710691;0.6536661692217248;"TF-IDF
 (1, 1)"
-136;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 1);7364;0.6635416666666667;0.5883398685150732;"BoW
+136;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 1);7293;0.6614255765199162;0.6026625630861974;"BoW
 (1, 1)"
-137;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 1);7364;0.6520833333333333;0.5986284112897357;"TF-IDF
+137;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 1);7293;0.6352201257861635;0.5910242958135771;"TF-IDF
 (1, 1)"
-138;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 1);7364;0.7197916666666667;0.6618444959847539;"BoW
+138;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 1);7293;0.6781970649895178;0.6216969767430972;"BoW
 (1, 1)"
-139;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 1);7364;0.7447916666666666;0.7124426340988749;"TF-IDF
+139;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 1);7293;0.7327044025157232;0.6859159973717862;"TF-IDF
 (1, 1)"
-140;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 1);7364;0.7239583333333334;0.6611285085429339;"BoW
+140;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 1);7293;0.7085953878406709;0.6329825403937116;"BoW
 (1, 1)"
-141;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 1);7364;0.70625;0.5123192701989417;"TF-IDF
+141;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 1);7293;0.6855345911949685;0.47904602131036045;"TF-IDF
 (1, 1)"
-142;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 1);7364;0.765625;0.713966505360057;"BoW
+142;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 1);7293;0.7421383647798742;0.7015885988223953;"BoW
 (1, 1)"
-143;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 1);7364;0.7489583333333333;0.6933027487775729;"TF-IDF
+143;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 1);7293;0.7180293501048218;0.6765173828838812;"TF-IDF
 (1, 1)"
-144;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 2);36709;0.7385416666666667;0.6556691500967112;"BoW
+144;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 2);36340;0.7253668763102725;0.6330663959485434;"BoW
 (1, 2)"
-145;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 2);36709;0.6895833333333333;0.4813298982426398;"TF-IDF
+145;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 2);36340;0.6886792452830188;0.4741568791383231;"TF-IDF
 (1, 2)"
-146;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 2);36709;0.7645833333333333;0.7082829459136186;"BoW
+146;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 2);36340;0.7515723270440252;0.701534184269805;"BoW
 (1, 2)"
-147;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 2);36709;0.7614583333333333;0.7113736522772528;"TF-IDF
+147;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 2);36340;0.7610062893081762;0.722869694228424;"TF-IDF
 (1, 2)"
-148;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 2);36709;0.696875;0.6169148058514384;"BoW
+148;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 2);36340;0.69916142557652;0.6368513518958778;"BoW
 (1, 2)"
-149;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 2);36709;0.6614583333333334;0.613442669849316;"TF-IDF
+149;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 2);36340;0.6698113207547169;0.6296180898776195;"TF-IDF
 (1, 2)"
-150;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 2);36709;0.6864583333333333;0.6440964049744969;"BoW
+150;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 2);36340;0.7190775681341719;0.6715118638965775;"BoW
 (1, 2)"
-151;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 2);36709;0.7385416666666667;0.6873668182214242;"TF-IDF
+151;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 2);36340;0.7515723270440252;0.7030720245937637;"TF-IDF
 (1, 2)"
-152;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 2);36709;0.696875;0.6169148058514384;"BoW
+152;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 2);36340;0.6981132075471698;0.6342872493317753;"BoW
 (1, 2)"
-153;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 2);36709;0.6604166666666667;0.6127012442249878;"TF-IDF
+153;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 2);36340;0.6687631027253669;0.6285239127072796;"TF-IDF
 (1, 2)"
-154;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 2);36709;0.7072916666666667;0.6495522053036059;"BoW
+154;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 2);36340;0.7337526205450734;0.678364117907078;"BoW
 (1, 2)"
-155;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 2);36709;0.7427083333333333;0.6935758891679259;"TF-IDF
+155;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 2);36340;0.7620545073375262;0.7105739376233665;"TF-IDF
 (1, 2)"
-156;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 2);36709;0.74375;0.6673005217387931;"BoW
+156;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 2);36340;0.7232704402515723;0.6304566719952772;"BoW
 (1, 2)"
-157;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 2);36709;0.690625;0.4888381138548523;"TF-IDF
+157;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 2);36340;0.689727463312369;0.4818517199833347;"TF-IDF
 (1, 2)"
-158;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 2);36709;0.7614583333333333;0.7075182056375463;"BoW
+158;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 2);36340;0.7683438155136268;0.716945517061406;"BoW
 (1, 2)"
-159;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 2);36709;0.7708333333333334;0.7167362851573378;"TF-IDF
+159;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 2);36340;0.7620545073375262;0.7244813456853572;"TF-IDF
 (1, 2)"
-160;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 3);69350;0.7333333333333333;0.6458469263480158;"BoW
+160;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 3);68464;0.7316561844863732;0.6405039248342609;"BoW
 (1, 3)"
-161;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 3);69350;0.6916666666666667;0.49143664486113137;"TF-IDF
+161;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 3);68464;0.6886792452830188;0.474225272215222;"TF-IDF
 (1, 3)"
-162;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 3);69350;0.7604166666666666;0.6769726247987117;"BoW
+162;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 3);68464;0.7536687631027253;0.6836244370070702;"BoW
 (1, 3)"
-163;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 3);69350;0.7583333333333333;0.7046127154524705;"TF-IDF
+163;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 3);68464;0.7589098532494759;0.7156633904712563;"TF-IDF
 (1, 3)"
-164;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 3);69350;0.7020833333333333;0.6216556810916898;"BoW
+164;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 3);68464;0.7033542976939203;0.6324579011932642;"BoW
 (1, 3)"
-165;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 3);69350;0.6572916666666667;0.6080714392558209;"TF-IDF
+165;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 3);68464;0.6708595387840671;0.6311093451482286;"TF-IDF
 (1, 3)"
-166;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 3);69350;0.703125;0.6486565897086055;"BoW
+166;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 3);68464;0.709643605870021;0.6542281160002679;"BoW
 (1, 3)"
-167;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 3);69350;0.7416666666666667;0.6680162901613089;"TF-IDF
+167;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 3);68464;0.7568134171907757;0.705977405039285;"TF-IDF
 (1, 3)"
-168;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 3);69350;0.7020833333333333;0.6216556810916898;"BoW
+168;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 3);68464;0.7044025157232704;0.6348635963625697;"BoW
 (1, 3)"
-169;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 3);69350;0.6583333333333333;0.6092296222953527;"TF-IDF
+169;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 3);68464;0.6708595387840671;0.6311093451482286;"TF-IDF
 (1, 3)"
-170;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 3);69350;0.7;0.6407072201196561;"BoW
+170;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 3);68464;0.7044025157232704;0.6524236568076648;"BoW
 (1, 3)"
-171;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 3);69350;0.7489583333333333;0.684453605881151;"TF-IDF
+171;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 3);68464;0.7547169811320755;0.695392944603061;"TF-IDF
 (1, 3)"
-172;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 3);69350;0.7333333333333333;0.646121477779396;"BoW
+172;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 3);68464;0.7316561844863732;0.6394707734169754;"BoW
 (1, 3)"
-173;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 3);69350;0.6927083333333334;0.4992009519411589;"TF-IDF
+173;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 3);68464;0.6886792452830188;0.4744066067640314;"TF-IDF
 (1, 3)"
-174;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 3);69350;0.7604166666666666;0.7008320304286134;"BoW
+174;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 3);68464;0.759958071278826;0.6998659295642478;"BoW
 (1, 3)"
-175;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 3);69350;0.7302083333333333;0.6950016495825828;"TF-IDF
+175;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 3);68464;0.7536687631027253;0.7215609414089265;"TF-IDF
 (1, 3)"
-176;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 4);100842;0.7302083333333333;0.6355831777347771;"BoW
+176;Naive Bayes;prep_masked;None (Imbalanced);BoW;(1, 4);98993;0.7295597484276729;0.6326210826210826;"BoW
 (1, 4)"
-177;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 4);100842;0.6885416666666667;0.47921112481124917;"TF-IDF
+177;Naive Bayes;prep_masked;None (Imbalanced);TF-IDF;(1, 4);98993;0.6823899371069182;0.46902514432679415;"TF-IDF
 (1, 4)"
-178;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 4);100842;0.7770833333333333;0.7145048690459882;"BoW
+178;FFNN (Updated);prep_masked;None (Imbalanced);BoW;(1, 4);98993;0.7484276729559748;0.6869994900984314;"BoW
 (1, 4)"
-179;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 4);100842;0.7697916666666667;0.7092929911980805;"TF-IDF
+179;FFNN (Updated);prep_masked;None (Imbalanced);TF-IDF;(1, 4);98993;0.7557651991614256;0.7110102615048978;"TF-IDF
 (1, 4)"
-180;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 4);100842;0.7125;0.6340583008876757;"BoW
+180;Naive Bayes;prep_masked;SMOTE (Oversampling);BoW;(1, 4);98993;0.7064989517819706;0.63401072212215;"BoW
 (1, 4)"
-181;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 4);100842;0.6552083333333333;0.607075761302171;"TF-IDF
+181;Naive Bayes;prep_masked;SMOTE (Oversampling);TF-IDF;(1, 4);98993;0.6781970649895178;0.6361785614030454;"TF-IDF
 (1, 4)"
-182;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 4);100842;0.709375;0.6691793224720887;"BoW
+182;FFNN (Updated);prep_masked;SMOTE (Oversampling);BoW;(1, 4);98993;0.6886792452830188;0.6315910523358266;"BoW
 (1, 4)"
-183;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 4);100842;0.7291666666666666;0.684186198561366;"TF-IDF
+183;FFNN (Updated);prep_masked;SMOTE (Oversampling);TF-IDF;(1, 4);98993;0.7641509433962265;0.7106804432139647;"TF-IDF
 (1, 4)"
-184;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 4);100842;0.7114583333333333;0.6324472458940321;"BoW
+184;Naive Bayes;prep_masked;SMOTETomek (Combined);BoW;(1, 4);98993;0.7054507337526206;0.6322884728123558;"BoW
 (1, 4)"
-185;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 4);100842;0.6552083333333333;0.607075761302171;"TF-IDF
+185;Naive Bayes;prep_masked;SMOTETomek (Combined);TF-IDF;(1, 4);98993;0.6781970649895178;0.6361785614030454;"TF-IDF
 (1, 4)"
-186;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 4);100842;0.7239583333333334;0.6732750998717753;"BoW
+186;FFNN (Updated);prep_masked;SMOTETomek (Combined);BoW;(1, 4);98993;0.7222222222222222;0.6635858026387552;"BoW
 (1, 4)"
-187;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 4);100842;0.7489583333333333;0.6917250643532581;"TF-IDF
+187;FFNN (Updated);prep_masked;SMOTETomek (Combined);TF-IDF;(1, 4);98993;0.7578616352201258;0.6995292838200408;"TF-IDF
 (1, 4)"
-188;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 4);100842;0.7333333333333333;0.6444623054247424;"BoW
+188;Naive Bayes;prep_masked;Tomek (Undersampling);BoW;(1, 4);98993;0.7285115303983228;0.6266542555483733;"BoW
 (1, 4)"
-189;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 4);100842;0.6895833333333333;0.48715118959814824;"TF-IDF
+189;Naive Bayes;prep_masked;Tomek (Undersampling);TF-IDF;(1, 4);98993;0.6834381551362684;0.468704570373254;"TF-IDF
 (1, 4)"
-190;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 4);100842;0.75625;0.6896219635730385;"BoW
+190;FFNN (Updated);prep_masked;Tomek (Undersampling);BoW;(1, 4);98993;0.7442348008385744;0.6950680000166226;"BoW
 (1, 4)"
-191;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 4);100842;0.7635416666666667;0.7041806787516119;"TF-IDF
+191;FFNN (Updated);prep_masked;Tomek (Undersampling);TF-IDF;(1, 4);98993;0.749475890985325;0.6990643803923232;"TF-IDF
 (1, 4)"
-192;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 1);7526;0.7125;0.6392481590501392;"BoW
+192;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 1);7575;0.7012578616352201;0.6249395529087347;"BoW
 (1, 1)"
-193;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 1);7526;0.6947916666666667;0.48380833794502864;"TF-IDF
+193;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 1);7575;0.6844863731656184;0.4613551649522873;"TF-IDF
 (1, 1)"
-194;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 1);7526;0.7333333333333333;0.6779002187137565;"BoW
+194;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 1);7575;0.750524109014675;0.6895125803762335;"BoW
 (1, 1)"
-195;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 1);7526;0.7635416666666667;0.7040059971146562;"TF-IDF
+195;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 1);7575;0.7274633123689728;0.6748180387771688;"TF-IDF
 (1, 1)"
-196;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 1);7526;0.6604166666666667;0.5761626875820823;"BoW
+196;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 1);7575;0.6624737945492662;0.588071978621517;"BoW
 (1, 1)"
-197;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 1);7526;0.6395833333333333;0.5809808118761711;"TF-IDF
+197;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 1);7575;0.6352201257861635;0.5864916716052488;"TF-IDF
 (1, 1)"
-198;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 1);7526;0.6895833333333333;0.637277279682343;"BoW
+198;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 1);7575;0.6970649895178197;0.6520853396616234;"BoW
 (1, 1)"
-199;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 1);7526;0.7354166666666667;0.6961934314418262;"TF-IDF
+199;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 1);7575;0.7085953878406709;0.661437176209218;"TF-IDF
 (1, 1)"
-200;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 1);7526;0.6625;0.5782431668912335;"BoW
+200;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 1);7575;0.6645702306079665;0.593315574473639;"BoW
 (1, 1)"
-201;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 1);7526;0.6385416666666667;0.580123806256076;"TF-IDF
+201;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 1);7575;0.6352201257861635;0.5864916716052488;"TF-IDF
 (1, 1)"
-202;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 1);7526;0.6979166666666666;0.6413583530730734;"BoW
+202;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 1);7575;0.6865828092243187;0.627257679884445;"BoW
 (1, 1)"
-203;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 1);7526;0.7229166666666667;0.6769844945659353;"TF-IDF
+203;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 1);7575;0.710691823899371;0.6666500446186726;"TF-IDF
 (1, 1)"
-204;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 1);7526;0.7083333333333334;0.637431640427457;"BoW
+204;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 1);7575;0.6949685534591195;0.6189037092909296;"BoW
 (1, 1)"
-205;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 1);7526;0.6927083333333334;0.4841027984627653;"TF-IDF
+205;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 1);7575;0.6865828092243187;0.46660382513143334;"TF-IDF
 (1, 1)"
-206;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 1);7526;0.74375;0.6917116740387002;"BoW
+206;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 1);7575;0.7285115303983228;0.6802305357420325;"BoW
 (1, 1)"
-207;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 1);7526;0.753125;0.7028035862415388;"TF-IDF
+207;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 1);7575;0.7190775681341719;0.6885824899031471;"TF-IDF
 (1, 1)"
-208;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 2);41304;0.7260416666666667;0.631629506821764;"BoW
+208;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 2);41473;0.7023060796645703;0.5877775184633752;"BoW
 (1, 2)"
-209;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 2);41304;0.6833333333333333;0.46110903420931565;"TF-IDF
+209;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 2);41473;0.6719077568134172;0.43384088329746234;"TF-IDF
 (1, 2)"
-210;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 2);41304;0.7416666666666667;0.6880243152186125;"BoW
+210;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 2);41473;0.7306079664570231;0.6723551505240941;"BoW
 (1, 2)"
-211;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 2);41304;0.74375;0.6945476838595948;"TF-IDF
+211;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 2);41473;0.7368972746331237;0.6927418086270031;"TF-IDF
 (1, 2)"
-212;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 2);41304;0.69375;0.6050085432801068;"BoW
+212;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 2);41473;0.6802935010482181;0.593732176073034;"BoW
 (1, 2)"
-213;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 2);41304;0.659375;0.6086874437929387;"TF-IDF
+213;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 2);41473;0.6467505241090147;0.6029707152452574;"TF-IDF
 (1, 2)"
-214;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 2);41304;0.6770833333333334;0.622005721878348;"BoW
+214;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 2);41473;0.6876310272536688;0.6236268147600953;"BoW
 (1, 2)"
-215;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 2);41304;0.71875;0.6582923933933592;"TF-IDF
+215;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 2);41473;0.7180293501048218;0.6592650877754017;"TF-IDF
 (1, 2)"
-216;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 2);41304;0.6958333333333333;0.6062789086256029;"BoW
+216;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 2);41473;0.6792452830188679;0.5930242497600067;"BoW
 (1, 2)"
-217;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 2);41304;0.6604166666666667;0.6101366454752002;"TF-IDF
+217;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 2);41473;0.6467505241090147;0.6029707152452574;"TF-IDF
 (1, 2)"
-218;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 2);41304;0.7072916666666667;0.6466521079007337;"BoW
+218;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 2);41473;0.6886792452830188;0.6321144116206411;"BoW
 (1, 2)"
-219;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 2);41304;0.7416666666666667;0.6825624888070202;"TF-IDF
+219;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 2);41473;0.7306079664570231;0.6577454030003543;"TF-IDF
 (1, 2)"
-220;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 2);41304;0.725;0.6287337767936946;"BoW
+220;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 2);41473;0.70020964360587;0.5851308581163158;"BoW
 (1, 2)"
-221;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 2);41304;0.6833333333333333;0.46827373301262415;"TF-IDF
+221;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 2);41473;0.6719077568134172;0.4403768586742503;"TF-IDF
 (1, 2)"
-222;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 2);41304;0.7666666666666667;0.7146736354441415;"BoW
+222;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 2);41473;0.7693920335429769;0.7123448773448774;"BoW
 (1, 2)"
-223;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 2);41304;0.746875;0.6920448790515885;"TF-IDF
+223;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 2);41473;0.7138364779874213;0.6654951554341798;"TF-IDF
 (1, 2)"
-224;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 3);79265;0.721875;0.6213196853727735;"BoW
+224;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 3);79454;0.69916142557652;0.5736162661937063;"BoW
 (1, 3)"
-225;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 3);79265;0.6697916666666667;0.4396002019702676;"TF-IDF
+225;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 3);79454;0.6666666666666666;0.4275135965586112;"TF-IDF
 (1, 3)"
-226;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 3);79265;0.7583333333333333;0.6774450143992934;"BoW
+226;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 3);79454;0.7327044025157232;0.6615082628049515;"BoW
 (1, 3)"
-227;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 3);79265;0.7541666666666667;0.7051677816299313;"TF-IDF
+227;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 3);79454;0.7274633123689728;0.6780061968812551;"TF-IDF
 (1, 3)"
-228;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 3);79265;0.70625;0.6151575695446906;"BoW
+228;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 3);79454;0.689727463312369;0.5961454510876847;"BoW
 (1, 3)"
-229;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 3);79265;0.6572916666666667;0.6075030159286906;"TF-IDF
+229;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 3);79454;0.639412997903564;0.5964052598363233;"TF-IDF
 (1, 3)"
-230;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 3);79265;0.6802083333333333;0.6218349183239852;"BoW
+230;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 3);79454;0.6876310272536688;0.6402736665800693;"BoW
 (1, 3)"
-231;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 3);79265;0.7458333333333333;0.6913780811183919;"TF-IDF
+231;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 3);79454;0.7274633123689728;0.6654224867057374;"TF-IDF
 (1, 3)"
-232;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 3);79265;0.7083333333333334;0.6165950991919319;"BoW
+232;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 3);79454;0.6918238993710691;0.5993867351575782;"BoW
 (1, 3)"
-233;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 3);79265;0.6572916666666667;0.6075030159286906;"TF-IDF
+233;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 3);79454;0.639412997903564;0.5964052598363233;"TF-IDF
 (1, 3)"
-234;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 3);79265;0.68125;0.6255897767817705;"BoW
+234;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 3);79454;0.7232704402515723;0.6581189867680682;"BoW
 (1, 3)"
-235;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 3);79265;0.7322916666666667;0.6704751861148969;"TF-IDF
+235;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 3);79454;0.7421383647798742;0.6809391813208153;"TF-IDF
 (1, 3)"
-236;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 3);79265;0.7197916666666667;0.6183949802583194;"BoW
+236;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 3);79454;0.70020964360587;0.5779625195850767;"BoW
 (1, 3)"
-237;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 3);79265;0.6708333333333333;0.44129058120574866;"TF-IDF
+237;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 3);79454;0.6666666666666666;0.4275135965586112;"TF-IDF
 (1, 3)"
-238;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 3);79265;0.7552083333333334;0.6890039298021718;"BoW
+238;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 3);79454;0.7442348008385744;0.6712028454246353;"BoW
 (1, 3)"
-239;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 3);79265;0.7447916666666666;0.6910296821644338;"TF-IDF
+239;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 3);79454;0.7316561844863732;0.694421537113362;"TF-IDF
 (1, 3)"
-240;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 4);115556;0.721875;0.6142646543430804;"BoW
+240;Naive Bayes;prep_standard_numbers;None (Imbalanced);BoW;(1, 4);115633;0.69916142557652;0.5732379635638573;"BoW
 (1, 4)"
-241;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 4);115556;0.6666666666666666;0.4311845324209336;"TF-IDF
+241;Naive Bayes;prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 4);115633;0.6635220125786163;0.42004865056490587;"TF-IDF
 (1, 4)"
-242;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 4);115556;0.7479166666666667;0.6826221256601003;"BoW
+242;FFNN (Updated);prep_standard_numbers;None (Imbalanced);BoW;(1, 4);115633;0.7473794549266247;0.6751577861390946;"BoW
 (1, 4)"
-243;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 4);115556;0.7427083333333333;0.6775593076626368;"TF-IDF
+243;FFNN (Updated);prep_standard_numbers;None (Imbalanced);TF-IDF;(1, 4);115633;0.7295597484276729;0.6948950307661454;"TF-IDF
 (1, 4)"
-244;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 4);115556;0.7072916666666667;0.6093586967375918;"BoW
+244;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 4);115633;0.6865828092243187;0.5828136836791263;"BoW
 (1, 4)"
-245;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 4);115556;0.6604166666666667;0.6102542804832409;"TF-IDF
+245;Naive Bayes;prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 4);115633;0.6383647798742138;0.5914613835097066;"TF-IDF
 (1, 4)"
-246;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 4);115556;0.6947916666666667;0.6303643724696356;"BoW
+246;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);BoW;(1, 4);115633;0.7138364779874213;0.6383597634312329;"BoW
 (1, 4)"
-247;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 4);115556;0.7364583333333333;0.6764842198931907;"TF-IDF
+247;FFNN (Updated);prep_standard_numbers;SMOTE (Oversampling);TF-IDF;(1, 4);115633;0.7222222222222222;0.6541765508416368;"TF-IDF
 (1, 4)"
-248;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 4);115556;0.7072916666666667;0.6093586967375918;"BoW
+248;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 4);115633;0.6865828092243187;0.5828136836791263;"BoW
 (1, 4)"
-249;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 4);115556;0.6614583333333334;0.611703750682663;"TF-IDF
+249;Naive Bayes;prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 4);115633;0.6383647798742138;0.5914613835097066;"TF-IDF
 (1, 4)"
-250;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 4);115556;0.6947916666666667;0.6291491377441294;"BoW
+250;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);BoW;(1, 4);115633;0.7127882599580713;0.6534743706569737;"BoW
 (1, 4)"
-251;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 4);115556;0.7427083333333333;0.6848020537748657;"TF-IDF
+251;FFNN (Updated);prep_standard_numbers;SMOTETomek (Combined);TF-IDF;(1, 4);115633;0.7421383647798742;0.683575167984846;"TF-IDF
 (1, 4)"
-252;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 4);115556;0.721875;0.6130697140896266;"BoW
+252;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);BoW;(1, 4);115633;0.69916142557652;0.5720877661601542;"BoW
 (1, 4)"
-253;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 4);115556;0.6666666666666666;0.4311845324209336;"TF-IDF
+253;Naive Bayes;prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 4);115633;0.6635220125786163;0.42004865056490587;"TF-IDF
 (1, 4)"
-254;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 4);115556;0.7645833333333333;0.6929904808155486;"BoW
+254;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);BoW;(1, 4);115633;0.7568134171907757;0.6920364206397133;"BoW
 (1, 4)"
-255;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 4);115556;0.740625;0.6740371423965822;"TF-IDF
+255;FFNN (Updated);prep_standard_numbers;Tomek (Undersampling);TF-IDF;(1, 4);115633;0.7211740041928721;0.684777678120393;"TF-IDF
 (1, 4)"
