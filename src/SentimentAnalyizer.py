@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.naive_bayes import MultinomialNB
-
+from config import StrategyName
 from imblearn.over_sampling import SMOTE
 from imblearn.combine import SMOTETomek
 from imblearn.under_sampling import TomekLinks
@@ -18,7 +18,7 @@ class SentimentExperimentPipeline:
     n-gram boundaries, balancing algorithms, and vectorization arrays against predictive backbones.
     """
 
-    def __init__(self, data_path: str = "Sentences_50Agree.txt", target_col: str = "sentiment"):
+    def __init__(self, data_path: str = "../data/Sentences_50Agree.txt", target_col: str = "sentiment"):
         self.data_path = data_path
         self.target_col = target_col
         self.df: pd.DataFrame = pd.DataFrame()
@@ -27,7 +27,7 @@ class SentimentExperimentPipeline:
 
         # Combinatorial Grid Configurations
         self.ngram_ranges = [(1, 1), (1, 2), (1, 3), (1, 4)]
-        self.strategies = ["prep_standard", "prep_full", "prep_masked", "prep_standard_numbers"]
+        self.strategies = [StrategyName.STANDARD, StrategyName.STANDARD_NUMBERS, StrategyName.FULL, StrategyName.MASKED]
         self.custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
         # Setup Default Evaluated Framework Components
@@ -56,8 +56,9 @@ class SentimentExperimentPipeline:
 
     def load_and_initialize_data(self, preprocessor_instance=None) -> pd.DataFrame:
         """Loads dataset from file fallback or creates simulated dummy frames."""
+        is_dummy = False
         try:
-            self.df = pd.read_csv(self.data_path, sep="@", header=None, names=["sentence", self.target_col])
+            self.df = pd.read_csv(self.data_path, sep="@", header=None, names=["sentence", self.target_col], encoding="latin-1")
             print(f"Successfully ingested dataset from: {self.data_path}")
         except FileNotFoundError:
             print(f"Warning: '{self.data_path}' not found. Generating synthetically populated dummy dataframe...")
@@ -70,6 +71,7 @@ class SentimentExperimentPipeline:
                 self.target_col: ["positive", "negative", "neutral"] * 50
             }
             self.df = pd.DataFrame(dummy_data)
+            is_dummy = True
 
         # Encode Targets Safely
         self.df[self.target_col] = self.label_encoder.fit_transform(self.df[self.target_col])
@@ -77,13 +79,21 @@ class SentimentExperimentPipeline:
         # Apply preprocessing steps if an operational engine context is passed
         if preprocessor_instance is not None:
             print("Applying text preprocessing routines to dataset...")
-            self.df["sentence"] = self.df["sentence"].drop_duplicates(keep="first")
+
+            # FIX: Only deduplicate the raw text rows if using the real dataset.
+            # Also use correct pandas syntax to drop entire rows rather than creating NaNs.
+            if not is_dummy:
+                self.df = self.df.drop_duplicates(subset=["sentence"], keep="first")
+
             self.df["prep_standard"] = self.df["sentence"].apply(preprocessor_instance.preprocess, strategy="standard")
             self.df["prep_full"] = self.df["sentence"].apply(preprocessor_instance.preprocess, strategy="full")
             self.df["prep_standard_numbers"] = self.df["sentence"].apply(preprocessor_instance.preprocess, strategy="standard_optimized")
             self.df['prep_masked'] = self.df['sentence'].apply(preprocessor_instance.preprocess, strategy="masked")
 
-        self.df = self.df.drop_duplicates(subset=['prep_masked'], keep="first")
+        # FIX: Only perform masked deduplication on the real dataset
+        if not is_dummy:
+            self.df = self.df.drop_duplicates(subset=['prep_masked'], keep="first")
+
         return self.df
 
     def run_experiment_matrix(self) -> pd.DataFrame:

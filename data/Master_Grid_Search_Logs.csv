@@ -1,0 +1,257 @@
+Model;Strategy;Vectorizer;N-Gram;Sampling Strategy;Accuracy;Macro-F1;Sampled_Hyperparameters
+Naive Bayes;prep_standard;BoW;(1, 1);None (Imbalanced);0.657922350472193;0.5902723091352997;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 1);SMOTE (Oversampling);0.6694648478488983;0.6073756183570871;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 1);SMOTETomek (Combined);0.664218258132214;0.5961516608985428;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 1);Tomek (Undersampling);0.6537250786988458;0.5860133287140686;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 2);None (Imbalanced);0.7166841552990556;0.6418186246404982;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 2);SMOTE (Oversampling);0.6873032528856243;0.5989338601938093;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 2);SMOTETomek (Combined);0.6820566631689402;0.5920536038258767;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 2);Tomek (Undersampling);0.6883525708289612;0.6072216682979518;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 3);None (Imbalanced);0.7166841552990556;0.632264643179468;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 3);SMOTE (Oversampling);0.6925498426023085;0.60347864673617;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard;BoW;(1, 3);SMOTETomek (Combined);0.6820566631689402;0.5838753090241734;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 3);Tomek (Undersampling);0.6977964323189927;0.6376759936329237;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard;BoW;(1, 4);None (Imbalanced);0.7166841552990556;0.6316432433385701;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 4);SMOTE (Oversampling);0.6873032528856243;0.5853865194547004;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard;BoW;(1, 4);SMOTETomek (Combined);0.6820566631689402;0.5776096343350222;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;BoW;(1, 4);Tomek (Undersampling);0.7166841552990556;0.6301027872603818;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 1);None (Imbalanced);0.6873032528856243;0.6424966738933787;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_standard;TF-IDF;(1, 1);SMOTE (Oversampling);0.6663168940188877;0.6216777459717256;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 1);SMOTETomek (Combined);0.6505771248688352;0.6082260699438716;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 1);Tomek (Undersampling);0.683105981112277;0.4907533258707198;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 2);None (Imbalanced);0.6988457502623295;0.6450243062007768;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_standard;TF-IDF;(1, 2);SMOTE (Oversampling);0.7051416579223505;0.6425117102397397;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 2);SMOTETomek (Combined);0.6967471143756558;0.6207776009342415;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 2);Tomek (Undersampling);0.7061909758656874;0.5895653714002337;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 3);None (Imbalanced);0.7177334732423925;0.6196825373951639;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 3);SMOTE (Oversampling);0.6967471143756558;0.6365320321677058;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard;TF-IDF;(1, 3);SMOTETomek (Combined);0.6998950682056663;0.6395881962111437;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard;TF-IDF;(1, 3);Tomek (Undersampling);0.6946484784889821;0.6396726324057451;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard;TF-IDF;(1, 4);None (Imbalanced);0.7051416579223505;0.5836237921165236;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 4);SMOTE (Oversampling);0.7040923399790137;0.6468515738248569;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 4);SMOTETomek (Combined);0.7009443861490031;0.6339448255228022;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard;TF-IDF;(1, 4);Tomek (Undersampling);0.7040923399790137;0.6481719778039082;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 1);None (Imbalanced);0.6862539349422875;0.6446515517489672;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 1);SMOTE (Oversampling);0.6631689401888772;0.605909231310705;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 1);SMOTETomek (Combined);0.6558237145855194;0.5856754926505574;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 1);Tomek (Undersampling);0.6474291710388248;0.5913205074495397;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 2);None (Imbalanced);0.6977964323189927;0.6512440058818146;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 2);SMOTE (Oversampling);0.6841552990556139;0.6114924031182021;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 2);SMOTETomek (Combined);0.6935991605456453;0.6337457108276622;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 2);Tomek (Undersampling);0.6904512067156349;0.6436693239971928;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 3);None (Imbalanced);0.7250786988457503;0.6550765019071868;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 3);SMOTE (Oversampling);0.70199370409234;0.6441649664641877;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 3);SMOTETomek (Combined);0.6988457502623295;0.6311124563307499;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 3);Tomek (Undersampling);0.6946484784889821;0.6425700283088287;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 4);None (Imbalanced);0.7040923399790137;0.6351321694376816;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 4);SMOTE (Oversampling);0.6904512067156349;0.6198637162828029;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;BoW;(1, 4);SMOTETomek (Combined);0.6810073452256034;0.5944943123281377;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_full;BoW;(1, 4);Tomek (Undersampling);0.6862539349422875;0.6098305076558017;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 1);None (Imbalanced);0.6610703043022036;0.6169026978420177;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 1);SMOTE (Oversampling);0.646379853095488;0.5724967695224912;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 1);SMOTETomek (Combined);0.6684155299055614;0.6251273848313899;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 1);Tomek (Undersampling);0.7103882476390346;0.5900318533674714;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 2);None (Imbalanced);0.6736621196222455;0.6216722251138479;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 2);SMOTE (Oversampling);0.6799580272822665;0.6306197962694666;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 2);SMOTETomek (Combined);0.6789087093389297;0.6307833072975321;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 2);Tomek (Undersampling);0.6820566631689402;0.6393745787138978;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 3);None (Imbalanced);0.6768100734522561;0.6216126518120363;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 3);SMOTE (Oversampling);0.6799580272822665;0.6216972235823223;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 3);SMOTETomek (Combined);0.6820566631689402;0.6303291005419621;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 3);Tomek (Undersampling);0.6852046169989506;0.6365500854044291;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 4);None (Imbalanced);0.7114375655823715;0.6176895000424413;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 4);SMOTE (Oversampling);0.6736621196222455;0.6230119061903955;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_full;TF-IDF;(1, 4);SMOTETomek (Combined);0.6652675760755509;0.593650206566335;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_full;TF-IDF;(1, 4);Tomek (Undersampling);0.6988457502623295;0.6425567441500326;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 1);None (Imbalanced);0.6820566631689402;0.628020520397202;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 1);SMOTE (Oversampling);0.6747114375655824;0.6113531231810801;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 1);SMOTETomek (Combined);0.6589716684155299;0.5879752317178794;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 1);Tomek (Undersampling);0.6631689401888772;0.5971681936621577;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 2);None (Imbalanced);0.7061909758656874;0.6612677484983956;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 2);SMOTE (Oversampling);0.7040923399790137;0.6393508867745811;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 2);SMOTETomek (Combined);0.6988457502623295;0.6349031683125016;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 2);Tomek (Undersampling);0.7051416579223505;0.6608023299486466;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 3);None (Imbalanced);0.7156348373557188;0.6615297184474814;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 3);SMOTE (Oversampling);0.70199370409234;0.6307820539819037;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_masked;BoW;(1, 3);SMOTETomek (Combined);0.7093389296956978;0.6353725800804679;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 3);Tomek (Undersampling);0.7240293809024134;0.6568073211630573;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 4);None (Imbalanced);0.7324239244491081;0.6655390473089426;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 4);SMOTE (Oversampling);0.7114375655823715;0.6345914981011654;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 4);SMOTETomek (Combined);0.7103882476390346;0.6317160377859699;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;BoW;(1, 4);Tomek (Undersampling);0.7229800629590766;0.6468855805029361;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 1);None (Imbalanced);0.6946484784889821;0.5962048973003643;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 1);SMOTE (Oversampling);0.6589716684155299;0.617943320083529;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 1);SMOTETomek (Combined);0.664218258132214;0.6135003342935057;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 1);Tomek (Undersampling);0.6852046169989506;0.48871928518242735;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 2);None (Imbalanced);0.7114375655823715;0.6718557457345812;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 2);SMOTE (Oversampling);0.7072402938090241;0.6586608489005066;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 2);SMOTETomek (Combined);0.695697796432319;0.6523008704105863;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 2);Tomek (Undersampling);0.7177334732423925;0.6405283391844465;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 3);None (Imbalanced);0.727177334732424;0.6722073599242009;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 3);SMOTE (Oversampling);0.7051416579223505;0.659067728418808;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 3);SMOTETomek (Combined);0.7051416579223505;0.6592220905392189;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 3);Tomek (Undersampling);0.7303252885624344;0.6512837530364531;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 4);None (Imbalanced);0.7355718782791185;0.6769974169242444;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_masked;TF-IDF;(1, 4);SMOTE (Oversampling);0.70199370409234;0.6369426934559681;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 4);SMOTETomek (Combined);0.7145855194123819;0.6619718241883813;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_masked;TF-IDF;(1, 4);Tomek (Undersampling);0.7177334732423925;0.5913150008568743;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 1);None (Imbalanced);0.7072402938090241;0.639486833660928;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 1);SMOTE (Oversampling);0.6694648478488983;0.6073756183570871;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 1);SMOTETomek (Combined);0.664218258132214;0.5961516608985428;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 1);Tomek (Undersampling);0.7072402938090241;0.6387732524733701;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 2);None (Imbalanced);0.695697796432319;0.6151558076541312;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 2);SMOTE (Oversampling);0.6873032528856243;0.5989338601938093;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 2);SMOTETomek (Combined);0.6820566631689402;0.5920536038258767;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 2);Tomek (Undersampling);0.6810073452256034;0.628123586641277;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 3);None (Imbalanced);0.6946484784889821;0.631620342672683;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 3);SMOTE (Oversampling);0.6820566631689402;0.5851907538567879;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 3);SMOTETomek (Combined);0.6915005246589717;0.6027532858043552;{'alpha': 1.0, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 3);Tomek (Undersampling);0.6977964323189927;0.6376759936329237;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 4);None (Imbalanced);0.70199370409234;0.6309428387319848;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 4);SMOTE (Oversampling);0.6820566631689402;0.5819694992108785;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;BoW;(1, 4);SMOTETomek (Combined);0.6841552990556139;0.5810854441858834;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;BoW;(1, 4);Tomek (Undersampling);0.7124868835257083;0.627132967320996;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);None (Imbalanced);0.689401888772298;0.5958051339033682;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);SMOTE (Oversampling);0.6663168940188877;0.6216777459717256;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);SMOTETomek (Combined);0.6453305351521511;0.5757433639380841;{'alpha': 0.01, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);Tomek (Undersampling);0.70199370409234;0.611225416104976;{'alpha': 0.1, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);None (Imbalanced);0.70199370409234;0.5988399236971294;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);SMOTE (Oversampling);0.6967471143756558;0.6206335451900992;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);SMOTETomek (Combined);0.7009443861490031;0.6378780246838264;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);Tomek (Undersampling);0.7030430220356768;0.6059101548143324;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);None (Imbalanced);0.7040923399790137;0.6044833821616681;{'alpha': 0.01, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);SMOTE (Oversampling);0.6967471143756558;0.6365320321677058;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);SMOTETomek (Combined);0.7040923399790137;0.6455934916562507;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);Tomek (Undersampling);0.7082896117523609;0.5976113017546454;{'alpha': 0.5, 'fit_prior': True}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);None (Imbalanced);0.7082896117523609;0.640908844566064;{'alpha': 0.5, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);SMOTE (Oversampling);0.7009443861490031;0.634394973172289;{'alpha': 0.1, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);SMOTETomek (Combined);0.6977964323189927;0.640905879947205;{'alpha': 1.0, 'fit_prior': False}
+Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);Tomek (Undersampling);0.7103882476390346;0.6062694611211051;{'alpha': 0.01, 'fit_prior': True}
+FFNN;prep_standard;BoW;(1, 1);None (Imbalanced);0.7366211962224554;0.6886027245665481;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 1);SMOTE (Oversampling);0.670514165792235;0.621229434080678;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 1);SMOTETomek (Combined);0.6589716684155299;0.6074941999906504;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 1);Tomek (Undersampling);0.7387198321091291;0.6870654305635201;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 2);None (Imbalanced);0.751311647429171;0.6948813383621165;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 2);SMOTE (Oversampling);0.6883525708289612;0.6385271481004229;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 2);SMOTETomek (Combined);0.6789087093389297;0.6312512864840409;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 2);Tomek (Undersampling);0.7387198321091291;0.6915211629711591;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 3);None (Imbalanced);0.7439664218258132;0.6855438132825483;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 3);SMOTE (Oversampling);0.6757607555089192;0.6295736301520853;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 3);SMOTETomek (Combined);0.6841552990556139;0.6405962495399926;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 3);Tomek (Undersampling);0.7376705141657922;0.6750557063055105;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 4);None (Imbalanced);0.7481636935991606;0.6926465665973781;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 4);SMOTE (Oversampling);0.6747114375655824;0.6296359177513676;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 4);SMOTETomek (Combined);0.6935991605456453;0.6371031052290036;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;BoW;(1, 4);Tomek (Undersampling);0.7324239244491081;0.6753136904365639;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 1);None (Imbalanced);0.7345225603357818;0.688249242214462;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 1);SMOTE (Oversampling);0.7397691500524659;0.6882322680607141;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 1);SMOTETomek (Combined);0.7439664218258132;0.6943680905022255;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 1);Tomek (Undersampling);0.727177334732424;0.6701502958655188;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 2);None (Imbalanced);0.7177334732423925;0.6633877087713943;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 2);SMOTE (Oversampling);0.7355718782791185;0.6858814855561605;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 2);SMOTETomek (Combined);0.7408184679958028;0.6926430311704296;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 2);Tomek (Undersampling);0.7345225603357818;0.6787342076818567;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 3);None (Imbalanced);0.7429171038824763;0.6754344702412505;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 3);SMOTE (Oversampling);0.7166841552990556;0.667164628941007;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 3);SMOTETomek (Combined);0.7229800629590766;0.6721919165453819;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 3);Tomek (Undersampling);0.7292759706190975;0.6698504098458855;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 4);None (Imbalanced);0.7198321091290661;0.6627184335360657;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 4);SMOTE (Oversampling);0.7376705141657922;0.6898944457887719;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 4);SMOTETomek (Combined);0.7324239244491081;0.6822206771939924;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard;TF-IDF;(1, 4);Tomek (Undersampling);0.7082896117523609;0.6726003870242246;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 1);None (Imbalanced);0.7460650577124869;0.6827715270822056;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 1);SMOTE (Oversampling);0.6862539349422875;0.6255609849898764;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 1);SMOTETomek (Combined);0.6778593913955928;0.6233498523134059;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 1);Tomek (Undersampling);0.7313746065057712;0.6647537420573424;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 2);None (Imbalanced);0.7219307450157397;0.6769290968519689;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 2);SMOTE (Oversampling);0.6778593913955928;0.6316027888882244;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 2);SMOTETomek (Combined);0.6862539349422875;0.6366563425051858;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 2);Tomek (Undersampling);0.7303252885624344;0.6762913199164861;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 3);None (Imbalanced);0.7523609653725079;0.6786008572846081;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 3);SMOTE (Oversampling);0.6799580272822665;0.6286150001032973;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 3);SMOTETomek (Combined);0.6820566631689402;0.6349630007674879;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 3);Tomek (Undersampling);0.7429171038824763;0.678923461239728;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 4);None (Imbalanced);0.7366211962224554;0.6863135364705323;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 4);SMOTE (Oversampling);0.6610703043022036;0.6039140504209944;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 4);SMOTETomek (Combined);0.6820566631689402;0.6462801866268967;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;BoW;(1, 4);Tomek (Undersampling);0.7439664218258132;0.6898569466047207;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 1);None (Imbalanced);0.7261280167890871;0.6125216082519372;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 1);SMOTE (Oversampling);0.7198321091290661;0.6653577356219622;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 1);SMOTETomek (Combined);0.7366211962224554;0.6842569749993642;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 1);Tomek (Undersampling);0.7198321091290661;0.6584695444342342;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 2);None (Imbalanced);0.7187827911857293;0.6650669268856775;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 2);SMOTE (Oversampling);0.7156348373557188;0.6721243411363863;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 2);SMOTETomek (Combined);0.7492130115424974;0.7057266959821217;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 2);Tomek (Undersampling);0.7250786988457503;0.6489500843730928;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 3);None (Imbalanced);0.720881427072403;0.6613952827507815;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 3);SMOTE (Oversampling);0.7072402938090241;0.6590712031208131;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 3);SMOTETomek (Combined);0.70199370409234;0.6440987900148788;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 3);Tomek (Undersampling);0.7397691500524659;0.6749749651765978;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 4);None (Imbalanced);0.7229800629590766;0.6652192109655993;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 4);SMOTE (Oversampling);0.7219307450157397;0.6612286719680639;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 4);SMOTETomek (Combined);0.7376705141657922;0.6907767315304733;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_full;TF-IDF;(1, 4);Tomek (Undersampling);0.7282266526757608;0.6709853686775388;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 1);None (Imbalanced);0.757607555089192;0.7059118384489166;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 1);SMOTE (Oversampling);0.6778593913955928;0.6297028241220007;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 1);SMOTETomek (Combined);0.70199370409234;0.6444458792973075;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 1);Tomek (Undersampling);0.7544596012591815;0.6990833521655441;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 2);None (Imbalanced);0.7523609653725079;0.6960794356250893;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 2);SMOTE (Oversampling);0.7093389296956978;0.660185192650343;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 2);SMOTETomek (Combined);0.6904512067156349;0.6462909005031382;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 2);Tomek (Undersampling);0.7544596012591815;0.6960390472229164;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 3);None (Imbalanced);0.74501573976915;0.6926968053318028;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 3);SMOTE (Oversampling);0.6883525708289612;0.6363800650814737;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 3);SMOTETomek (Combined);0.7093389296956978;0.6571120080254018;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 3);Tomek (Undersampling);0.7376705141657922;0.6881836675442831;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 4);None (Imbalanced);0.7366211962224554;0.6999083243072654;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 4);SMOTE (Oversampling);0.6873032528856243;0.6320880164445538;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 4);SMOTETomek (Combined);0.6935991605456453;0.6486176329526075;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;BoW;(1, 4);Tomek (Undersampling);0.7460650577124869;0.6755028776840857;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 1);None (Imbalanced);0.74501573976915;0.6875794240041064;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 1);SMOTE (Oversampling);0.7219307450157397;0.6674019073274396;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 1);SMOTETomek (Combined);0.7324239244491081;0.6840456006540007;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 1);Tomek (Undersampling);0.7534102833158447;0.6945333013338463;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 2);None (Imbalanced);0.7607555089192025;0.6987084335472974;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 2);SMOTE (Oversampling);0.7429171038824763;0.6994541936051369;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 2);SMOTETomek (Combined);0.7492130115424974;0.7009010504529884;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 2);Tomek (Undersampling);0.7366211962224554;0.6779250313399366;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 3);None (Imbalanced);0.7156348373557188;0.6681567083060314;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 3);SMOTE (Oversampling);0.7324239244491081;0.6818294051627385;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 3);SMOTETomek (Combined);0.7324239244491081;0.6681696713008164;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 3);Tomek (Undersampling);0.7345225603357818;0.6733702878522227;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 4);None (Imbalanced);0.7387198321091291;0.6867450329847592;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 4);SMOTE (Oversampling);0.7429171038824763;0.695553964032929;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 4);SMOTETomek (Combined);0.7376705141657922;0.6839299867574447;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_masked;TF-IDF;(1, 4);Tomek (Undersampling);0.7387198321091291;0.672515110678494;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 1);None (Imbalanced);0.7408184679958028;0.6866611507573026;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 1);SMOTE (Oversampling);0.6862539349422875;0.6352291820533001;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 1);SMOTETomek (Combined);0.6904512067156349;0.6418354959581175;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 1);Tomek (Undersampling);0.7492130115424974;0.6981358916162175;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 2);None (Imbalanced);0.74501573976915;0.6852603221727417;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 2);SMOTE (Oversampling);0.6862539349422875;0.62586123903907;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 2);SMOTETomek (Combined);0.6862539349422875;0.6354107507430639;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 2);Tomek (Undersampling);0.7387198321091291;0.6915211629711591;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 3);None (Imbalanced);0.7334732423924449;0.6835341692871392;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 3);SMOTE (Oversampling);0.6935991605456453;0.6384709828581221;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 3);SMOTETomek (Combined);0.6904512067156349;0.6458138353007477;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 3);Tomek (Undersampling);0.7429171038824763;0.6855087585983974;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 4);None (Imbalanced);0.7544596012591815;0.6966822199376487;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 4);SMOTE (Oversampling);0.6747114375655824;0.6296359177513676;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 4);SMOTETomek (Combined);0.70199370409234;0.6337558648801821;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;BoW;(1, 4);Tomek (Undersampling);0.7324239244491081;0.6841674040840883;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 1);None (Imbalanced);0.7292759706190975;0.6725907266911664;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 1);SMOTE (Oversampling);0.7261280167890871;0.68745879551438;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 1);SMOTETomek (Combined);0.7376705141657922;0.696426688907434;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 1);Tomek (Undersampling);0.727177334732424;0.6701502958655188;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 2);None (Imbalanced);0.7324239244491081;0.6680723917143814;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 2);SMOTE (Oversampling);0.7345225603357818;0.6808023278118105;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 2);SMOTETomek (Combined);0.7544596012591815;0.7043170462699458;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 2);Tomek (Undersampling);0.7114375655823715;0.6608987507138657;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 3);None (Imbalanced);0.7397691500524659;0.676323566749351;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 3);SMOTE (Oversampling);0.7103882476390346;0.6648588050992835;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 3);SMOTETomek (Combined);0.7334732423924449;0.6945549134026553;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 3);Tomek (Undersampling);0.7166841552990556;0.6716341639772314;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 4);None (Imbalanced);0.7198321091290661;0.6694779525211318;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 4);SMOTE (Oversampling);0.7376705141657922;0.6898944457887719;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 4);SMOTETomek (Combined);0.7397691500524659;0.6879028226607007;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}
+FFNN;prep_standard_numbers;TF-IDF;(1, 4);Tomek (Undersampling);0.7397691500524659;0.6819846494606483;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 30, 'random_state': 42}

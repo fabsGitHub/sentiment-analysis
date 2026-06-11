@@ -147,7 +147,7 @@ class Preprocessor:
             "standard": "StandardStrategy",
             "full": "FullStrategy",
             "masked": "MaskedStrategy",
-            "standard_numbers": "StandardNumbersStrategy"
+            "standard_numbers": "StandardOptimizedStrategy"
         }
 
         class_name = strategy_classes.get(strategy, "StandardStrategy")
@@ -173,8 +173,8 @@ class Preprocessor:
 
         # Initialize internal strategies mapping
         self._strategies: Dict[str, BasePreprocessorStrategy] = {
-            'full': FullPreprocessingStrategy(self),
-            'masked': MaskedPreprocessingStrategy(self),
+            'full': FullStrategy(self),
+            'masked': MaskedStrategy(self),
             'standard_optimized': StandardOptimizedStrategy(self),
             'standard': StandardStrategy(self)
         }
@@ -290,7 +290,7 @@ class Preprocessor:
 # CONCRETE STRATEGY IMPLEMENTATIONS
 # ==========================================
 
-class FullPreprocessingStrategy(BasePreprocessorStrategy):
+class FullStrategy(BasePreprocessorStrategy):
     """Deep structural preprocessor cleaning text pipelines, retaining currency/dates and lemmas."""
     def __init__(self, context: Preprocessor):
         self.ctx = context
@@ -309,7 +309,7 @@ class FullPreprocessingStrategy(BasePreprocessorStrategy):
         return " ".join(lemmatized_tokens).strip()
 
 
-class MaskedPreprocessingStrategy(BasePreprocessorStrategy):
+class MaskedStrategy(BasePreprocessorStrategy):
     """Transforms numerical, date, and spatial targets into generic abstract labels."""
     def __init__(self, context: Preprocessor):
         self.ctx = context

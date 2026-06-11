@@ -1,0 +1,25 @@
+\begin{table}[h]
+\centering
+\caption{Preprocessing Results Stacked Vertically}
+\label{tab:preprocessing_stacked_vertical}
+\small
+\begin{tabular}{lp{12cm}}
+\toprule
+\textbf{Feature / Pipeline} & \textbf{Processed Text String Baseline} \\
+\midrule
+\textbf{Example 1} & \\
+Original Sentence & Commission income increased by 22 \% to EUR 4.4 mn , and lending volume rose by 13.5 \% . \\
+Strategy 1 (Standard) & commission income increase eur mn lending volume rise \\
+Strategy 2 (Enhanced) & commission income increase eur mn lending volume rise \\
+Strategy 3 (Full) & commission income increase 22pct eur4.4mn , lending volume rise 13.5pct . \\
+Strategy 4 (Masked) & commission income increase [PERCENT] [MONEY] , lending volume rise [PERCENT] . \\
+\midrule
+\textbf{Example 2} & \\
+Original Sentence & Circulation revenue has increased by 5 \% in Finland and 4 \% in Sweden in 2008 . \\
+Strategy 1 (Standard) & circulation revenue increase sweden \\
+Strategy 2 (Enhanced) & circulation revenue increase sweden \\
+Strategy 3 (Full) & circulation revenue increase 5pct 4pct sweden 2008. \\
+Strategy 4 (Masked) & circulation revenue increase [PERCENT] [PERCENT] sweden [DATE] . \\
+\bottomrule
+\end{tabular}
+\end{table}

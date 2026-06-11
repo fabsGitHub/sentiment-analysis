@@ -3,6 +3,7 @@ import ast
 import pandas as pd
 from sklearn.naive_bayes import MultinomialNB
 from imblearn.over_sampling import SMOTE
+from imblearn.combine import SMOTETomek
 from imblearn.under_sampling import TomekLinks
 
 # Import architectural modules and new configuration Enums
@@ -12,13 +13,14 @@ from SentimentAnalyizer import SentimentExperimentPipeline
 from RandomGridSearch import RandomGridSearch
 from DataGenerator import DataGenerator
 from FFNN import PyTorchMLPClassifier
+from MulticlassBinaryComparator import MulticlassBinaryComparator
 
 def main():
     print("===================================================================")
     print("   NLP PROJECT 1.1: PROFOUND EXECUTION CONTROLLER")
     print("===================================================================")
 
-    # 1. Lock down all stochastic elements globally
+    # 1. Lock down all stochastic elements globally and ensure folder exists
     enforce_reproducibility(GLOBAL_SEED)
     os.makedirs("data", exist_ok=True)
 
@@ -26,7 +28,7 @@ def main():
     # TASK 2: TEXT PREPROCESSING
     # -----------------------------------------------------------------
     print("\n[-->] Executing Task 2: Dataset Ingestion & Preprocessing...")
-    base_pipeline = SentimentExperimentPipeline(data_path="Sentences_50Agree.txt", target_col=TargetCol.SENTIMENT)
+    base_pipeline = SentimentExperimentPipeline(data_path="data/Sentences_50Agree.txt", target_col=TargetCol.SENTIMENT)
     text_preprocessor = Preprocessor(download_resources=True)
 
     df_mapped = base_pipeline.load_and_initialize_data(preprocessor_instance=text_preprocessor)
@@ -54,30 +56,33 @@ def main():
                 "batch_size": [64, 128],
                 "learning_rate_init": [0.001, 0.005],
                 "max_iter": [30],
-                "random_state": [GLOBAL_SEED] # Explicitly pass the strict seed into the parameter space
+                "random_state": [GLOBAL_SEED]
             }
         }
     }
 
-    strategies = [StrategyName.STANDARD, StrategyName.FULL, StrategyName.MASKED]
+    strategies = [StrategyName.STANDARD, StrategyName.FULL, StrategyName.MASKED, StrategyName.STANDARD_NUMBERS]
     vectorizers = [VectorizerName.BOW, VectorizerName.TFIDF]
-    ngrams = [(1, 1), (1, 2), (1, 3)]
+    ngrams = [(1, 1), (1, 2), (1, 3), (1, 4)]
     samplers = {
         SamplerName.NONE: None,
         SamplerName.SMOTE: SMOTE(random_state=GLOBAL_SEED),
+        SamplerName.SMOTE_TOMEK: SMOTETomek(random_state=GLOBAL_SEED),
         SamplerName.TOMEK: TomekLinks()
     }
 
     search_engine = RandomGridSearch(df=df_mapped, target_col=TargetCol.SENTIMENT, random_state=GLOBAL_SEED)
+
     results_df = search_engine.fit(
         models_grid=search_space,
         preprocessors=strategies,
         vectorizers=vectorizers,
         ngram_ranges=ngrams,
         samplers=samplers,
-        n_iter=25
+        n_iter_per_hyperparam=1
     )
 
+    # FIXED: Saving directly to the created data directory without parent-jumping
     results_df.to_csv("data/Master_Grid_Search_Logs.csv", index=False, sep=";")
     print("[+] Grid search complete. Logs saved.")
 
@@ -133,6 +138,31 @@ def main():
             strategy=StrategyName.MASKED,
             output_path="data/task3_error_analysis.tex"
         )
+
+    # -----------------------------------------------------------------
+    # INTEGRATED COMPONENT: MULTICLASS VS. BINARY COMPARATOR ANALYSIS
+    # -----------------------------------------------------------------
+    print("\n[-->] Executing Comparative Evaluation: Multiclass vs. Binary Target Space Task Structures...")
+
+    # Instantiate comparator class engine using strict parameters
+    comparator = MulticlassBinaryComparator(
+        df=df_mapped,
+        label_encoder=base_pipeline.label_encoder,
+        strategy=StrategyName.MASKED,
+        random_state=GLOBAL_SEED
+    )
+
+    # Execute matrix evaluations over parameter constraints using unified space
+    comparator.run_comparative_matrix(
+        models_grid=search_space,
+        vectorizers=vectorizers,
+        ngram_ranges=ngrams,
+        samplers=samplers
+    )
+
+    print("\n===================================================================")
+    print("   NLP EXPERIMENT WORKFLOW COMPLETED SUCCESSFULLY")
+    print("===================================================================")
 
 if __name__ == "__main__":
     main()
