@@ -6,55 +6,35 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.base import clone
+import os
+import joblib
 
 class RandomGridSearch:
-    """
-    Executes an optimized hybrid structural pipeline exploration sequence.
-    Hoists structural elements (Preprocessors, Vectorizers, Samplers) to the
-    outermost loops to completely avoid redundant CPU computation.
-    """
-    def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42):
+    def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42, cache_dir: str = "data/matrix_cache"):
         self.df = df.copy()
         self.target_col = target_col
         self.random_state = random_state
         self.results_df = pd.DataFrame()
+        self.cache_dir = cache_dir
+
+        # Ensure matrix cache directory exists
+        if self.cache_dir:
+            os.makedirs(self.cache_dir, exist_ok=True)
 
         if self.random_state is not None:
             np.random.seed(self.random_state)
             random.seed(self.random_state)
 
-    def _sample_parameters(self, param_grid: dict) -> dict:
-        """Helper to randomly extract configuration parameters from a distribution space."""
-        sampled = {}
-        for param, values in param_grid.items():
-            if isinstance(values, list):
-                sampled[param] = random.choice(values)
-            else:
-                sampled[param] = values
-        return sampled
-
-    def fit(self,
-            models_grid: dict,
-            preprocessors: list,
-            vectorizers: list,
-            ngram_ranges: list,
-            samplers: dict,
-            n_iter_per_hyperparam: int = 1) -> pd.DataFrame:
-        """
-        Executes an optimized algorithmic structure grid across workspace elements.
-        """
+    def fit(self, models_grid: dict, preprocessors: list, vectorizers: list, ngram_ranges: list, samplers: dict, n_iter_per_hyperparam: int = 1) -> pd.DataFrame:
         raw_results = []
         custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
-        # LOOP HOISTING: Strategy stays on the outside
         for strategy in preprocessors:
             strategy_col = strategy.value if hasattr(strategy, 'value') else str(strategy)
-
             df_clean = self.df.dropna(subset=[strategy_col, self.target_col]).reset_index(drop=True)
-            if df_clean.empty:
-                print(f" [!] Warning: Clean dataframe is empty for strategy column: {strategy_col}")
-                continue
+            if df_clean.empty: continue
 
+            # Track Train/Test splits per strategy
             try:
                 X_train_raw, X_test_raw, y_train, y_test = train_test_split(
                     df_clean[strategy_col], df_clean[self.target_col],
@@ -66,38 +46,66 @@ class RandomGridSearch:
                     test_size=0.20, random_state=self.random_state
                 )
 
-            # LOOP HOISTING: Vectorization layers execute prior to downstream sampling/modeling
             for vec_type in vectorizers:
                 vec_str = vec_type.value if hasattr(vec_type, 'value') else str(vec_type)
 
                 for ngram in ngram_ranges:
                     ngram_tuple = ngram if isinstance(ngram, tuple) else ast.literal_eval(str(ngram))
 
-                    if vec_str == "BoW":
-                        vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
-                    else:
-                        vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                    # Define unique string footprint for vectorizer layer
+                    vec_cache_prefix = f"{strategy_col}_{vec_str}_ngram_{ngram_tuple[0]}_{ngram_tuple[1]}"
 
-                    try:
+                    # --- CACHE LAYER 1: VECTORIZATION ---
+                    x_test_cache_path = os.path.join(self.cache_dir, f"{vec_cache_prefix}_X_test.pkl")
+
+                    if os.path.exists(x_test_cache_path):
+                        # Fast load from disk
+                        X_test_vec = joblib.load(x_test_cache_path)
+                    else:
+                        if vec_str == "BoW":
+                            vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                        else:
+                            vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+
                         X_train_vec = vect.fit_transform(X_train_raw)
                         X_test_vec = vect.transform(X_test_raw)
-                    except Exception as ve:
-                        print(f" [!] Vectorizer error on {vec_str} {ngram_tuple}: {str(ve)}")
-                        continue
+                        # Save the test vector directly since models need it unmodified
+                        joblib.dump(X_test_vec, x_test_cache_path)
 
-                    # LOOP HOISTING: Resampling occurs once per vectorized array state
                     for sampler_key, sampler_obj in samplers.items():
                         sampler_str = sampler_key.value if hasattr(sampler_key, 'value') else str(sampler_key)
 
-                        if sampler_obj is not None:
-                            try:
-                                X_train_res, y_train_res = clone(sampler_obj).fit_resample(X_train_vec, y_train)
-                            except Exception:
-                                X_train_res, y_train_res = X_train_vec, y_train
-                        else:
-                            X_train_res, y_train_res = X_train_vec, y_train
+                        # Define unique footprint for the data state passed to models
+                        data_state_suffix = f"{vec_cache_prefix}_sampler_{sampler_str}.pkl"
+                        train_features_path = os.path.join(self.cache_dir, f"X_train_{data_state_suffix}")
+                        train_labels_path = os.path.join(self.cache_dir, f"y_train_{data_state_suffix}")
 
-                        # Downstream processing loops digest fully built datasets directly
+                        # --- CACHE LAYER 2: RESAMPLING (The expensive math) ---
+                        if os.path.exists(train_features_path) and os.path.exists(train_labels_path):
+                            X_train_res = joblib.load(train_features_path)
+                            y_train_res = joblib.load(train_labels_path)
+                        else:
+                            # If not cached, vectorizer training matrix must be accessible
+                            if 'X_train_vec' not in locals():
+                                if vec_str == "BoW":
+                                    vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                                else:
+                                    vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                                X_train_vec = vect.fit_transform(X_train_raw)
+
+                            if sampler_obj is not None:
+                                try:
+                                    X_train_res, y_train_res = clone(sampler_obj).fit_resample(X_train_vec, y_train)
+                                except Exception:
+                                    X_train_res, y_train_res = X_train_vec, y_train
+                            else:
+                                X_train_res, y_train_res = X_train_vec, y_train
+
+                            # Cache it on disk so SMOTE never calculates this state again
+                            joblib.dump(X_train_res, train_features_path)
+                            joblib.dump(y_train_res, train_labels_path)
+
+                        # --- DOWNSTREAM MODEL EXECUTION LOOP ---
                         for model_key, model_meta in models_grid.items():
                             base_model_cls = model_meta["class"]
                             hyperparam_grid = model_meta["param_grid"]
@@ -107,7 +115,6 @@ class RandomGridSearch:
 
                             for _ in range(n_iter_per_hyperparam):
                                 sampled_params = self._sample_parameters(hyperparam_grid)
-
                                 try:
                                     clf = base_model_cls(**sampled_params)
                                     clf.fit(X_train_res, y_train_res)

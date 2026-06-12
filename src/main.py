@@ -16,6 +16,7 @@ from MulticlassBinaryComparator import MulticlassBinaryComparator
 
 DEBUG_MODE = True
 CACHE_FILEPATH = "data/Master_Grid_Search_Logs.csv"
+PREP_CACHE_PATH = "data/Preprocessed_Data_Cache.csv"
 
 def main():
     print("===================================================================")
@@ -29,6 +30,16 @@ def main():
     # do prep
     print("\n[-->] Executing Task 2: Dataset Ingestion & Preprocessing...")
     base_pipeline = SentimentExperimentPipeline(data_path="data/Sentences_50Agree.txt", target_col=TargetCol.SENTIMENT)
+
+    if os.path.exists(PREP_CACHE_PATH):
+        print(f"[+] Found cached preprocessed text data at '{PREP_CACHE_PATH}'. Skipping tokenization loops!")
+        df_mapped = pd.read_csv(PREP_CACHE_PATH)
+    else:
+        text_preprocessor = Preprocessor(download_resources=True)
+        df_mapped = base_pipeline.load_and_initialize_data(preprocessor_instance=text_preprocessor)
+        df_mapped.to_csv(PREP_CACHE_PATH, index=False)
+        print(f"[+] Preprocessing complete and saved to cache.")
+
     text_preprocessor = Preprocessor(download_resources=True)
 
     df_mapped = base_pipeline.load_and_initialize_data(preprocessor_instance=text_preprocessor)
