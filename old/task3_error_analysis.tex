@@ -1,0 +1,9 @@
+\begin{table}[h]
+\centering
+\caption{Model Prediction Disagreement Analysis}\n\begin{tabular}{|p{8cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Sentence / Preprocessed Context} & \textbf{True Label} & \textbf{FFNN Pred.} & \textbf{Naive Bayes Pred.}  \\ \hline
+"Return on capital employed rose by 4.8 percentage points to 19.6 % ." \\ \textit{"Masked: return capital employ rise [NUMBER] 8pctage point [PERCENT] ."} & positive & positive & negative  \\ \hline
+"These savings will have full impact as of the beginning of 2007 ." \\ \textit{"Masked: saving full impact beginning [DATE] ."} & neutral & positive & neutral  \\ \hline
+\end{tabular}
+\end{table}

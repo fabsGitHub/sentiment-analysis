@@ -1,0 +1,513 @@
+;Model;Strategy;Vectorizer;N-Gram;Sampling Strategy;Accuracy;Macro-F1;Sampled_Hyperparameters;Vec_N-Gram
+0;Naive Bayes;prep_standard;BoW;(1, 1);None (Imbalanced);0.657922350472193;0.5902723091352997;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 1)"
+1;FFNN;prep_standard;BoW;(1, 1);None (Imbalanced);0.7460650577124869;0.6988408790449928;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+2;Naive Bayes;prep_standard;BoW;(1, 1);SMOTE (Oversampling);0.657922350472193;0.5807019454123112;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 1)"
+3;FFNN;prep_standard;BoW;(1, 1);SMOTE (Oversampling);0.6715634837355718;0.6213660754119061;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+4;Naive Bayes;prep_standard;BoW;(1, 1);SMOTETomek (Combined);0.6621196222455404;0.5979101031478146;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 1)"
+5;FFNN;prep_standard;BoW;(1, 1);SMOTETomek (Combined);0.6789087093389297;0.6282455568320592;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+6;Naive Bayes;prep_standard;BoW;(1, 1);Tomek (Undersampling);0.6600209863588667;0.6200222302506221;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 1)"
+7;FFNN;prep_standard;BoW;(1, 1);Tomek (Undersampling);0.7397691500524659;0.6910906527213917;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+8;Naive Bayes;prep_standard;BoW;(1, 2);None (Imbalanced);0.695697796432319;0.6151558076541312;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 2)"
+9;FFNN;prep_standard;BoW;(1, 2);None (Imbalanced);0.7261280167890871;0.6701647651594239;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+10;Naive Bayes;prep_standard;BoW;(1, 2);SMOTE (Oversampling);0.6778593913955928;0.5995334906608053;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 2)"
+11;FFNN;prep_standard;BoW;(1, 2);SMOTE (Oversampling);0.6768100734522561;0.625673893883307;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+12;Naive Bayes;prep_standard;BoW;(1, 2);SMOTETomek (Combined);0.6820566631689402;0.5920536038258767;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 2)"
+13;FFNN;prep_standard;BoW;(1, 2);SMOTETomek (Combined);0.6799580272822665;0.6225259565421969;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+14;Naive Bayes;prep_standard;BoW;(1, 2);Tomek (Undersampling);0.6799580272822665;0.623227044721745;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 2)"
+15;FFNN;prep_standard;BoW;(1, 2);Tomek (Undersampling);0.7481636935991606;0.6882262755817213;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+16;Naive Bayes;prep_standard;BoW;(1, 3);None (Imbalanced);0.7177334732423925;0.6386264619570129;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 3)"
+17;FFNN;prep_standard;BoW;(1, 3);None (Imbalanced);0.7366211962224554;0.6841395474052607;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+18;Naive Bayes;prep_standard;BoW;(1, 3);SMOTE (Oversampling);0.6925498426023085;0.60347864673617;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 3)"
+19;FFNN;prep_standard;BoW;(1, 3);SMOTE (Oversampling);0.6820566631689402;0.6260858372125829;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+20;Naive Bayes;prep_standard;BoW;(1, 3);SMOTETomek (Combined);0.6873032528856243;0.5921628454420675;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 3)"
+21;FFNN;prep_standard;BoW;(1, 3);SMOTETomek (Combined);0.6862539349422875;0.6295843899900375;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+22;Naive Bayes;prep_standard;BoW;(1, 3);Tomek (Undersampling);0.6820566631689402;0.6137775086401233;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 3)"
+23;FFNN;prep_standard;BoW;(1, 3);Tomek (Undersampling);0.7376705141657922;0.6765225094144368;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+24;Naive Bayes;prep_standard;BoW;(1, 4);None (Imbalanced);0.6799580272822665;0.6037474260288106;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 4)"
+25;FFNN;prep_standard;BoW;(1, 4);None (Imbalanced);0.7387198321091291;0.686880578551916;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+26;Naive Bayes;prep_standard;BoW;(1, 4);SMOTE (Oversampling);0.683105981112277;0.5800299854443335;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 4)"
+27;FFNN;prep_standard;BoW;(1, 4);SMOTE (Oversampling);0.6663168940188877;0.6119347715803302;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+28;Naive Bayes;prep_standard;BoW;(1, 4);SMOTETomek (Combined);0.6841552990556139;0.5810854441858834;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 4)"
+29;FFNN;prep_standard;BoW;(1, 4);SMOTETomek (Combined);0.6736621196222455;0.6210467945997408;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+30;Naive Bayes;prep_standard;BoW;(1, 4);Tomek (Undersampling);0.6862539349422875;0.6226213872839191;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 4)"
+31;FFNN;prep_standard;BoW;(1, 4);Tomek (Undersampling);0.7355718782791185;0.6788899971011241;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+32;Naive Bayes;prep_standard;TF-IDF;(1, 1);None (Imbalanced);0.6946484784889821;0.6264133134744809;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 1)"
+33;FFNN;prep_standard;TF-IDF;(1, 1);None (Imbalanced);0.7502623294858342;0.6899186841025874;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+34;Naive Bayes;prep_standard;TF-IDF;(1, 1);SMOTE (Oversampling);0.6684155299055614;0.6143558268092738;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 1)"
+35;FFNN;prep_standard;TF-IDF;(1, 1);SMOTE (Oversampling);0.7366211962224554;0.6887044979665055;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+36;Naive Bayes;prep_standard;TF-IDF;(1, 1);SMOTETomek (Combined);0.6505771248688352;0.6082260699438716;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 1)"
+37;FFNN;prep_standard;TF-IDF;(1, 1);SMOTETomek (Combined);0.7292759706190975;0.6839728662299563;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+38;Naive Bayes;prep_standard;TF-IDF;(1, 1);Tomek (Undersampling);0.683105981112277;0.4907533258707198;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 1)"
+39;FFNN;prep_standard;TF-IDF;(1, 1);Tomek (Undersampling);0.7460650577124869;0.7017040233176894;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+40;Naive Bayes;prep_standard;TF-IDF;(1, 2);None (Imbalanced);0.7135362014690452;0.6148254166449826;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 2)"
+41;FFNN;prep_standard;TF-IDF;(1, 2);None (Imbalanced);0.7072402938090241;0.661672154166129;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+42;Naive Bayes;prep_standard;TF-IDF;(1, 2);SMOTE (Oversampling);0.6967471143756558;0.6206335451900992;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 2)"
+43;FFNN;prep_standard;TF-IDF;(1, 2);SMOTE (Oversampling);0.7219307450157397;0.6644443377113468;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+44;Naive Bayes;prep_standard;TF-IDF;(1, 2);SMOTETomek (Combined);0.6852046169989506;0.6334852312093534;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 2)"
+45;FFNN;prep_standard;TF-IDF;(1, 2);SMOTETomek (Combined);0.7292759706190975;0.6825671723856265;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+46;Naive Bayes;prep_standard;TF-IDF;(1, 2);Tomek (Undersampling);0.7061909758656874;0.5895653714002337;{'alpha': 0.5, 'fit_prior': True};"TF-IDF
+(1, 2)"
+47;FFNN;prep_standard;TF-IDF;(1, 2);Tomek (Undersampling);0.7219307450157397;0.6725595793414807;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+48;Naive Bayes;prep_standard;TF-IDF;(1, 3);None (Imbalanced);0.7040923399790137;0.6526837995140272;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 3)"
+49;FFNN;prep_standard;TF-IDF;(1, 3);None (Imbalanced);0.7313746065057712;0.6788731866940184;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+50;Naive Bayes;prep_standard;TF-IDF;(1, 3);SMOTE (Oversampling);0.6946484784889821;0.6213965293626643;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 3)"
+51;FFNN;prep_standard;TF-IDF;(1, 3);SMOTE (Oversampling);0.7166841552990556;0.6683759293735413;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+52;Naive Bayes;prep_standard;TF-IDF;(1, 3);SMOTETomek (Combined);0.6925498426023085;0.6190787850407272;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 3)"
+53;FFNN;prep_standard;TF-IDF;(1, 3);SMOTETomek (Combined);0.7376705141657922;0.685602739581379;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+54;Naive Bayes;prep_standard;TF-IDF;(1, 3);Tomek (Undersampling);0.6988457502623295;0.5620130676625452;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 3)"
+55;FFNN;prep_standard;TF-IDF;(1, 3);Tomek (Undersampling);0.70199370409234;0.6475649833894878;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+56;Naive Bayes;prep_standard;TF-IDF;(1, 4);None (Imbalanced);0.7082896117523609;0.640908844566064;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 4)"
+57;FFNN;prep_standard;TF-IDF;(1, 4);None (Imbalanced);0.720881427072403;0.6758688880439583;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+58;Naive Bayes;prep_standard;TF-IDF;(1, 4);SMOTE (Oversampling);0.7009443861490031;0.634394973172289;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 4)"
+59;FFNN;prep_standard;TF-IDF;(1, 4);SMOTE (Oversampling);0.7229800629590766;0.661010800041942;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+60;Naive Bayes;prep_standard;TF-IDF;(1, 4);SMOTETomek (Combined);0.6988457502623295;0.6430395718919175;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 4)"
+61;FFNN;prep_standard;TF-IDF;(1, 4);SMOTETomek (Combined);0.727177334732424;0.6698349873976056;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+62;Naive Bayes;prep_standard;TF-IDF;(1, 4);Tomek (Undersampling);0.7040923399790137;0.6481719778039082;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 4)"
+63;FFNN;prep_standard;TF-IDF;(1, 4);Tomek (Undersampling);0.727177334732424;0.6737703155624072;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+64;Naive Bayes;prep_full;BoW;(1, 1);None (Imbalanced);0.7072402938090241;0.6479013180571096;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 1)"
+65;FFNN;prep_full;BoW;(1, 1);None (Imbalanced);0.7565582371458552;0.7059050282661081;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+66;Naive Bayes;prep_full;BoW;(1, 1);SMOTE (Oversampling);0.6631689401888772;0.605909231310705;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 1)"
+67;FFNN;prep_full;BoW;(1, 1);SMOTE (Oversampling);0.695697796432319;0.6407396348142184;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+68;Naive Bayes;prep_full;BoW;(1, 1);SMOTETomek (Combined);0.6558237145855194;0.5856754926505574;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 1)"
+69;FFNN;prep_full;BoW;(1, 1);SMOTETomek (Combined);0.6904512067156349;0.642916111269972;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+70;Naive Bayes;prep_full;BoW;(1, 1);Tomek (Undersampling);0.6495278069254984;0.6059124955646767;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 1)"
+71;FFNN;prep_full;BoW;(1, 1);Tomek (Undersampling);0.7618048268625394;0.7081904373555026;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+72;Naive Bayes;prep_full;BoW;(1, 2);None (Imbalanced);0.7250786988457503;0.6567286274438667;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 2)"
+73;FFNN;prep_full;BoW;(1, 2);None (Imbalanced);0.7555089192025184;0.7011401336250058;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+74;Naive Bayes;prep_full;BoW;(1, 2);SMOTE (Oversampling);0.6946484784889821;0.6338619196528763;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 2)"
+75;FFNN;prep_full;BoW;(1, 2);SMOTE (Oversampling);0.6610703043022036;0.6093266070015557;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+76;Naive Bayes;prep_full;BoW;(1, 2);SMOTETomek (Combined);0.6988457502623295;0.640134863600867;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 2)"
+77;FFNN;prep_full;BoW;(1, 2);SMOTETomek (Combined);0.6789087093389297;0.6349359203151209;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+78;Naive Bayes;prep_full;BoW;(1, 2);Tomek (Undersampling);0.6977964323189927;0.6359766461530918;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 2)"
+79;FFNN;prep_full;BoW;(1, 2);Tomek (Undersampling);0.7597061909758657;0.709337754589651;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+80;Naive Bayes;prep_full;BoW;(1, 3);None (Imbalanced);0.7040923399790137;0.6523508658419305;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 3)"
+81;FFNN;prep_full;BoW;(1, 3);None (Imbalanced);0.7439664218258132;0.6899317557247908;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+82;Naive Bayes;prep_full;BoW;(1, 3);SMOTE (Oversampling);0.70199370409234;0.6441649664641877;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 3)"
+83;FFNN;prep_full;BoW;(1, 3);SMOTE (Oversampling);0.6663168940188877;0.6138293242636985;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+84;Naive Bayes;prep_full;BoW;(1, 3);SMOTETomek (Combined);0.7040923399790137;0.6428051405157942;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 3)"
+85;FFNN;prep_full;BoW;(1, 3);SMOTETomek (Combined);0.6873032528856243;0.6323787950722172;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+86;Naive Bayes;prep_full;BoW;(1, 3);Tomek (Undersampling);0.7187827911857293;0.6441130850743;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 3)"
+87;FFNN;prep_full;BoW;(1, 3);Tomek (Undersampling);0.7492130115424974;0.6912982309876767;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+88;Naive Bayes;prep_full;BoW;(1, 4);None (Imbalanced);0.7229800629590766;0.6518287761958648;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 4)"
+89;FFNN;prep_full;BoW;(1, 4);None (Imbalanced);0.7387198321091291;0.6897555865510808;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+90;Naive Bayes;prep_full;BoW;(1, 4);SMOTE (Oversampling);0.6799580272822665;0.5957091851727493;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 4)"
+91;FFNN;prep_full;BoW;(1, 4);SMOTE (Oversampling);0.6935991605456453;0.6378496420718639;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+92;Naive Bayes;prep_full;BoW;(1, 4);SMOTETomek (Combined);0.6977964323189927;0.6384485973287374;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 4)"
+93;FFNN;prep_full;BoW;(1, 4);SMOTETomek (Combined);0.6747114375655824;0.621785048661645;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+94;Naive Bayes;prep_full;BoW;(1, 4);Tomek (Undersampling);0.6967471143756558;0.635030617563999;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 4)"
+95;FFNN;prep_full;BoW;(1, 4);Tomek (Undersampling);0.7397691500524659;0.6828852399365074;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+96;Naive Bayes;prep_full;TF-IDF;(1, 1);None (Imbalanced);0.6904512067156349;0.5791778176444323;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 1)"
+97;FFNN;prep_full;TF-IDF;(1, 1);None (Imbalanced);0.7523609653725079;0.684601848628998;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+98;Naive Bayes;prep_full;TF-IDF;(1, 1);SMOTE (Oversampling);0.6621196222455404;0.6172954037996812;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 1)"
+99;FFNN;prep_full;TF-IDF;(1, 1);SMOTE (Oversampling);0.7282266526757608;0.6818570442519953;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+100;Naive Bayes;prep_full;TF-IDF;(1, 1);SMOTETomek (Combined);0.6684155299055614;0.6251273848313899;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 1)"
+101;FFNN;prep_full;TF-IDF;(1, 1);SMOTETomek (Combined);0.7261280167890871;0.6817629097343606;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+102;Naive Bayes;prep_full;TF-IDF;(1, 1);Tomek (Undersampling);0.6736621196222455;0.6256810242062553;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 1)"
+103;FFNN;prep_full;TF-IDF;(1, 1);Tomek (Undersampling);0.7376705141657922;0.6972512867249709;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+104;Naive Bayes;prep_full;TF-IDF;(1, 2);None (Imbalanced);0.6998950682056663;0.6467493331704438;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 2)"
+105;FFNN;prep_full;TF-IDF;(1, 2);None (Imbalanced);0.7334732423924449;0.6760610682435306;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+106;Naive Bayes;prep_full;TF-IDF;(1, 2);SMOTE (Oversampling);0.6841552990556139;0.6294568298701879;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 2)"
+107;FFNN;prep_full;TF-IDF;(1, 2);SMOTE (Oversampling);0.7366211962224554;0.688411947015006;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+108;Naive Bayes;prep_full;TF-IDF;(1, 2);SMOTETomek (Combined);0.6841552990556139;0.6367829107424191;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 2)"
+109;FFNN;prep_full;TF-IDF;(1, 2);SMOTETomek (Combined);0.757607555089192;0.7139741724943157;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+110;Naive Bayes;prep_full;TF-IDF;(1, 2);Tomek (Undersampling);0.7082896117523609;0.6540813720124065;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 2)"
+111;FFNN;prep_full;TF-IDF;(1, 2);Tomek (Undersampling);0.7408184679958028;0.6851635003089703;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+112;Naive Bayes;prep_full;TF-IDF;(1, 3);None (Imbalanced);0.7198321091290661;0.6255886065780716;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 3)"
+113;FFNN;prep_full;TF-IDF;(1, 3);None (Imbalanced);0.7313746065057712;0.6705143022039133;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+114;Naive Bayes;prep_full;TF-IDF;(1, 3);SMOTE (Oversampling);0.6757607555089192;0.6043172454803002;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 3)"
+115;FFNN;prep_full;TF-IDF;(1, 3);SMOTE (Oversampling);0.727177334732424;0.6732987931807339;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+116;Naive Bayes;prep_full;TF-IDF;(1, 3);SMOTETomek (Combined);0.6768100734522561;0.6046278850467174;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 3)"
+117;FFNN;prep_full;TF-IDF;(1, 3);SMOTETomek (Combined);0.7544596012591815;0.6956946694702234;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+118;Naive Bayes;prep_full;TF-IDF;(1, 3);Tomek (Undersampling);0.7219307450157397;0.6325047882662329;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 3)"
+119;FFNN;prep_full;TF-IDF;(1, 3);Tomek (Undersampling);0.7355718782791185;0.6761902596781955;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+120;Naive Bayes;prep_full;TF-IDF;(1, 4);None (Imbalanced);0.6736621196222455;0.6245701995324824;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 4)"
+121;FFNN;prep_full;TF-IDF;(1, 4);None (Imbalanced);0.7187827911857293;0.6566968385583666;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+122;Naive Bayes;prep_full;TF-IDF;(1, 4);SMOTE (Oversampling);0.6778593913955928;0.6320630761595959;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 4)"
+123;FFNN;prep_full;TF-IDF;(1, 4);SMOTE (Oversampling);0.7313746065057712;0.6660449524484612;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+124;Naive Bayes;prep_full;TF-IDF;(1, 4);SMOTETomek (Combined);0.6652675760755509;0.593650206566335;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 4)"
+125;FFNN;prep_full;TF-IDF;(1, 4);SMOTETomek (Combined);0.7261280167890871;0.6760590597636953;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+126;Naive Bayes;prep_full;TF-IDF;(1, 4);Tomek (Undersampling);0.6998950682056663;0.5532295457226163;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 4)"
+127;FFNN;prep_full;TF-IDF;(1, 4);Tomek (Undersampling);0.7198321091290661;0.6522503039356321;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+128;Naive Bayes;prep_masked;BoW;(1, 1);None (Imbalanced);0.6652675760755509;0.5997794510544422;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 1)"
+129;FFNN;prep_masked;BoW;(1, 1);None (Imbalanced);0.7597061909758657;0.715040166913497;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+130;Naive Bayes;prep_masked;BoW;(1, 1);SMOTE (Oversampling);0.6610703043022036;0.6015196828668999;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 1)"
+131;FFNN;prep_masked;BoW;(1, 1);SMOTE (Oversampling);0.7009443861490031;0.647515707606367;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+132;Naive Bayes;prep_masked;BoW;(1, 1);SMOTETomek (Combined);0.664218258132214;0.6060968110968111;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 1)"
+133;FFNN;prep_masked;BoW;(1, 1);SMOTETomek (Combined);0.6873032528856243;0.6276520864756159;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+134;Naive Bayes;prep_masked;BoW;(1, 1);Tomek (Undersampling);0.6621196222455404;0.6239443790992295;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 1)"
+135;FFNN;prep_masked;BoW;(1, 1);Tomek (Undersampling);0.7481636935991606;0.7019623189114714;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+136;Naive Bayes;prep_masked;BoW;(1, 2);None (Imbalanced);0.6998950682056663;0.6453631834869947;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 2)"
+137;FFNN;prep_masked;BoW;(1, 2);None (Imbalanced);0.7502623294858342;0.6933215566670978;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+138;Naive Bayes;prep_masked;BoW;(1, 2);SMOTE (Oversampling);0.7061909758656874;0.6341261140240645;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 2)"
+139;FFNN;prep_masked;BoW;(1, 2);SMOTE (Oversampling);0.6998950682056663;0.6451975196997815;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+140;Naive Bayes;prep_masked;BoW;(1, 2);SMOTETomek (Combined);0.6988457502623295;0.6349031683125016;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 2)"
+141;FFNN;prep_masked;BoW;(1, 2);SMOTETomek (Combined);0.6736621196222455;0.6301894291100418;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+142;Naive Bayes;prep_masked;BoW;(1, 2);Tomek (Undersampling);0.7345225603357818;0.6756762607213581;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 2)"
+143;FFNN;prep_masked;BoW;(1, 2);Tomek (Undersampling);0.7492130115424974;0.6922358943039426;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+144;Naive Bayes;prep_masked;BoW;(1, 3);None (Imbalanced);0.7072402938090241;0.6529066687669616;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 3)"
+145;FFNN;prep_masked;BoW;(1, 3);None (Imbalanced);0.7418677859391396;0.6879024258692995;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+146;Naive Bayes;prep_masked;BoW;(1, 3);SMOTE (Oversampling);0.7040923399790137;0.6342681499638432;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 3)"
+147;FFNN;prep_masked;BoW;(1, 3);SMOTE (Oversampling);0.6768100734522561;0.6331750987757975;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+148;Naive Bayes;prep_masked;BoW;(1, 3);SMOTETomek (Combined);0.7051416579223505;0.6332950862504108;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 3)"
+149;FFNN;prep_masked;BoW;(1, 3);SMOTETomek (Combined);0.6862539349422875;0.6324824600950327;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+150;Naive Bayes;prep_masked;BoW;(1, 3);Tomek (Undersampling);0.7198321091290661;0.64769046257422;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 3)"
+151;FFNN;prep_masked;BoW;(1, 3);Tomek (Undersampling);0.7292759706190975;0.6618404974991087;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+152;Naive Bayes;prep_masked;BoW;(1, 4);None (Imbalanced);0.7082896117523609;0.6435241108235068;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 4)"
+153;FFNN;prep_masked;BoW;(1, 4);None (Imbalanced);0.7502623294858342;0.6918585772098321;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+154;Naive Bayes;prep_masked;BoW;(1, 4);SMOTE (Oversampling);0.7103882476390346;0.6348982479290556;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 4)"
+155;FFNN;prep_masked;BoW;(1, 4);SMOTE (Oversampling);0.689401888772298;0.640277559018331;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+156;Naive Bayes;prep_masked;BoW;(1, 4);SMOTETomek (Combined);0.7103882476390346;0.6317160377859699;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 4)"
+157;FFNN;prep_masked;BoW;(1, 4);SMOTETomek (Combined);0.6998950682056663;0.6487376925572302;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+158;Naive Bayes;prep_masked;BoW;(1, 4);Tomek (Undersampling);0.7229800629590766;0.6528637074736249;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 4)"
+159;FFNN;prep_masked;BoW;(1, 4);Tomek (Undersampling);0.7565582371458552;0.7050759480158844;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+160;Naive Bayes;prep_masked;TF-IDF;(1, 1);None (Imbalanced);0.7040923399790137;0.6330024020055173;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 1)"
+161;FFNN;prep_masked;TF-IDF;(1, 1);None (Imbalanced);0.7523609653725079;0.7061822868533884;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+162;Naive Bayes;prep_masked;TF-IDF;(1, 1);SMOTE (Oversampling);0.6589716684155299;0.617943320083529;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 1)"
+163;FFNN;prep_masked;TF-IDF;(1, 1);SMOTE (Oversampling);0.7324239244491081;0.6850924630070455;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+164;Naive Bayes;prep_masked;TF-IDF;(1, 1);SMOTETomek (Combined);0.6568730325288562;0.6150899284410041;{'alpha': 0.5, 'fit_prior': True};"TF-IDF
+(1, 1)"
+165;FFNN;prep_masked;TF-IDF;(1, 1);SMOTETomek (Combined);0.7376705141657922;0.6963502590801055;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+166;Naive Bayes;prep_masked;TF-IDF;(1, 1);Tomek (Undersampling);0.6673662119622246;0.629972801041696;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 1)"
+167;FFNN;prep_masked;TF-IDF;(1, 1);Tomek (Undersampling);0.7565582371458552;0.7118198073882217;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+168;Naive Bayes;prep_masked;TF-IDF;(1, 2);None (Imbalanced);0.7219307450157397;0.6755220770370721;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 2)"
+169;FFNN;prep_masked;TF-IDF;(1, 2);None (Imbalanced);0.7502623294858342;0.6945350789161614;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+170;Naive Bayes;prep_masked;TF-IDF;(1, 2);SMOTE (Oversampling);0.6988457502623295;0.6559744172184363;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 2)"
+171;FFNN;prep_masked;TF-IDF;(1, 2);SMOTE (Oversampling);0.7460650577124869;0.6855058476682583;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+172;Naive Bayes;prep_masked;TF-IDF;(1, 2);SMOTETomek (Combined);0.70199370409234;0.6421352011634799;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 2)"
+173;FFNN;prep_masked;TF-IDF;(1, 2);SMOTETomek (Combined);0.7607555089192025;0.7130579873854644;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+174;Naive Bayes;prep_masked;TF-IDF;(1, 2);Tomek (Undersampling);0.7030430220356768;0.6539519831212313;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 2)"
+175;FFNN;prep_masked;TF-IDF;(1, 2);Tomek (Undersampling);0.7471143756558237;0.691917619065908;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+176;Naive Bayes;prep_masked;TF-IDF;(1, 3);None (Imbalanced);0.7313746065057712;0.6860235255737289;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 3)"
+177;FFNN;prep_masked;TF-IDF;(1, 3);None (Imbalanced);0.7250786988457503;0.6692133614141546;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+178;Naive Bayes;prep_masked;TF-IDF;(1, 3);SMOTE (Oversampling);0.7051416579223505;0.659067728418808;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 3)"
+179;FFNN;prep_masked;TF-IDF;(1, 3);SMOTE (Oversampling);0.7408184679958028;0.6906172879331437;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+180;Naive Bayes;prep_masked;TF-IDF;(1, 3);SMOTETomek (Combined);0.7135362014690452;0.6671064196476962;{'alpha': 0.5, 'fit_prior': True};"TF-IDF
+(1, 3)"
+181;FFNN;prep_masked;TF-IDF;(1, 3);SMOTETomek (Combined);0.7292759706190975;0.667905758211195;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+182;Naive Bayes;prep_masked;TF-IDF;(1, 3);Tomek (Undersampling);0.7355718782791185;0.6580354575540256;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 3)"
+183;FFNN;prep_masked;TF-IDF;(1, 3);Tomek (Undersampling);0.7303252885624344;0.6775518795937341;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+184;Naive Bayes;prep_masked;TF-IDF;(1, 4);None (Imbalanced);0.7250786988457503;0.6225046276840246;{'alpha': 0.5, 'fit_prior': True};"TF-IDF
+(1, 4)"
+185;FFNN;prep_masked;TF-IDF;(1, 4);None (Imbalanced);0.751311647429171;0.6979283818129622;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+186;Naive Bayes;prep_masked;TF-IDF;(1, 4);SMOTE (Oversampling);0.70199370409234;0.6369426934559681;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 4)"
+187;FFNN;prep_masked;TF-IDF;(1, 4);SMOTE (Oversampling);0.7292759706190975;0.6737591824571473;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+188;Naive Bayes;prep_masked;TF-IDF;(1, 4);SMOTETomek (Combined);0.6998950682056663;0.6363459486208449;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 4)"
+189;FFNN;prep_masked;TF-IDF;(1, 4);SMOTETomek (Combined);0.7481636935991606;0.6943600746030149;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+190;Naive Bayes;prep_masked;TF-IDF;(1, 4);Tomek (Undersampling);0.7082896117523609;0.6543720763810673;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 4)"
+191;FFNN;prep_masked;TF-IDF;(1, 4);Tomek (Undersampling);0.7544596012591815;0.6911687946887403;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+192;Naive Bayes;prep_standard_numbers;BoW;(1, 1);None (Imbalanced);0.657922350472193;0.5902723091352997;{'alpha': 0.01, 'fit_prior': True};"BoW
+(1, 1)"
+193;FFNN;prep_standard_numbers;BoW;(1, 1);None (Imbalanced);0.7471143756558237;0.7052891625798751;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+194;Naive Bayes;prep_standard_numbers;BoW;(1, 1);SMOTE (Oversampling);0.6652675760755509;0.6005296526903566;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 1)"
+195;FFNN;prep_standard_numbers;BoW;(1, 1);SMOTE (Oversampling);0.6873032528856243;0.6240370466363095;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+196;Naive Bayes;prep_standard_numbers;BoW;(1, 1);SMOTETomek (Combined);0.6663168940188877;0.6043776697172758;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 1)"
+197;FFNN;prep_standard_numbers;BoW;(1, 1);SMOTETomek (Combined);0.6862539349422875;0.6300877699588415;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+198;Naive Bayes;prep_standard_numbers;BoW;(1, 1);Tomek (Undersampling);0.6946484784889821;0.6373170038944208;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 1)"
+199;FFNN;prep_standard_numbers;BoW;(1, 1);Tomek (Undersampling);0.7429171038824763;0.6883783137352526;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 1)"
+200;Naive Bayes;prep_standard_numbers;BoW;(1, 2);None (Imbalanced);0.7114375655823715;0.6437080081632797;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 2)"
+201;FFNN;prep_standard_numbers;BoW;(1, 2);None (Imbalanced);0.7502623294858342;0.6982305018096066;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+202;Naive Bayes;prep_standard_numbers;BoW;(1, 2);SMOTE (Oversampling);0.6820566631689402;0.5919804734272819;{'alpha': 0.1, 'fit_prior': False};"BoW
+(1, 2)"
+203;FFNN;prep_standard_numbers;BoW;(1, 2);SMOTE (Oversampling);0.7061909758656874;0.6519978733043793;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+204;Naive Bayes;prep_standard_numbers;BoW;(1, 2);SMOTETomek (Combined);0.6820566631689402;0.5920536038258767;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 2)"
+205;FFNN;prep_standard_numbers;BoW;(1, 2);SMOTETomek (Combined);0.6778593913955928;0.6262485589365587;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+206;Naive Bayes;prep_standard_numbers;BoW;(1, 2);Tomek (Undersampling);0.7103882476390346;0.6438510738201434;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 2)"
+207;FFNN;prep_standard_numbers;BoW;(1, 2);Tomek (Undersampling);0.7492130115424974;0.6935961147095804;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 2)"
+208;Naive Bayes;prep_standard_numbers;BoW;(1, 3);None (Imbalanced);0.6904512067156349;0.6279361510924285;{'alpha': 0.5, 'fit_prior': False};"BoW
+(1, 3)"
+209;FFNN;prep_standard_numbers;BoW;(1, 3);None (Imbalanced);0.7534102833158447;0.7027970846229449;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+210;Naive Bayes;prep_standard_numbers;BoW;(1, 3);SMOTE (Oversampling);0.6820566631689402;0.5851907538567879;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 3)"
+211;FFNN;prep_standard_numbers;BoW;(1, 3);SMOTE (Oversampling);0.6820566631689402;0.6260858372125829;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+212;Naive Bayes;prep_standard_numbers;BoW;(1, 3);SMOTETomek (Combined);0.6873032528856243;0.5921628454420675;{'alpha': 0.1, 'fit_prior': True};"BoW
+(1, 3)"
+213;FFNN;prep_standard_numbers;BoW;(1, 3);SMOTETomek (Combined);0.6883525708289612;0.6401685028800522;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+214;Naive Bayes;prep_standard_numbers;BoW;(1, 3);Tomek (Undersampling);0.7177334732423925;0.6341828197951594;{'alpha': 1.0, 'fit_prior': True};"BoW
+(1, 3)"
+215;FFNN;prep_standard_numbers;BoW;(1, 3);Tomek (Undersampling);0.7229800629590766;0.6782923156071371;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 3)"
+216;Naive Bayes;prep_standard_numbers;BoW;(1, 4);None (Imbalanced);0.70199370409234;0.6309428387319848;{'alpha': 1.0, 'fit_prior': False};"BoW
+(1, 4)"
+217;FFNN;prep_standard_numbers;BoW;(1, 4);None (Imbalanced);0.7502623294858342;0.694090584778844;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+218;Naive Bayes;prep_standard_numbers;BoW;(1, 4);SMOTE (Oversampling);0.683105981112277;0.5794382733912293;{'alpha': 0.01, 'fit_prior': False};"BoW
+(1, 4)"
+219;FFNN;prep_standard_numbers;BoW;(1, 4);SMOTE (Oversampling);0.6768100734522561;0.6278091028291274;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+220;Naive Bayes;prep_standard_numbers;BoW;(1, 4);SMOTETomek (Combined);0.6820566631689402;0.5859367450760445;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 4)"
+221;FFNN;prep_standard_numbers;BoW;(1, 4);SMOTETomek (Combined);0.6778593913955928;0.6161060826519756;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+222;Naive Bayes;prep_standard_numbers;BoW;(1, 4);Tomek (Undersampling);0.7124868835257083;0.627132967320996;{'alpha': 0.5, 'fit_prior': True};"BoW
+(1, 4)"
+223;FFNN;prep_standard_numbers;BoW;(1, 4);Tomek (Undersampling);0.7387198321091291;0.6939716856868157;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"BoW
+(1, 4)"
+224;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);None (Imbalanced);0.6663168940188877;0.6246861672974483;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 1)"
+225;FFNN;prep_standard_numbers;TF-IDF;(1, 1);None (Imbalanced);0.7408184679958028;0.6993490953705043;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+226;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);SMOTE (Oversampling);0.6547743966421826;0.612272486042566;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 1)"
+227;FFNN;prep_standard_numbers;TF-IDF;(1, 1);SMOTE (Oversampling);0.7387198321091291;0.6911675132861407;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+228;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);SMOTETomek (Combined);0.6505771248688352;0.6082260699438716;{'alpha': 1.0, 'fit_prior': True};"TF-IDF
+(1, 1)"
+229;FFNN;prep_standard_numbers;TF-IDF;(1, 1);SMOTETomek (Combined);0.7376705141657922;0.6868804969566481;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+230;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 1);Tomek (Undersampling);0.6873032528856243;0.5939123202804795;{'alpha': 0.01, 'fit_prior': True};"TF-IDF
+(1, 1)"
+231;FFNN;prep_standard_numbers;TF-IDF;(1, 1);Tomek (Undersampling);0.7418677859391396;0.7012257990521005;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 1)"
+232;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);None (Imbalanced);0.6862539349422875;0.6271574330432771;{'alpha': 0.01, 'fit_prior': False};"TF-IDF
+(1, 2)"
+233;FFNN;prep_standard_numbers;TF-IDF;(1, 2);None (Imbalanced);0.7219307450157397;0.6728427263793119;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+234;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);SMOTE (Oversampling);0.7051416579223505;0.6425117102397397;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 2)"
+235;FFNN;prep_standard_numbers;TF-IDF;(1, 2);SMOTE (Oversampling);0.7303252885624344;0.6747953628883857;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+236;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);SMOTETomek (Combined);0.6852046169989506;0.6334852312093534;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 2)"
+237;FFNN;prep_standard_numbers;TF-IDF;(1, 2);SMOTETomek (Combined);0.7313746065057712;0.6847127996381728;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+238;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 2);Tomek (Undersampling);0.7135362014690452;0.6159055855915619;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 2)"
+239;FFNN;prep_standard_numbers;TF-IDF;(1, 2);Tomek (Undersampling);0.7429171038824763;0.6821960020619738;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 2)"
+240;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);None (Imbalanced);0.7177334732423925;0.6196825373951639;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 3)"
+241;FFNN;prep_standard_numbers;TF-IDF;(1, 3);None (Imbalanced);0.7523609653725079;0.690456821661306;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+242;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);SMOTE (Oversampling);0.7082896117523609;0.6460628380604083;{'alpha': 0.1, 'fit_prior': False};"TF-IDF
+(1, 3)"
+243;FFNN;prep_standard_numbers;TF-IDF;(1, 3);SMOTE (Oversampling);0.7177334732423925;0.6764981143167733;{'hidden_layer_sizes': (64,), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+244;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);SMOTETomek (Combined);0.7061909758656874;0.6441620545779747;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 3)"
+245;FFNN;prep_standard_numbers;TF-IDF;(1, 3);SMOTETomek (Combined);0.7408184679958028;0.6916054791448598;{'hidden_layer_sizes': (64, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+246;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 3);Tomek (Undersampling);0.7030430220356768;0.6362201543476443;{'alpha': 0.5, 'fit_prior': False};"TF-IDF
+(1, 3)"
+247;FFNN;prep_standard_numbers;TF-IDF;(1, 3);Tomek (Undersampling);0.7229800629590766;0.6615137470371096;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 3)"
+248;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);None (Imbalanced);0.7240293809024134;0.6518241855921654;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 4)"
+249;FFNN;prep_standard_numbers;TF-IDF;(1, 4);None (Imbalanced);0.7261280167890871;0.673432437583381;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+250;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);SMOTE (Oversampling);0.7009443861490031;0.634394973172289;{'alpha': 0.1, 'fit_prior': True};"TF-IDF
+(1, 4)"
+251;FFNN;prep_standard_numbers;TF-IDF;(1, 4);SMOTE (Oversampling);0.7418677859391396;0.6935227597026671;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.005, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+252;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);SMOTETomek (Combined);0.7030430220356768;0.6450986106354218;{'alpha': 0.5, 'fit_prior': True};"TF-IDF
+(1, 4)"
+253;FFNN;prep_standard_numbers;TF-IDF;(1, 4);SMOTETomek (Combined);0.727177334732424;0.6771981576359778;{'hidden_layer_sizes': (64, 32), 'activation': 'relu', 'alpha': 0.0001, 'batch_size': 128, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"
+254;Naive Bayes;prep_standard_numbers;TF-IDF;(1, 4);Tomek (Undersampling);0.720881427072403;0.6466840270991318;{'alpha': 1.0, 'fit_prior': False};"TF-IDF
+(1, 4)"
+255;FFNN;prep_standard_numbers;TF-IDF;(1, 4);Tomek (Undersampling);0.7334732423924449;0.6884728596633499;{'hidden_layer_sizes': (128, 64), 'activation': 'relu', 'alpha': 0.001, 'batch_size': 64, 'learning_rate_init': 0.001, 'max_iter': 100, 'patience': 10, 'random_state': 42, 'early_stopping': True};"TF-IDF
+(1, 4)"

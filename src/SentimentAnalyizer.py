@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.naive_bayes import MultinomialNB
-from config import StrategyName
+from config import ModelName, SamplerName, StrategyName
 from imblearn.over_sampling import SMOTE
 from imblearn.combine import SMOTETomek
 from imblearn.under_sampling import TomekLinks
@@ -18,7 +18,7 @@ class SentimentExperimentPipeline:
     n-gram boundaries, balancing algorithms, and vectorization arrays against predictive backbones.
     """
 
-    def __init__(self, data_path: str = "../data/Sentences_50Agree.txt", target_col: str = "sentiment"):
+    def __init__(self, data_path: str = "data/Sentences_50Agree.txt", target_col: str = "sentiment"):
         self.data_path = data_path
         self.target_col = target_col
         self.df: pd.DataFrame = pd.DataFrame()
@@ -32,15 +32,15 @@ class SentimentExperimentPipeline:
 
         # Setup Default Evaluated Framework Components
         self.samplers = {
-            "None (Imbalanced)": None,
-            "SMOTE (Oversampling)": SMOTE(random_state=42),
-            "SMOTETomek (Combined)": SMOTETomek(random_state=42),
-            "Tomek (Undersampling)": TomekLinks()
+            SamplerName.NONE: None,
+            SamplerName.SMOTE: SMOTE(random_state=42),
+            SamplerName.SMOTE_TOMEK: SMOTETomek(random_state=42),
+            SamplerName.TOMEK: TomekLinks()
         }
 
         self.models = {
-            "Naive Bayes": MultinomialNB(),
-            "FFNN (Updated)": PyTorchMLPClassifier(
+            ModelName.NAIVE_BAYES: MultinomialNB(),
+            ModelName.FFNN: PyTorchMLPClassifier(
                 hidden_layer_sizes=(128, 64),
                 activation='relu',
                 solver='adam',

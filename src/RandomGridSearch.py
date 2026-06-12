@@ -9,9 +9,9 @@ from sklearn.base import clone
 
 class RandomGridSearch:
     """
-    Executes a hybrid structural pipeline exploration sequence.
-    Systematically runs a deterministic Cartesian Grid over Preprocessors, Vectorizers,
-    N-Grams, and Samplers, while randomly sampling downstream classifier hyperparameters.
+    Executes an optimized hybrid structural pipeline exploration sequence.
+    Hoists structural elements (Preprocessors, Vectorizers, Samplers) to the
+    outermost loops to completely avoid redundant CPU computation.
     """
     def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42):
         self.df = df.copy()
@@ -41,69 +41,69 @@ class RandomGridSearch:
             samplers: dict,
             n_iter_per_hyperparam: int = 1) -> pd.DataFrame:
         """
-        Executes a full structural exploration grid matrix across structural elements.
+        Executes an optimized algorithmic structure grid across workspace elements.
         """
         raw_results = []
         custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
-        for model_key, model_meta in models_grid.items():
-            base_model_cls = model_meta["class"]
-            hyperparam_grid = model_meta["param_grid"]
+        # LOOP HOISTING: Strategy stays on the outside
+        for strategy in preprocessors:
+            strategy_col = strategy.value if hasattr(strategy, 'value') else str(strategy)
 
-            # UNIFIED PRIMITIVE ENUM EXTRACTION
-            model_str = model_key.value if hasattr(model_key, 'value') else str(model_key)
+            df_clean = self.df.dropna(subset=[strategy_col, self.target_col]).reset_index(drop=True)
+            if df_clean.empty:
+                print(f" [!] Warning: Clean dataframe is empty for strategy column: {strategy_col}")
+                continue
 
-            for strategy in preprocessors:
-                strategy_col = strategy.value if hasattr(strategy, 'value') else str(strategy)
+            try:
+                X_train_raw, X_test_raw, y_train, y_test = train_test_split(
+                    df_clean[strategy_col], df_clean[self.target_col],
+                    test_size=0.20, random_state=self.random_state, stratify=df_clean[self.target_col]
+                )
+            except ValueError:
+                X_train_raw, X_test_raw, y_train, y_test = train_test_split(
+                    df_clean[strategy_col], df_clean[self.target_col],
+                    test_size=0.20, random_state=self.random_state
+                )
 
-                df_clean = self.df.dropna(subset=[strategy_col, self.target_col]).reset_index(drop=True)
-                if df_clean.empty:
-                    print(f" [!] Warning: Clean dataframe is empty for strategy column: {strategy_col}")
-                    continue
+            # LOOP HOISTING: Vectorization layers execute prior to downstream sampling/modeling
+            for vec_type in vectorizers:
+                vec_str = vec_type.value if hasattr(vec_type, 'value') else str(vec_type)
 
-                try:
-                    X_train_raw, X_test_raw, y_train, y_test = train_test_split(
-                        df_clean[strategy_col], df_clean[self.target_col],
-                        test_size=0.20, random_state=self.random_state, stratify=df_clean[self.target_col]
-                    )
-                except ValueError:
-                    # Robust fallback if dataset stratification criteria cannot be met
-                    X_train_raw, X_test_raw, y_train, y_test = train_test_split(
-                        df_clean[strategy_col], df_clean[self.target_col],
-                        test_size=0.20, random_state=self.random_state
-                    )
+                for ngram in ngram_ranges:
+                    ngram_tuple = ngram if isinstance(ngram, tuple) else ast.literal_eval(str(ngram))
 
-                for vec_type in vectorizers:
-                    vec_str = vec_type.value if hasattr(vec_type, 'value') else str(vec_type)
+                    if vec_str == "BoW":
+                        vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                    else:
+                        vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
 
-                    for ngram in ngram_ranges:
-                        # UPDATED: Added real-time tracking print statement
-                        print(f" [->] Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram}")
+                    try:
+                        X_train_vec = vect.fit_transform(X_train_raw)
+                        X_test_vec = vect.transform(X_test_raw)
+                    except Exception as ve:
+                        print(f" [!] Vectorizer error on {vec_str} {ngram_tuple}: {str(ve)}")
+                        continue
 
-                        ngram_tuple = ngram if isinstance(ngram, tuple) else ast.literal_eval(str(ngram))
+                    # LOOP HOISTING: Resampling occurs once per vectorized array state
+                    for sampler_key, sampler_obj in samplers.items():
+                        sampler_str = sampler_key.value if hasattr(sampler_key, 'value') else str(sampler_key)
 
-                        if vec_str == "BoW":
-                            vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
-                        else:
-                            vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
-
-                        try:
-                            X_train_vec = vect.fit_transform(X_train_raw)
-                            X_test_vec = vect.transform(X_test_raw)
-                        except Exception as ve:
-                            print(f" [!] Vectorizer error on {vec_str} {ngram_tuple}: {str(ve)}")
-                            continue
-
-                        for sampler_key, sampler_obj in samplers.items():
-                            sampler_str = sampler_key.value if hasattr(sampler_key, 'value') else str(sampler_key)
-
-                            if sampler_obj is not None:
-                                try:
-                                    X_train_res, y_train_res = clone(sampler_obj).fit_resample(X_train_vec, y_train)
-                                except Exception:
-                                    X_train_res, y_train_res = X_train_vec, y_train
-                            else:
+                        if sampler_obj is not None:
+                            try:
+                                X_train_res, y_train_res = clone(sampler_obj).fit_resample(X_train_vec, y_train)
+                            except Exception:
                                 X_train_res, y_train_res = X_train_vec, y_train
+                        else:
+                            X_train_res, y_train_res = X_train_vec, y_train
+
+                        # Downstream processing loops digest fully built datasets directly
+                        for model_key, model_meta in models_grid.items():
+                            base_model_cls = model_meta["class"]
+                            hyperparam_grid = model_meta["param_grid"]
+                            model_str = model_key.value if hasattr(model_key, 'value') else str(model_key)
+
+                            print(f" [->] Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram} | Sampler={sampler_str}")
 
                             for _ in range(n_iter_per_hyperparam):
                                 sampled_params = self._sample_parameters(hyperparam_grid)
