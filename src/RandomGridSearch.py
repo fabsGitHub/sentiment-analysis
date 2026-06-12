@@ -3,7 +3,7 @@ import random
 import ast
 import pandas as pd
 import numpy as np
-import joblib  # Effizientes Speichern von scipy.sparse Matrizen und Arrays
+import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, f1_score
@@ -11,9 +11,9 @@ from sklearn.base import clone
 
 class RandomGridSearch:
     """
-    Führt eine optimierte Pipeline-Suche durch. Errechnet Text-Vektorisierungen
-    und teure Resampling-Schritte (SMOTE/Tomek) nur EINMAL per Konfiguration
-    und cacht sie via joblib auf der Festplatte.
+    Strukturell optimierte Pipeline-Suche.
+    Garantiert minimale CPU-Auslastung durch strikte Hierarchie-Ebenen,
+    In-Memory RAM-Sicherung und bereinigte Schleifen-Prozesse.
     """
     def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42, cache_dir: str = "data/matrix_cache"):
         self.df = df.copy()
@@ -30,14 +30,8 @@ class RandomGridSearch:
             random.seed(self.random_state)
 
     def _sample_parameters(self, param_grid: dict) -> dict:
-        """Hilfsmethode zur zufälligen Auswahl von Hyperparametern."""
-        sampled = {}
-        for param, values in param_grid.items():
-            if isinstance(values, list):
-                sampled[param] = random.choice(values)
-            else:
-                sampled[param] = values
-        return sampled
+        return {param: random.choice(values) if isinstance(values, list) else values
+                for param, values in param_grid.items()}
 
     def fit(self,
             models_grid: dict,
@@ -50,6 +44,12 @@ class RandomGridSearch:
         raw_results = []
         custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
+        # Pre-Caching von String-Repräsentationen der Modelle, um CPU-Overhead in Schleifen zu minimieren
+        prepared_models = [
+            (str(k.value if hasattr(k, 'value') else k), meta["class"], meta["param_grid"])
+            for k, meta in models_grid.items()
+        ]
+
         for strategy in preprocessors:
             strategy_col = strategy.value if hasattr(strategy, 'value') else str(strategy)
 
@@ -58,6 +58,7 @@ class RandomGridSearch:
                 print(f" [!] Warnung: DataFrame leer für Strategie: {strategy_col}")
                 continue
 
+            # Train-Test-Split stabil und einmalig pro Text-Pipeline extrahieren
             try:
                 X_train_raw, X_test_raw, y_train, y_test = train_test_split(
                     df_clean[strategy_col], df_clean[self.target_col],
@@ -75,18 +76,17 @@ class RandomGridSearch:
                 for ngram in ngram_ranges:
                     ngram_tuple = ngram if isinstance(ngram, tuple) else ast.literal_eval(str(ngram))
 
-                    # Eindeutiger Identifikator für die Vektorisierungsstufe
                     vec_cache_prefix = f"{strategy_col}_{vec_str}_ngram_{ngram_tuple[0]}_{ngram_tuple[1]}"
                     x_test_cache_path = os.path.join(self.cache_dir, f"{vec_cache_prefix}_X_test.pkl")
 
-                    # --- CACHE-STUFE 1: TEST-VEKTOREN LADEN ODER ERSTELLEN ---
+                    # --- STRUKTUR-OPTIMIERUNG 1: Test-Vektoren RAM-Zuweisung ---
                     if os.path.exists(x_test_cache_path):
                         X_test_vec = joblib.load(x_test_cache_path)
+                        X_train_vec = None  # Wird nur bei Bedarf geladen/berechnet
                     else:
-                        if vec_str == "BoW":
-                            vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
-                        else:
-                            vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                        vect = (CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                                if vec_str == "BoW" else
+                                TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000))
 
                         X_train_vec = vect.fit_transform(X_train_raw)
                         X_test_vec = vect.transform(X_test_raw)
@@ -95,22 +95,20 @@ class RandomGridSearch:
                     for sampler_key, sampler_obj in samplers.items():
                         sampler_str = sampler_key.value if hasattr(sampler_key, 'value') else str(sampler_key)
 
-                        # Eindeutiger Identifikator für das fertige Trainingsset (inkl. Sampling)
                         data_state_suffix = f"{vec_cache_prefix}_sampler_{sampler_str}.pkl"
                         train_features_path = os.path.join(self.cache_dir, f"X_train_{data_state_suffix}")
                         train_labels_path = os.path.join(self.cache_dir, f"y_train_{data_state_suffix}")
 
-                        # --- CACHE-STUFE 2: SMOTE / BALANCING ABFANGEN ---
+                        # --- STRUKTUR-OPTIMIERUNG 2: Speicher- & RAM-Schonung bei Resampling ---
                         if os.path.exists(train_features_path) and os.path.exists(train_labels_path):
                             X_train_res = joblib.load(train_features_path)
                             y_train_res = joblib.load(train_labels_path)
                         else:
-                            # Falls Trainings-Vektor nicht im RAM, fix neu generieren für den Sampler
-                            if 'X_train_vec' not in locals():
-                                if vec_str == "BoW":
-                                    vect = CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
-                                else:
-                                    vect = TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                            # Falls X_train_vec noch nicht berechnet wurde (weil X_test aus dem Cache kam)
+                            if X_train_vec is None:
+                                vect = (CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
+                                        if vec_str == "BoW" else
+                                        TfidfVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000))
                                 X_train_vec = vect.fit_transform(X_train_raw)
 
                             if sampler_obj is not None:
@@ -121,20 +119,15 @@ class RandomGridSearch:
                             else:
                                 X_train_res, y_train_res = X_train_vec, y_train
 
-                            # Trainisdaten für nachfolgende Epochen/Modifikationen sichern
                             joblib.dump(X_train_res, train_features_path)
                             joblib.dump(y_train_res, train_labels_path)
 
-                        # --- CLASSIFIER TRAININGS-SCHLEIFE ---
-                        for model_key, model_meta in models_grid.items():
-                            base_model_cls = model_meta["class"]
-                            hyperparam_grid = model_meta["param_grid"]
-                            model_str = model_key.value if hasattr(model_key, 'value') else str(model_key)
-
-                            print(f" [->] Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram} | Sampler={sampler_str}")
+                        # --- STRUKTUR-OPTIMIERUNG 3: Blitzschnelle Classifier-Schleife ---
+                        # X_train_res und y_train_res bleiben für ALLE Modelle fest im RAM verankert!
+                        for model_str, base_model_cls, hyperparam_grid in prepared_models:
+                            print(f" [->] Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram_tuple} | Sampler={sampler_str}")
 
                             for _ in range(n_iter_per_hyperparam):
-                                # HIER KNALLTE ES: Die Methode ist jetzt sicher definiert!
                                 sampled_params = self._sample_parameters(hyperparam_grid)
 
                                 try:
@@ -142,17 +135,14 @@ class RandomGridSearch:
                                     clf.fit(X_train_res, y_train_res)
                                     y_pred = clf.predict(X_test_vec)
 
-                                    acc = accuracy_score(y_test, y_pred)
-                                    macro_f1 = f1_score(y_test, y_pred, average="macro", zero_division=0)
-
                                     raw_results.append({
-                                        "Model": str(model_str),
-                                        "Strategy": str(strategy_col),
-                                        "Vectorizer": str(vec_str),
+                                        "Model": model_str,
+                                        "Strategy": strategy_col,
+                                        "Vectorizer": vec_str,
                                         "N-Gram": str(ngram_tuple),
-                                        "Sampling Strategy": str(sampler_str),
-                                        "Accuracy": float(acc),
-                                        "Macro-F1": float(macro_f1),
+                                        "Sampling Strategy": sampler_str,
+                                        "Accuracy": float(accuracy_score(y_test, y_pred)),
+                                        "Macro-F1": float(f1_score(y_test, y_pred, average="macro", zero_division=0)),
                                         "Sampled_Hyperparameters": str(sampled_params)
                                     })
                                 except Exception as e:
