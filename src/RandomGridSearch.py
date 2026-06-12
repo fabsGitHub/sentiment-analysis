@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import joblib
 
-# RAPIDS GPU-Beschleunigung (Auf Kaggle standardmäßig vorinstalliert)
+# RAPIDS GPU Acceleration
 try:
     import cupy as cp
     import cuml
@@ -26,7 +26,7 @@ class RandomGridSearch:
     """
     Maximierte GPU-Pipeline-Suche.
     Verlagert das Training traditioneller ML-Modelle komplett auf die GPU via RAPIDS cuML
-    und fängt I/O-Flaschenhälse durch GPU-In-Memory-Arrays ab.
+    und fängt I/O-Flaschenhälse durch GPU-In-Memory-Arrays ab. Erzwingt float32 für Sparse-Matrizen.
     """
     def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42, cache_dir: str = "data/matrix_cache"):
         self.df = df.copy()
@@ -63,7 +63,7 @@ class RandomGridSearch:
             return cuML_SVC
         elif "MultinomialNB" in classname:
             return cuML_MNB
-        return base_model_cls  # Fallback für PyTorchMLPClassifier, der bereits GPU nutzt
+        return base_model_cls  # PyTorch model handles its own GPU operations
 
     def fit(self,
             models_grid: dict,
@@ -110,7 +110,6 @@ class RandomGridSearch:
                     vec_cache_prefix = f"{strategy_col}_{vec_str}_ngram_{ngram_tuple[0]}_{ngram_tuple[1]}"
                     x_test_cache_path = os.path.join(self.cache_dir, f"{vec_cache_prefix}_X_test.pkl")
 
-                    # Vektorisierung (Immer noch CPU-gebunden, wird aber durch joblib abgefangen)
                     if os.path.exists(x_test_cache_path):
                         X_test_vec = joblib.load(x_test_cache_path)
                         X_train_vec = None
@@ -151,17 +150,20 @@ class RandomGridSearch:
                             joblib.dump(X_train_res, train_features_path)
                             joblib.dump(y_train_res, train_labels_path)
 
+                        # --- FIX: ENSURE FLOAT32 FOR SPARSE MATRICES BEFORE GPU TRANSFER ---
+                        # Converts BoW int matrices to float32 so cuML kernels don't crash
+                        if hasattr(X_train_res, "astype"):
+                            X_train_res = X_train_res.astype(np.float32)
+                        if hasattr(X_test_vec, "astype"):
+                            X_test_vec = X_test_vec.astype(np.float32)
+
                         # --- STRUKTUR-OPTIMIERUNG: KONVERTIERUNG IN GPU-ARRAYS ---
-                        # Wir schieben die CPU-Matrizen genau einmal hier auf die GPU.
-                        # Dadurch entfällt das Hin- und Herschieben in der inneren Hyperparameter-Schleife.
                         if GPU_AVAILABLE:
                             try:
-                                # Konvertiert scipy sparse Matrizen in cuML-kompatible GPU-bestückte CSR-Matrizen
                                 X_train_gpu = cuml.common.input_utils.sparse_scipy_to_cp(X_train_res, dtype=np.float32)
                                 X_test_gpu = cuml.common.input_utils.sparse_scipy_to_cp(X_test_vec, dtype=np.float32)
                                 y_train_gpu = cp.asarray(y_train_res.values if hasattr(y_train_res, 'values') else y_train_res)
                             except Exception:
-                                # Fallback, falls Konvertierung fehlschlägt
                                 X_train_gpu, X_test_gpu, y_train_gpu = X_train_res, X_test_vec, y_train_res
                         else:
                             X_train_gpu, X_test_gpu, y_train_gpu = X_train_res, X_test_vec, y_train_res
@@ -169,27 +171,32 @@ class RandomGridSearch:
                         for model_str, base_model_cls, hyperparam_grid in prepared_models:
                             print(f" [->] GPU-Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram_tuple} | Sampler={sampler_str}")
 
+                            # Check if it's a PyTorch/DL or custom CPU architecture that expects Scipy matrices
+                            is_cuml_model = GPU_AVAILABLE and "cuml" in base_model_cls.__module__
+
+                            X_tr = X_train_gpu if is_cuml_model else X_train_res
+                            y_tr = y_train_gpu if is_cuml_model else y_train_res
+                            X_te = X_test_gpu if is_cuml_model else X_test_vec
+
                             for _ in range(n_iter_per_hyperparam):
                                 sampled_params = self._sample_parameters(hyperparam_grid)
 
-                                # Säubere Parameter, die cuML nicht mag (z.B. n_jobs, da GPU inhärent parallel ist)
-                                if GPU_AVAILABLE and "cuml" in base_model_cls.__module__:
+                                # Clean up params that cuML doesn't accept
+                                if is_cuml_model:
                                     sampled_params.pop('n_jobs', None)
 
                                 try:
                                     clf = base_model_cls(**sampled_params)
+                                    clf.fit(X_tr, y_tr)
+                                    y_pred_raw = clf.predict(X_te)
 
-                                    # Fit und Predict laufen jetzt mit Lichtgeschwindigkeit auf der GPU
-                                    clf.fit(X_train_gpu, y_train_gpu)
-                                    y_pred_gpu = clf.predict(X_test_gpu)
-
-                                    # Zurückholen auf CPU nur für die Metrik-Berechnung
-                                    if hasattr(y_pred_gpu, "get"):
-                                        y_pred = y_pred_gpu.get()
-                                    elif isinstance(y_pred_gpu, cp.ndarray):
-                                        y_pred = cp.asnumpy(y_pred_gpu)
+                                    # Safely pull prediction to CPU numpy space for metric tracking
+                                    if hasattr(y_pred_raw, "get"):
+                                        y_pred = y_pred_raw.get()
+                                    elif isinstance(y_pred_raw, cp.ndarray) if 'cp' in locals() else False:
+                                        y_pred = cp.asnumpy(y_pred_raw)
                                     else:
-                                        y_pred = y_pred_gpu
+                                        y_pred = y_pred_raw
 
                                     raw_results.append({
                                         "Model": model_str,
