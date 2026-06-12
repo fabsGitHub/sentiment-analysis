@@ -1,0 +1,25 @@
+\begin{table}[H]
+    \centering
+    \caption{Optimal Hyperparameter Configuration for the FFNN Model via Task 3 Grid Search (Strategy: prep_masked, Vectorizer: TF-IDF)}
+    \label{tab:task3_ffnn_hyperparameters}
+    \small
+    \begin{tabular}{ll}
+    \toprule
+    \textbf{Hyperparameter} & \textbf{Value} \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Architecture \& Core Engine}} \\
+    Hidden Layer Sizes & (64,) \\
+    Activation Function & relu \\
+    Optimization Solver & adam \\
+    L2 Penalty ($\alpha$) & 0.001 \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Training Dynamics}} \\
+    Batch Size & 128 \\
+    Initial Learning Rate & 0.001 \\
+    Maximum Iterations & 100 \\
+    Early Stopping & True \\
+    Validation Fraction & 0.1 \\
+    Random State Seed & 42 \\
+    \bottomrule
+    \end{tabular}
+    \end{table}

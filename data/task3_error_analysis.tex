@@ -1,0 +1,9 @@
+\begin{table}[h]
+\centering
+\caption{Model Prediction Disagreement Analysis}\n\begin{tabular}{|p{8cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Sentence / Preprocessed Context} & \textbf{True Label} & \textbf{FFNN Pred.} & \textbf{Naive Bayes Pred.}  \\ \hline
+"The contract value amounts to about EUR11m , the company added ." \\ \textit{"Masked: contract value amount [MONEY] , add ."} & neutral & neutral & positive  \\ \hline
+"The phones are targeted at first time users in growth markets ." \\ \textit{"Masked: phone target time user growth market ."} & neutral & positive & neutral  \\ \hline
+\end{tabular}
+\end{table}
