@@ -84,7 +84,7 @@ def main():
             vectorizers=vectorizers,
             ngram_ranges=ngrams,
             samplers=samplers,
-            n_iter_per_hyperparam=1
+            n_iter_per_hyperparam=10
         )
         results_df.to_csv(CACHE_FILEPATH, index=False, sep=";")
         print("[+] Grid search complete. New intermediate cache logs saved to disk.")
