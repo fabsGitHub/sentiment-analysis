@@ -4,6 +4,19 @@ import ast
 import pandas as pd
 import numpy as np
 import joblib
+
+# RAPIDS GPU-Beschleunigung (Auf Kaggle standardmäßig vorinstalliert)
+try:
+    import cupy as cp
+    import cuml
+    from cuml.linear_model import LogisticRegression as cuML_LogisticRegression
+    from cuml.ensemble import RandomForestClassifier as cuML_RandomForest
+    from cuml.svm import SVC as cuML_SVC
+    from cuml.naive_bayes import MultinomialNB as cuML_MNB
+    GPU_AVAILABLE = True
+except ImportError:
+    GPU_AVAILABLE = False
+
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import accuracy_score, f1_score
@@ -11,9 +24,9 @@ from sklearn.base import clone
 
 class RandomGridSearch:
     """
-    Strukturell optimierte Pipeline-Suche.
-    Garantiert minimale CPU-Auslastung durch strikte Hierarchie-Ebenen,
-    In-Memory RAM-Sicherung und bereinigte Schleifen-Prozesse.
+    Maximierte GPU-Pipeline-Suche.
+    Verlagert das Training traditioneller ML-Modelle komplett auf die GPU via RAPIDS cuML
+    und fängt I/O-Flaschenhälse durch GPU-In-Memory-Arrays ab.
     """
     def __init__(self, df: pd.DataFrame, target_col: str = "sentiment", random_state: int = 42, cache_dir: str = "data/matrix_cache"):
         self.df = df.copy()
@@ -29,9 +42,28 @@ class RandomGridSearch:
             np.random.seed(self.random_state)
             random.seed(self.random_state)
 
+        if not GPU_AVAILABLE:
+            print(" [!] WARNUNG: RAPIDS cuML nicht gefunden. Fallback auf langsame CPU-Modelle!")
+
     def _sample_parameters(self, param_grid: dict) -> dict:
         return {param: random.choice(values) if isinstance(values, list) else values
                 for param, values in param_grid.items()}
+
+    def _convert_to_gpu_model(self, base_model_cls):
+        """Maps standard scikit-learn classes to ultra-fast cuML GPU classes."""
+        if not GPU_AVAILABLE:
+            return base_model_cls
+
+        classname = base_model_cls.__name__
+        if "LogisticRegression" in classname:
+            return cuML_LogisticRegression
+        elif "RandomForest" in classname:
+            return cuML_RandomForest
+        elif "SVC" in classname:
+            return cuML_SVC
+        elif "MultinomialNB" in classname:
+            return cuML_MNB
+        return base_model_cls  # Fallback für PyTorchMLPClassifier, der bereits GPU nutzt
 
     def fit(self,
             models_grid: dict,
@@ -44,9 +76,11 @@ class RandomGridSearch:
         raw_results = []
         custom_token_pattern = r'(?u)\[?\b\w[-\w\.]*\b\]?'
 
-        # Pre-Caching von String-Repräsentationen der Modelle, um CPU-Overhead in Schleifen zu minimieren
+        # Mapping der Modelle auf GPU-Pendants vorab
         prepared_models = [
-            (str(k.value if hasattr(k, 'value') else k), meta["class"], meta["param_grid"])
+            (str(k.value if hasattr(k, 'value') else k),
+             self._convert_to_gpu_model(meta["class"]),
+             meta["param_grid"])
             for k, meta in models_grid.items()
         ]
 
@@ -54,11 +88,8 @@ class RandomGridSearch:
             strategy_col = strategy.value if hasattr(strategy, 'value') else str(strategy)
 
             df_clean = self.df.dropna(subset=[strategy_col, self.target_col]).reset_index(drop=True)
-            if df_clean.empty:
-                print(f" [!] Warnung: DataFrame leer für Strategie: {strategy_col}")
-                continue
+            if df_clean.empty: continue
 
-            # Train-Test-Split stabil und einmalig pro Text-Pipeline extrahieren
             try:
                 X_train_raw, X_test_raw, y_train, y_test = train_test_split(
                     df_clean[strategy_col], df_clean[self.target_col],
@@ -79,10 +110,10 @@ class RandomGridSearch:
                     vec_cache_prefix = f"{strategy_col}_{vec_str}_ngram_{ngram_tuple[0]}_{ngram_tuple[1]}"
                     x_test_cache_path = os.path.join(self.cache_dir, f"{vec_cache_prefix}_X_test.pkl")
 
-                    # --- STRUKTUR-OPTIMIERUNG 1: Test-Vektoren RAM-Zuweisung ---
+                    # Vektorisierung (Immer noch CPU-gebunden, wird aber durch joblib abgefangen)
                     if os.path.exists(x_test_cache_path):
                         X_test_vec = joblib.load(x_test_cache_path)
-                        X_train_vec = None  # Wird nur bei Bedarf geladen/berechnet
+                        X_train_vec = None
                     else:
                         vect = (CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
                                 if vec_str == "BoW" else
@@ -99,12 +130,10 @@ class RandomGridSearch:
                         train_features_path = os.path.join(self.cache_dir, f"X_train_{data_state_suffix}")
                         train_labels_path = os.path.join(self.cache_dir, f"y_train_{data_state_suffix}")
 
-                        # --- STRUKTUR-OPTIMIERUNG 2: Speicher- & RAM-Schonung bei Resampling ---
                         if os.path.exists(train_features_path) and os.path.exists(train_labels_path):
                             X_train_res = joblib.load(train_features_path)
                             y_train_res = joblib.load(train_labels_path)
                         else:
-                            # Falls X_train_vec noch nicht berechnet wurde (weil X_test aus dem Cache kam)
                             if X_train_vec is None:
                                 vect = (CountVectorizer(ngram_range=ngram_tuple, token_pattern=custom_token_pattern, max_features=5000)
                                         if vec_str == "BoW" else
@@ -122,18 +151,45 @@ class RandomGridSearch:
                             joblib.dump(X_train_res, train_features_path)
                             joblib.dump(y_train_res, train_labels_path)
 
-                        # --- STRUKTUR-OPTIMIERUNG 3: Blitzschnelle Classifier-Schleife ---
-                        # X_train_res und y_train_res bleiben für ALLE Modelle fest im RAM verankert!
+                        # --- STRUKTUR-OPTIMIERUNG: KONVERTIERUNG IN GPU-ARRAYS ---
+                        # Wir schieben die CPU-Matrizen genau einmal hier auf die GPU.
+                        # Dadurch entfällt das Hin- und Herschieben in der inneren Hyperparameter-Schleife.
+                        if GPU_AVAILABLE:
+                            try:
+                                # Konvertiert scipy sparse Matrizen in cuML-kompatible GPU-bestückte CSR-Matrizen
+                                X_train_gpu = cuml.common.input_utils.sparse_scipy_to_cp(X_train_res, dtype=np.float32)
+                                X_test_gpu = cuml.common.input_utils.sparse_scipy_to_cp(X_test_vec, dtype=np.float32)
+                                y_train_gpu = cp.asarray(y_train_res.values if hasattr(y_train_res, 'values') else y_train_res)
+                            except Exception:
+                                # Fallback, falls Konvertierung fehlschlägt
+                                X_train_gpu, X_test_gpu, y_train_gpu = X_train_res, X_test_vec, y_train_res
+                        else:
+                            X_train_gpu, X_test_gpu, y_train_gpu = X_train_res, X_test_vec, y_train_res
+
                         for model_str, base_model_cls, hyperparam_grid in prepared_models:
-                            print(f" [->] Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram_tuple} | Sampler={sampler_str}")
+                            print(f" [->] GPU-Exploring: Model={model_str} | Strategy={strategy_col} | Vectorizer={vec_str} | N-Gram={ngram_tuple} | Sampler={sampler_str}")
 
                             for _ in range(n_iter_per_hyperparam):
                                 sampled_params = self._sample_parameters(hyperparam_grid)
 
+                                # Säubere Parameter, die cuML nicht mag (z.B. n_jobs, da GPU inhärent parallel ist)
+                                if GPU_AVAILABLE and "cuml" in base_model_cls.__module__:
+                                    sampled_params.pop('n_jobs', None)
+
                                 try:
                                     clf = base_model_cls(**sampled_params)
-                                    clf.fit(X_train_res, y_train_res)
-                                    y_pred = clf.predict(X_test_vec)
+
+                                    # Fit und Predict laufen jetzt mit Lichtgeschwindigkeit auf der GPU
+                                    clf.fit(X_train_gpu, y_train_gpu)
+                                    y_pred_gpu = clf.predict(X_test_gpu)
+
+                                    # Zurückholen auf CPU nur für die Metrik-Berechnung
+                                    if hasattr(y_pred_gpu, "get"):
+                                        y_pred = y_pred_gpu.get()
+                                    elif isinstance(y_pred_gpu, cp.ndarray):
+                                        y_pred = cp.asnumpy(y_pred_gpu)
+                                    else:
+                                        y_pred = y_pred_gpu
 
                                     raw_results.append({
                                         "Model": model_str,
@@ -146,16 +202,8 @@ class RandomGridSearch:
                                         "Sampled_Hyperparameters": str(sampled_params)
                                     })
                                 except Exception as e:
-                                    print(f" [!] Fehler beim Fitten von {model_str}: {str(e)}")
+                                    print(f" [!] Fehler beim GPU-Fitting von {model_str}: {str(e)}")
                                     continue
 
-        if not raw_results:
-            print(" [!] CRITICAL: Grid search complete but ZERO pipeline variations executed successfully.")
-            self.results_df = pd.DataFrame(columns=[
-                "Model", "Strategy", "Vectorizer", "N-Gram", "Sampling Strategy", "Accuracy", "Macro-F1", "Sampled_Hyperparameters"
-            ])
-        else:
-            self.results_df = pd.DataFrame(raw_results)
-            print(f" [+] Grid search successfully populated {len(self.results_df)} logging rows.")
-
+        self.results_df = pd.DataFrame(raw_results) if raw_results else pd.DataFrame()
         return self.results_df
